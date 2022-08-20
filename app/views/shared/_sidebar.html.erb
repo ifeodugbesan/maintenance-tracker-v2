@@ -1,3 +1,27 @@
 <div class="sidebar">
-
+  <%= link_to 'CREATE TASK', root_path, class: 'primary-btn mb-4' %>
+  <%= link_to root_path, class: "sidebar-link #{ 'active' if params[:action] == 'dashboard'  }" do %>
+    <div>
+      <%= image_tag 'house.svg' %>
+      <p>HOME</p>
+    </div>
+  <% end %>
+  <%= link_to root_path, class: "sidebar-link #{ 'active' if params[:action] == 'stats'  }" do %>
+    <div>
+      <%= image_tag 'stats.svg' %>
+      <p>STATS</p>
+    </div>
+  <% end %>
+  <%= link_to root_path, class: "sidebar-link #{ 'active' if params[:controller] == 'tasks'  }" do %>
+    <div>
+      <%= image_tag 'tasks.svg' %>
+      <p>TASKS</p>
+    </div>
+  <% end %>
+  <%= link_to root_path, class: "sidebar-link #{ 'active' if params[:controller] == 'networks'  }" do %>
+    <div>
+      <%= image_tag 'networks.svg' %>
+      <p>NETWORKS</p>
+    </div>
+  <% end %>
 </div>

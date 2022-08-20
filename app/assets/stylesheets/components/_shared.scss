@@ -24,3 +24,11 @@ input, textarea, select {
 .form-text {
   font-size: 10px;
 }
+
+.mt-wrapper {
+  display: flex;
+}
+
+.mt-content {
+  flex-grow: 1;
+}
