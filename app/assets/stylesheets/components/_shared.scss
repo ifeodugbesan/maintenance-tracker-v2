@@ -1,0 +1,26 @@
+// Styling for shared components
+
+.min-height {
+  min-height: calc(100vh - 100px);
+}
+
+input, textarea, select {
+  border-radius: 8px !important;
+  background-color: #FFFFFF !important;
+}
+
+.form-label {
+  margin-left: 2px !important;
+  margin-bottom: 2px !important;
+  font-size: 14px !important;
+}
+
+.text-link {
+  color: #0073DE;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.form-text {
+  font-size: 10px;
+}

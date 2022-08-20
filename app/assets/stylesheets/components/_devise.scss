@@ -1,0 +1,18 @@
+.d-wrapper {
+  min-height: calc(100vh - 100px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 56px 0;
+}
+
+.d-container {
+  width: 500px;
+}
+
+.d-title {
+  color: #0073DE;
+  font-weight: 600;
+  font-size: 56px;
+}
