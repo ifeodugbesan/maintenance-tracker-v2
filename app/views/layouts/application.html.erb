@@ -16,7 +16,12 @@
     <% end %>
     <%= render "shared/flashes" %>
     <div class="min-height">
-      <%= yield %>
+      <div class="mt-wrapper">
+        <%= render 'shared/sidebar' %>
+        <div class="mt-content">
+          <%= yield %>
+        </div>
+      </div>
     </div>
   </body>
 </html>

@@ -18,7 +18,7 @@
       <p>TASKS</p>
     </div>
   <% end %>
-  <%= link_to root_path, class: "sidebar-link #{ 'active' if params[:controller] == 'networks'  }" do %>
+  <%= link_to networks_path, class: "sidebar-link #{ 'active' if params[:controller] == 'networks'  }" do %>
     <div>
       <%= image_tag 'networks.svg' %>
       <p>NETWORKS</p>

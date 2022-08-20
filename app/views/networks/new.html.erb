@@ -1,0 +1,7 @@
+<%= simple_form_for @network do |f| %>
+  <%= f.input :name %>
+  <%= f.input :address %>
+  <%= f.input :number_of_households %>
+  <%= f.input :max_households %>
+  <%= f.button :submit, 'ADD NETWORK', class: 'primary-btn' %>
+<% end %>
