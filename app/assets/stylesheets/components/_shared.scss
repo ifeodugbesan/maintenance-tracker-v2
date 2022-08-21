@@ -7,6 +7,14 @@
 input, textarea, select {
   border-radius: 8px !important;
   background-color: #FFFFFF !important;
+  font-weight: 200 !important;
+  color: #5C5C5C !important;
+}
+
+p {
+  font-size: 14px;
+  font-weight: 200;
+  color: #5C5C5C;
 }
 
 .form-label {
@@ -31,4 +39,33 @@ input, textarea, select {
 
 .mt-content {
   flex-grow: 1;
+  margin-left: 212px;
+  padding: 16px 16px 0;
+}
+
+section {
+  background: #FFFFFF;
+  border: 1px solid #D4D4D4;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  padding: 16px;
+  box-shadow: -1px 1px 2px rgba(0,0,0,0.1);
+  min-width: 700px;
+  .headers {
+    text-align: left;
+    font-size: 14px;
+    font-weight: 200;
+    color: #9A9A9A;
+    display: flex;
+    align-items: center;
+  }
+}
+
+.f-wrapper {
+  min-height: calc(100vh - 132px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 56px 0;
 }

@@ -2,18 +2,33 @@
   justify-content: space-between;
   background: white;
   height: 100px;
-  padding: 0 48px;
+  padding: 0 72px;
   border-bottom: 1px solid #D4D4D4;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.spacer {
+  height: 100px;
 }
 
 .navbar-lewagon .navbar-collapse {
   flex-grow: 0;
-  border-left: 1px solid #D4D4D4;
   height: 72px;
+}
+
+.nav-seperator {
+  border-left: 1px solid #D4D4D4;
 }
 
 .navbar-lewagon .navbar-brand img {
   height: 54px;
+}
+
+.nav-link {
+  padding-left: 24px !important;
+  font-size: 14px;
 }
 
 .nav-info {

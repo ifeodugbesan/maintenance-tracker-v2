@@ -1,10 +1,13 @@
 .sidebar {
-  // width: 180px;
+  width: 212px;
   height: 100vh;
   background: #FFFFFF;
   border-right: 1px solid #D4D4D4;
-  padding: 72px 24px 0;
+  padding: 34px 24px 0;
   flex-shrink: 0;
+  position: fixed;
+  left: 0;
+  top: 100px;
   .active {
     background: #F5F5F5;
   }

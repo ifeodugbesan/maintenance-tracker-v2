@@ -1,17 +1,18 @@
 .primary-btn {
   border-radius: 20px !important;
   padding: 10px 28px;
-  color: #FFFFFF;
+  color: #FFFFFF !important;
   text-decoration: none;
   letter-spacing: 1px;
   background: linear-gradient(90deg, #0073DE, #3795EC);
   font-size: 14px;
+  font-weight: 200;
   display: inline-flex;
   border: none;
   transition: all 0.1s ease;
   &:hover {
     background: linear-gradient(90deg, #005CB2, #2477C4);
-    color: #FFFFFF;
+    color: #FFFFFF !important;
     transform: translateY(-1px);
     box-shadow: 0 2px 4px rgba(0,0,0,0.3);
   }

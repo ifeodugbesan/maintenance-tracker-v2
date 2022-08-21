@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_action :authenticate_user!, only: [ :dashboard ]
-
   def dashboard
+    authorize current_user
   end
 end
