@@ -2,29 +2,35 @@
   <%= form_with url: networks_path, method: :get, class: "d-flex" do %>
     <%= text_field_tag :query,
       params[:query],
-      class: "form-control",
+      class: "form-control search-bar",
       placeholder: "Find a network"
     %>
   <% end %>
   <%= link_to 'ADD NETWORK', new_network_path, class: 'primary-btn' %>
 </section>
 <section>
-  <div class="networks border-bottom mb-4">
+  <div class="network-grid border-bottom mb-4">
     <h6 class="headers">NETWORK</h6>
     <h6 class="headers">ADDRESS</h6>
     <h6 class="headers">WATERPOINTS</h6>
     <h6 class="headers">TASKS</h6>
     <h6 class="headers">HOUSEHOLDS</h6>
   </div>
-  <div class="networks">
-    <% @networks.each do |network| %>
-      <p><%= network.name.upcase %></p>
-      <p><%= network.address.upcase %></p>
-      <p>WATERPOINTS</p>
-      <p>TASKS</p>
-      <p><%= network.number_of_households %>/<%= network.max_households %></p>
+  <% @networks.each do |network| %>
+    <%= link_to network_path(network), class: 'network' do %>
+      <div class="network-grid">
+        <p><%= network.name.upcase %></p>
+        <p><%= network.address.upcase %></p>
+        <p>WATERPOINTS</p>
+        <p>TASKS</p>
+        <% if network.number_of_households == network.max_households %>
+          <p class="text-red">FULL</p>
+        <% else %>
+          <p class="text-green"><%= network.number_of_households %>/<%= network.max_households %></p>
+        <% end %>
+      </div>
     <% end %>
-  </div>
+  <% end %>
 </section>
 
 

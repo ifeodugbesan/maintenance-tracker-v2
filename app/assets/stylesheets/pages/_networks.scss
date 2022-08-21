@@ -1,6 +1,31 @@
-.networks {
+.network-grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   grid-gap: 16px;
-  padding-left: 16px;
+  padding: 16px;
+  p {
+    margin: 0;
+  }
+}
+
+.text-red {
+  font-weight: 600;
+  color: #EB0000;
+}
+
+.text-green {
+  font-weight: 600;
+  color: #20603D;
+}
+
+.search-bar {
+  min-width: 300px;
+}
+
+.network {
+  text-decoration: none;
+  .network-grid:hover {
+    border-radius: 8px;
+    background: #F5F5F5;
+  }
 }
