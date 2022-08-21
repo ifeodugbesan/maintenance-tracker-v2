@@ -6,7 +6,7 @@
       placeholder: "Find a network"
     %>
   <% end %>
-  <%= link_to 'ADD NETWORK', new_network_path, class: 'primary-btn' %>
+  <%= link_to 'ADD NETWORK', new_network_path, class: 'primary-btn' if policy(Network).new? %>
 </section>
 <section>
   <div class="network-grid border-bottom mb-4">
