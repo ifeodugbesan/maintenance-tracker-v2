@@ -1,0 +1,22 @@
+<section class=" mw-700 mb-3">
+  <div class="f-wrapper">
+    <h1 class="text-center d-title mb-5">ADD WATERPOINT</h1>
+    <div class="d-container">
+      <%= simple_form_for [ @network, @waterpoint ] do |f| %>
+        <%= f.input :name %>
+        <%= f.association :network %>
+        <%= f.input :mwater_id %>
+        <%= f.input :waterpoint_type %>
+        <%= f.input :latitude %>
+        <%= f.input :longitude %>
+        <%= f.input :address %>
+        <%= f.input :kiosk %>
+        <%= f.input :manufacturer %>
+        <%= f.input :design_period %>
+        <%= f.input :warranty %>
+        <%= f.input :efficiency %>
+        <%= f.submit 'ADD WATERPOINT', class: 'primary-btn' %>
+      <% end %>
+    </div>
+  </div>
+</section>

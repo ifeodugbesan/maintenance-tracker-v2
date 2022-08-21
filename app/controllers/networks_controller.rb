@@ -2,15 +2,6 @@ class NetworksController < ApplicationController
   before_action :find_and_authorize_network, only: [:show, :edit, :update, :destroy]
   def index
     @networks = policy_scope(Network)
-    # @markers = @networks.geocoded.map do |network|
-    #   {
-    #     lat: network.latitude,
-    #     lng: network.longitude
-    #   }
-    # end
-
-    # @waterpoints = Waterpoint.all
-    # @tasks = Task.all
   end
 
   def new
@@ -29,7 +20,13 @@ class NetworksController < ApplicationController
   end
 
   def show
-    # @markers = [{ lat: @network.latitude, lng: @network.longitude }]
+    @markers = @network.waterpoints.map do |waterpoint|
+      {
+        lat: waterpoint.latitude,
+        lng: waterpoint.longitude,
+        info_window: render_to_string(partial: "info_window", locals: { waterpoint: waterpoint })
+      }
+    end
   end
 
   def edit
@@ -42,7 +39,7 @@ class NetworksController < ApplicationController
 
   def destroy
     @network.destroy
-    redirect_to networks_path
+    redirect_to networks_path, status: :see_other
   end
 
   private
