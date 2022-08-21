@@ -1,7 +1,7 @@
 <h6 class="mb-3"><%= @network.name.upcase %> NETWORK </h6>
 <div class="mb-3">
-  <%= link_to 'edit', edit_network_path(@network) %>
-  <%= link_to 'delete', network_path(@network), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete the network #{@network.name}?"} %>
+  <%= link_to 'edit', edit_network_path(@network) if policy(Network).new? %>
+  <%= link_to 'delete', network_path(@network), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete the network #{@network.name}?"} if policy(Network).new? %>
 </div>
 <div class="g-two mb-3">
   <div class="g-four">
@@ -35,9 +35,11 @@
 
 <section class="mw-700 mb-3">
   <% @network.waterpoints.each do |waterpoint| %>
-    <%= waterpoint.name %>
-    <%= link_to 'edit', edit_network_waterpoint_path(@network, waterpoint) %>
-    <%= link_to 'delete', waterpoint_path(waterpoint), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete the waterpoint #{waterpoint.name}?"} %>
+    <div class="mb-3">
+      <%= waterpoint.name %>
+      <%= link_to 'edit', edit_network_waterpoint_path(@network, waterpoint) if policy(Network).new? %>
+      <%= link_to 'delete', waterpoint_path(waterpoint), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete the waterpoint #{waterpoint.name}?"} if policy(Network).new? %>
+    </div>
   <% end %>
 </section>
 
