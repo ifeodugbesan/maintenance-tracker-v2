@@ -1,5 +1,5 @@
 class Network < ApplicationRecord
-  has_many :waterpoints
+  has_many :waterpoints, dependent: :destroy
   has_many :tasks
   has_many :services, through: :tasks
 

@@ -1,9 +1,43 @@
-<p><%= @network.name %></p>
-<p><%= @network.address %></p>
-<p><%= @network.number_of_households %>/<%= @network.max_households %></p>
+<h6 class="mb-3"><%= @network.name.upcase %> NETWORK </h6>
+<div class="mb-3">
+  <%= link_to 'edit', edit_network_path(@network) %>
+  <%= link_to 'delete', network_path(@network), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete the network #{@network.name}?"} %>
+</div>
+<div class="g-two mb-3">
+  <div class="g-four">
+    <section class="info-square">
+      <p>NUMBER OF HOUSEHOLD CONNECTIONS</p>
+      <% if @network.number_of_households == @network.max_households %>
+        <span class="text-red">FULL</span>
+      <% else %>
+        <span class="text-green"><%= @network.number_of_households %>/<%= @network.max_households %></span>
+      <% end %>
+    </section>
+    <section class="info-square">
+      <p>NUMBER OF TASKS</p>
+      <span>47</span>
+    </section>
+    <section class="info-square">
+      <p>STATUS COMPLETED TASKS</p>
+      <span>78%</span>
+    </section>
+    <section class="info-square">
+      <p>NEXT MAINTENANCE</p>
+      <span>24/1/2023</span>
+    </section>
+  </div>
+  <div style="width: 100%; height: 100%;"
+       data-controller="map"
+       data-map-markers-value="<%= @markers.to_json %>"
+       data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+  </div>
+</div>
 
-<div style="width: 100%; height: 600px;"
-  data-controller="map"
-  data-map-markers-value="<%= @markers.to_json %>"
-  data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+<section class="mw-700 mb-3">
+  <% @network.waterpoints.each do |waterpoint| %>
+    <%= waterpoint.name %>
+    <%= link_to 'edit', edit_network_waterpoint_path(@network, waterpoint) %>
+    <%= link_to 'delete', waterpoint_path(waterpoint), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete the waterpoint #{waterpoint.name}?"} %>
+  <% end %>
+</section>
 

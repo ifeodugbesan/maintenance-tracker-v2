@@ -39,7 +39,7 @@ class NetworksController < ApplicationController
 
   def destroy
     @network.destroy
-    redirect_to networks_path
+    redirect_to networks_path, status: :see_other
   end
 
   private

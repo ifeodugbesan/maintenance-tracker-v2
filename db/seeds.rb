@@ -17,7 +17,7 @@ Network.destroy_all
 # emile = User.create!(email: "emile@test.com", password: "123456", first_name: "emile", last_name: "rugero", manager: true)
 # emile.avatar.attach(io: File.open('app/assets/images/emile.png'), filename: 'emile.png', content_type: 'image/png')
 
-puts "Created users"
+# puts "Created users"
 
 rwintare_network = Network.create!(name: "Rwintare", address: '157 KN 2 Ave, Kigali, Rwanda', number_of_households: 32, max_households: 45)
 kavumu_network = Network.create!(name: "Kavumu", address: 'KK 329 St, Kigali, Rwanda', number_of_households: 53, max_households: 53)

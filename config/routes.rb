@@ -6,8 +6,8 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
   resources :networks do
-    resources :waterpoints, only: :index
+    resources :waterpoints, only: [:index, :new, :create, :edit, :update]
   end
-  resources :waterpoints, except: :index
+  resources :waterpoints, only: [:destroy]
   get 'dashboard', to: 'users#dashboard', as: :dashboard
 end
