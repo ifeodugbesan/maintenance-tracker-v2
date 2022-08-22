@@ -1,3 +1,4 @@
+ServiceEquipment.destroy_all
 WaterpointEquipment.destroy_all
 Equipment.destroy_all
 Waterpoint.destroy_all
@@ -129,6 +130,51 @@ WaterpointEquipment.create!(equipment: tank_10m3, waterpoint: mugesera_nexus)
 WaterpointEquipment.create!(equipment: solar_pannels, waterpoint: mugesera_nexus)
 
 puts "Created Waterpoint Equipments"
+
+painting = Service.create(name: "Painting", frequency: 12)
+maintenance = Service.create(name: "Maintenance Check", frequency: 6)
+cleaning = Service.create(name: "Cleaning", frequency: 1)
+catridge = Service.create(name: "Cartridge Replacement", frequency: 6)
+replacement = Service.create(name: "Replacement", frequency: 2)
+resin = Service.create(name: "Resin Refill", frequency: 2)
+general = Service.create(name: "General Service", frequency: 6)
+
+puts "Created Services"
+
+# Painting
+ServiceEquipment.create(equipment: kiosk, service: painting)
+# Maintenance
+ServiceEquipment.create(equipment: kiosk, service: maintenance)
+ServiceEquipment.create(equipment: grundfos_pump, service: maintenance)
+ServiceEquipment.create(equipment: solar_pannels, service: maintenance)
+ServiceEquipment.create(equipment: generator, service: maintenance)
+ServiceEquipment.create(equipment: booster_pump, service: maintenance)
+# Cleaning
+ServiceEquipment.create(equipment: kiosk, service: cleaning)
+ServiceEquipment.create(equipment: solar_pannels, service: cleaning)
+ServiceEquipment.create(equipment: filter_system, service: cleaning)
+# Cartridge
+ServiceEquipment.create(equipment: filter_system, service: catridge)
+ServiceEquipment.create(equipment: gac_cto, service: catridge)
+ServiceEquipment.create(equipment: klorman, service: catridge)
+
+# Replacement
+ServiceEquipment.create(equipment: grundfos_pump, service: replacement)
+ServiceEquipment.create(equipment: solar_pannels, service: replacement)
+ServiceEquipment.create(equipment: softener, service: replacement)
+ServiceEquipment.create(equipment: generator, service: replacement)
+ServiceEquipment.create(equipment: booster_pump, service: replacement)
+
+# Resin
+ServiceEquipment.create(equipment: filter_system, service: resin)
+ServiceEquipment.create(equipment: gac_cto, service: resin)
+ServiceEquipment.create(equipment: klorman, service: resin)
+
+# General
+ServiceEquipment.create(equipment: kiosk, service: general)
+ServiceEquipment.create(equipment: generator, service: general)
+
+puts "Service Equipment"
 
 
 
