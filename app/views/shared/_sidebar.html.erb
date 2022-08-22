@@ -30,4 +30,10 @@
       <p>EQUIPMENT</p>
     </div>
   <% end %>
+  <%= link_to services_path, class: "sidebar-link #{ 'active' if params[:controller] == 'services'  }" do %>
+    <div>
+      <%= image_tag 'service.svg' %>
+      <p>SERVICES</p>
+    </div>
+  <% end %>
 </div>

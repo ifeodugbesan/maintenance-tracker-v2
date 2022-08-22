@@ -10,5 +10,6 @@ Rails.application.routes.draw do
   end
   resources :waterpoints, only: [:destroy]
   resources :equipments
+  resources :services
   get 'dashboard', to: 'users#dashboard', as: :dashboard
 end
