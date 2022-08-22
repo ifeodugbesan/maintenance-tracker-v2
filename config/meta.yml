@@ -1,0 +1,5 @@
+meta_product_name: "WAR Maintenance Tracker"
+meta_title: "WAR Maintenance Tracker - Data tracking for Water Access Rwanda"
+meta_description: "Maintenance and staff management"
+meta_image: "cover.png" # should exist in `app/assets/images/`
+twitter_account: "@WaterRwanda"   # required for Twitter Cards
