@@ -24,4 +24,10 @@
       <p>NETWORKS</p>
     </div>
   <% end %>
+  <%= link_to equipments_path, class: "sidebar-link #{ 'active' if params[:controller] == 'equipments'  }" do %>
+    <div>
+      <%= image_tag 'equipment.svg' %>
+      <p>EQUIPMENT</p>
+    </div>
+  <% end %>
 </div>

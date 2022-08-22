@@ -1,4 +1,4 @@
-<div class="d-wrapper">
+<section class="d-wrapper mb-3">
   <h1 class="text-center d-title">FORGOT PASSWORD?</h1>
   <div class="d-container">
     <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
@@ -19,4 +19,4 @@
     <%= render "devise/shared/links" %>
   </div>
   <h1></h1>
-</div>
+</section>

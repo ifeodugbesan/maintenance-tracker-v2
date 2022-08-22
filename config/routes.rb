@@ -9,5 +9,6 @@ Rails.application.routes.draw do
     resources :waterpoints, only: [:index, :new, :create, :edit, :update]
   end
   resources :waterpoints, only: [:destroy]
+  resources :equipments
   get 'dashboard', to: 'users#dashboard', as: :dashboard
 end

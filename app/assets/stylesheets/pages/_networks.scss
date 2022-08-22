@@ -24,9 +24,13 @@
 
 .network {
   text-decoration: none;
-  .network-grid:hover {
+  position: relative;
+  &:hover {
     border-radius: 8px;
     background: #F5F5F5;
+    .menu-options {
+      display: flex;
+    }
   }
 }
 
