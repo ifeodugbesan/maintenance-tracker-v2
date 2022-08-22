@@ -5,6 +5,7 @@
   padding: 0 72px;
   border-bottom: 1px solid #D4D4D4;
   position: fixed;
+  z-index: 5;
   top: 0;
   width: 100%;
 }
@@ -43,7 +44,7 @@
     color: #20603D;
   }
   p {
-    font-weight: 200;
+    font-weight: 300;
     font-size: 12px;
     margin: 0;
     color: #959595;

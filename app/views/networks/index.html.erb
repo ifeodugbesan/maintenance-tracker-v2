@@ -17,19 +17,30 @@
     <h6 class="headers">HOUSEHOLDS</h6>
   </div>
   <% @networks.each do |network| %>
-    <%= link_to network_path(network), class: 'network' do %>
-      <div class="network-grid">
-        <p><%= network.name.upcase %></p>
-        <p><%= network.address.upcase %></p>
-        <p>WATERPOINTS</p>
-        <p>TASKS</p>
-        <% if network.number_of_households == network.max_households %>
-          <p class="text-red">FULL</p>
-        <% else %>
-          <p class="text-green"><%= network.number_of_households %>/<%= network.max_households %></p>
-        <% end %>
-      </div>
-    <% end %>
+    <div class="network">
+      <%= link_to network_path(network), class: 'text-decoration-none' do %>
+        <div class="network-grid">
+          <p><%= network.name.upcase %></p>
+          <p><%= network.address.upcase %></p>
+          <p>WATERPOINTS</p>
+          <p>TASKS</p>
+          <% if network.number_of_households == network.max_households %>
+            <p class="text-red">FULL</p>
+          <% else %>
+            <p class="text-green"><%= network.number_of_households %>/<%= network.max_households %></p>
+          <% end %>
+        </div>
+      <% end %>
+      <% if policy(Network).new? %>
+        <div class="menu-options dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          •••
+        </div>
+        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+          <%= link_to "EDIT #{network.name.upcase}", edit_network_path(network), class: "dropdown-item" %>
+          <%= link_to "DELETE #{network.name.upcase}", network_path(network), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete the network #{network.name}?"}, class: "dropdown-item" %>
+        </div>
+      <% end %>
+    </div>
   <% end %>
 </section>
 

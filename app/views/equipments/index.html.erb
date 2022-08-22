@@ -1,0 +1,37 @@
+<section class="mw-700 d-flex justify-content-between mb-3">
+  <%= form_with url: equipments_path, method: :get, class: "d-flex" do %>
+    <%= text_field_tag :query,
+      params[:query],
+      class: "form-control search-bar",
+      placeholder: "Find an equipment"
+    %>
+  <% end %>
+  <%= link_to 'ADD EQUIPMENT', new_equipment_path, class: 'primary-btn' if policy(Equipment).new? %>
+</section>
+<section class="mw-700 mb-3">
+  <div class="network-grid border-bottom mb-4">
+    <h6 class="headers">NETWORK</h6>
+    <h6 class="headers">ADDRESS</h6>
+    <h6 class="headers">WATERPOINTS</h6>
+    <h6 class="headers">TASKS</h6>
+    <h6 class="headers">HOUSEHOLDS</h6>
+  </div>
+  <% @equipments.each do |equipment| %>
+    <div class="network">
+      <div class="network-grid">
+        <p><%= equipment.name.upcase %></p>
+        <p><%= equipment.equipment_type.upcase %></p>
+        <p><%= equipment.warranty_valid.to_s.upcase %></p>
+      </div>
+      <% if policy(Equipment).new? %>
+        <div class="menu-options dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          •••
+        </div>
+        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+          <%= link_to "EDIT #{equipment.name.upcase}", edit_equipment_path(equipment), class: "dropdown-item" %>
+          <%= link_to "DELETE #{equipment.name.upcase}", equipment_path(equipment), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete the equipment #{equipment.name}?"}, class: "dropdown-item" %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</section>

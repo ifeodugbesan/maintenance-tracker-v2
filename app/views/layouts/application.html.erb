@@ -7,20 +7,21 @@
     <%= csp_meta_tag %>
 
     <link href="https://api.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
 
   <body>
-    <% unless params[:controller] == 'pages' && params[:action] == 'home' %>
+    <% unless hide_nav %>
       <%= render "shared/navbar" %>
     <% end %>
     <%= render "shared/flashes" %>
     <div class="min-height">
-      <div class="mt-wrapper">
-        <%= render 'shared/sidebar' %>
-        <div class="mt-content">
+      <div class="<%= 'mt-wrapper' unless hide_nav %>">
+        <%= render 'shared/sidebar' unless hide_nav %>
+        <div class="<%= 'mt-content' unless hide_nav %>">
           <%= yield %>
         </div>
       </div>

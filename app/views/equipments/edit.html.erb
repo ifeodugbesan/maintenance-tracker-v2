@@ -1,0 +1,13 @@
+<section class="mw-700 mb-3">
+  <div class="f-wrapper">
+    <h1 class="text-center d-title mb-5">AMEND EQUIPMENT</h1>
+    <div class="d-container">
+      <%= simple_form_for @equipment, url: equipments_path, method: :post do |f| %>
+        <%= f.input :name %>
+        <%= f.input :equipment_type %>
+        <%= f.input :warranty_valid %>
+        <%= f.submit 'AMEND EQUIPMENT', class: 'primary-btn' %>
+      <% end %>
+    </div>
+  </div>
+</section>
