@@ -1,4 +1,6 @@
 class Task < ApplicationRecord
+  belongs_to :issuer, class_name: "User", foreign_key: "issuer_id"
+  belongs_to :technician, class_name: "User", foreign_key: "technician_id"
   belongs_to :equipment
   belongs_to :waterpoint
   belongs_to :network
