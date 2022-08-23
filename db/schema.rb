@@ -87,10 +87,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_20_153825) do
   end
 
   create_table "tasks", force: :cascade do |t|
+    t.string "title"
     t.datetime "start_date"
     t.datetime "end_date"
     t.text "extra_info"
-    t.boolean "completed"
+    t.string "schedule", default: "Predicted"
+    t.boolean "completed", default: false
+    t.bigint "issuer_id"
+    t.bigint "technician_id"
     t.bigint "equipment_id", null: false
     t.bigint "waterpoint_id", null: false
     t.bigint "network_id", null: false
@@ -98,8 +102,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_20_153825) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["equipment_id"], name: "index_tasks_on_equipment_id"
+    t.index ["issuer_id"], name: "index_tasks_on_issuer_id"
     t.index ["network_id"], name: "index_tasks_on_network_id"
     t.index ["service_id"], name: "index_tasks_on_service_id"
+    t.index ["technician_id"], name: "index_tasks_on_technician_id"
     t.index ["waterpoint_id"], name: "index_tasks_on_waterpoint_id"
   end
 
@@ -154,6 +160,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_20_153825) do
   add_foreign_key "tasks", "equipment"
   add_foreign_key "tasks", "networks"
   add_foreign_key "tasks", "services"
+  add_foreign_key "tasks", "users", column: "issuer_id"
+  add_foreign_key "tasks", "users", column: "technician_id"
   add_foreign_key "tasks", "waterpoints"
   add_foreign_key "waterpoint_equipments", "equipment"
   add_foreign_key "waterpoint_equipments", "waterpoints"

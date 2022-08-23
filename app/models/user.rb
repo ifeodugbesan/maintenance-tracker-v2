@@ -6,7 +6,7 @@ class User < ApplicationRecord
   has_one_attached :avatar
 
   def full_name
-    "#{first_name} #{last_name}"
+    "#{first_name.capitalize} #{last_name.capitalize}"
   end
 
   def initials

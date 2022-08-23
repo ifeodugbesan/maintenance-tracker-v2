@@ -1,5 +1,5 @@
 <div class="sidebar">
-  <%= link_to 'CREATE TASK', root_path, class: 'primary-btn mb-4' %>
+  <%= link_to 'CREATE TASK', new_task_path, class: 'primary-btn mb-4' %>
   <%= link_to root_path, class: "sidebar-link #{ 'active' if params[:action] == 'dashboard'  }" do %>
     <div>
       <%= image_tag 'house.svg' %>
@@ -12,7 +12,7 @@
       <p>STATS</p>
     </div>
   <% end %>
-  <%= link_to root_path, class: "sidebar-link #{ 'active' if params[:controller] == 'tasks'  }" do %>
+  <%= link_to tasks_path, class: "sidebar-link #{ 'active' if params[:controller] == 'tasks'  }" do %>
     <div>
       <%= image_tag 'tasks.svg' %>
       <p>TASKS</p>

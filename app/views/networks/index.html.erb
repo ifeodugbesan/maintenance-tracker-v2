@@ -25,9 +25,9 @@
           <p>WATERPOINTS</p>
           <p>TASKS</p>
           <% if network.number_of_households == network.max_households %>
-            <p class="text-red">FULL</p>
+            <p class="text-red bold">FULL</p>
           <% else %>
-            <p class="text-green"><%= network.number_of_households %>/<%= network.max_households %></p>
+            <p class="text-green bold"><%= network.number_of_households %>/<%= network.max_households %></p>
           <% end %>
         </div>
       <% end %>
