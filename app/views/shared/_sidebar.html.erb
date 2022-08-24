@@ -6,7 +6,7 @@
       <p>HOME</p>
     </div>
   <% end %>
-  <%= link_to root_path, class: "sidebar-link #{ 'active' if params[:action] == 'stats'  }" do %>
+  <%= link_to stats_path, class: "sidebar-link #{ 'active' if params[:action] == 'stats'  }" do %>
     <div>
       <%= image_tag 'stats.svg' %>
       <p>STATS</p>
