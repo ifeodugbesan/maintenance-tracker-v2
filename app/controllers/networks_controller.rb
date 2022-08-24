@@ -4,6 +4,17 @@ class NetworksController < ApplicationController
     @networks = policy_scope(Network)
   end
 
+  def show
+    @markers = @network.waterpoints.map do |waterpoint|
+      {
+        lat: waterpoint.latitude,
+        lng: waterpoint.longitude,
+        info_window: render_to_string(partial: "shared/info_window", locals: { waterpoint: waterpoint })
+      }
+    end
+    @waterpoint_equipments = @network.waterpoints.map(&:waterpoint_equipments).reject(&:blank?).flatten
+  end
+
   def new
     @network = Network.new
     authorize @network
@@ -19,15 +30,6 @@ class NetworksController < ApplicationController
     end
   end
 
-  def show
-    @markers = @network.waterpoints.map do |waterpoint|
-      {
-        lat: waterpoint.latitude,
-        lng: waterpoint.longitude,
-        info_window: render_to_string(partial: "info_window", locals: { waterpoint: waterpoint })
-      }
-    end
-  end
 
   def edit
   end
