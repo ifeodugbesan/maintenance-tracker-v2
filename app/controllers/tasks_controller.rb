@@ -23,15 +23,17 @@ class TasksController < ApplicationController
 
   def new
     @task = Task.new
+    authorize @task
     @technician = User.where(technician: true).all
   end
 
   def create
     @task = Task.new(task_params)
+    authorize @task
     @task.network = Waterpoint.find(task_params[:waterpoint_id]).network
     @task.issuer = current_user
     if @task.save!
-      redirect_to root_path(@root)
+      redirect_to task_path(@task)
     else
       render :new, :unprocessable_entity
     end
@@ -71,6 +73,6 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:start_date, :end_date, :extra_info, :schedule, :service_id, :technician_id, :waterpoint_id, :equipment_id)
+    params.require(:task).permit(:start_date, :end_date, :title, :extra_info, :schedule, :service_id, :technician_id, :waterpoint_id, :equipment_id)
   end
 end
