@@ -5,7 +5,7 @@ class CreateTasks < ActiveRecord::Migration[7.0]
       t.datetime :start_date
       t.datetime :end_date
       t.text :extra_info
-      t.string :schedule, default: "Predicted"
+      t.boolean :unscheduled, default: false
       t.boolean :completed, default: false
       t.references :issuer, foreign_key: { to_table: :users }
       t.references :technician, foreign_key: { to_table: :users }

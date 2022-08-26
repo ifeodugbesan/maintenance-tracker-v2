@@ -5,6 +5,16 @@ class EquipmentsController < ApplicationController
     @equipments = policy_scope(Equipment)
   end
 
+  def show
+    @markers = [
+                {
+                  lat: @equipment.waterpoint.latitude,
+                  lng: @equipment.waterpoint.longitude,
+                  info_window: render_to_string(partial: "shared/info_window", locals: { waterpoint: @equipment.waterpoint })
+                }
+               ]
+  end
+
   def new
     @equipment = Equipment.new
     authorize @equipment
@@ -20,15 +30,12 @@ class EquipmentsController < ApplicationController
     end
   end
 
-  def show
-  end
-
   def edit
   end
 
   def update
     @equipment.update(equipment_params)
-    redirect_to equipments_path
+    redirect_to equipment_path (@equipment)
   end
 
   def destroy
@@ -44,6 +51,6 @@ class EquipmentsController < ApplicationController
   end
 
   def equipment_params
-    params.require(:equipment).permit(:name, :equipment_type, :archived, :warranty_valid)
+    params.require(:equipment).permit(:name, :date_of_installation, :date_of_expiration, :manufacturer, :inactive, :warranty, :efficiency, :equipment_type, :design_period, :waterpoint_id)
   end
 end

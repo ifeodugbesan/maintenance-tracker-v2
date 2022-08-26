@@ -13,7 +13,7 @@
         <%= link_to task_path(task), class: 'text-decoration-none' do %>
           <div class="network-grid">
             <p><%= task.title.upcase %></p>
-            <p><%= task.technician.full_name.upcase %></p>
+            <p><%= cl_image_tag task.technician.avatar.key, class: 'avatar me-2' %> <%= task.technician.full_name.upcase %></p>
             <p><%= task.end_date.strftime('%d/%m/%Y') %></p>
             <p><%= task.network.name.upcase %></p>
             <!-- <p class="<%#= task.completed ? 'task-green' : 'task-red' %>"></p> -->

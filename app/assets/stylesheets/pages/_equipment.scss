@@ -1,0 +1,23 @@
+.e-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 16px;
+  padding: 16px;
+}
+
+.e-key {
+  padding: 16px;
+  p {
+    color: #9A9A9A;
+    font-weight: 400;
+    margin: 12px 0;
+  }
+}
+
+.e-val {
+  background: #F4F4F4;
+  box-shadow: inset 0px 3px 4px rgba(0,0,0,0.2);
+  p {
+    margin: 12px 0;
+  }
+}

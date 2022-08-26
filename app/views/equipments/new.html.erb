@@ -1,13 +1,42 @@
 <section class="mw-700 mb-3">
-  <div class="f-wrapper">
-    <h1 class="text-center d-title mb-5">ADD EQUIPMENT</h1>
-    <div class="d-container">
-      <%= simple_form_for @equipment, url: equipments_path, method: :post do |f| %>
+  <%= simple_form_for @equipment, url: equipments_path, method: :post do |f| %>
+    <div class="f-wrapper">
+      <div class="d-flex justify-content-between w-100 ">
+        <h1 class="d-title mb-5">ADD EQUIPMENT</h1>
+        <%= f.input :inactive, label: "INACTIVE" %>
+      </div>
+      <div class="f-container">
         <%= f.input :name %>
-        <%= f.input :equipment_type %>
-        <%= f.input :warranty_valid %>
-        <%= f.submit 'ADD EQUIPMENT', class: 'primary-btn' %>
-      <% end %>
+        <div class="row mt-4">
+          <div class="col-6">
+            <%= f.association :waterpoint, :label_method => lambda { |waterpoint| "#{waterpoint.network.name} #{waterpoint.waterpoint_type}" } %>
+          </div>
+          <div class="col-6">
+            <%= f.input :manufacturer %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <%= f.input :date_of_installation, as: :date, html5: true %>
+          </div>
+          <div class="col-6">
+            <%= f.input :date_of_expiration, as: :date, html5: true %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <%= f.input :equipment_type %>
+          </div>
+          <div class="col-3">
+            <%= f.input :design_period %>
+          </div>
+          <div class="col-3">
+            <%= f.input :efficiency %>
+          </div>
+        </div>
+        <%= f.input :warranty, as: :date, html5: true %>
+        <%= f.submit 'ADD NETWORK', class: 'primary-btn mt-4' %>
+      </div>
     </div>
-  </div>
+  <% end %>
 </section>
