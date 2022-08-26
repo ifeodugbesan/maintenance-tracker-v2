@@ -1,14 +1,22 @@
 <section class="mw-700 mb-3">
-  <div class="f-wrapper">
-    <h1 class="text-center d-title mb-5">ADD NETWORK</h1>
-    <div class="d-container">
-      <%= simple_form_for @network do |f| %>
-        <%= f.input :name %>
-        <%= f.input :address %>
+  <%= simple_form_for @network do |f| %>
+    <div class="f-wrapper">
+      <div class="d-flex justify-content-between w-100 ">
+        <h1 class="d-title mb-5">ADD NETWORK</h1>
+      </div>
+      <div class="f-container">
+       <div class="row mt-4">
+          <div class="col-6">
+            <%= f.input :name %>
+          </div>
+          <div class="col-6">
+            <%= f.input :address %>
+          </div>
+        </div>
         <%= f.input :number_of_households %>
         <%= f.input :max_households %>
-        <%= f.submit 'ADD NETWORK', class: 'primary-btn' %>
-      <% end %>
+        <%= f.submit 'ADD NETWORK', class: 'primary-btn mt-4' %>
+      </div>
     </div>
-  </div>
+  <% end %>
 </section>

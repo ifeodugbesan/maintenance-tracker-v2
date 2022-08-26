@@ -4,23 +4,44 @@
   min-height: calc(100vh - 100px);
 }
 
-input, textarea, select {
-  border-radius: 8px !important;
-  background-color: #FFFFFF !important;
+input, select {
+  border-radius: 20px !important;
   font-weight: 200 !important;
-  color: #5C5C5C !important;
+}
+
+textarea {
+  border-radius: 16px !important;
+  font-weight: 200 !important;
+  min-height: 100px !important;
+  resize: none;
 }
 
 p, a {
   font-size: 14px;
   font-weight: 300;
-  color: #5C5C5C;
+  color: #000000;
+  letter-spacing: 0.5px;
 }
 
 .form-label {
   margin-left: 2px !important;
   margin-bottom: 2px !important;
   font-size: 14px !important;
+  text-transform: uppercase;
+}
+
+.col-form-label {
+  font-size: 14px !important;
+  text-transform: uppercase;
+}
+
+.form-check-label {
+  letter-spacing: .5px;
+}
+
+.f-container {
+  width: 100%;
+  max-width: 800px;
 }
 
 .text-link {
@@ -68,12 +89,12 @@ section {
 }
 
 .f-wrapper {
-  min-height: calc(100vh - 132px);
+  min-height: calc(100vh - 166px);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  padding: 56px 0;
+  padding: 16px;
 }
 
 .menu-options {

@@ -81,3 +81,64 @@
     top: 8px;
   }
 }
+
+// FORMS
+
+.task_unscheduled {
+  label {
+    color: #F61515;
+  }
+  .form-check-input {
+    border-color: #F61515;
+  }
+  .form-check-input:checked {
+    border-color: #0D6EFD;
+  }
+}
+
+.category-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.category-selector {
+  position: absolute;
+  transform: scale(0);
+}
+
+.category-selector + label {
+  display: block;
+  cursor: pointer;
+  font-size: 12px;
+  padding: 8px 12px;
+  border: 1px solid #CED4DA;
+  border-radius: 8px;
+  background-color: white;
+  text-align: center;
+}
+
+.category-selector:checked + label {
+  border-color: #0073DE !important;
+}
+
+.task_technician {
+  .collection_radio_buttons {
+    margin: 0 12px 12px 0;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

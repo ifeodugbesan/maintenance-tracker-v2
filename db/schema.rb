@@ -53,12 +53,19 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_20_153825) do
   end
 
   create_table "equipment", force: :cascade do |t|
-    t.string "equipment_type"
     t.string "name"
-    t.boolean "archived"
-    t.boolean "warranty_valid"
+    t.date "date_of_installation"
+    t.date "date_of_expiration"
+    t.string "manufacturer"
+    t.date "warranty"
+    t.string "efficiency"
+    t.string "equipment_type"
+    t.integer "design_period"
+    t.boolean "inactive", default: false
+    t.bigint "waterpoint_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["waterpoint_id"], name: "index_equipment_on_waterpoint_id"
   end
 
   create_table "networks", force: :cascade do |t|
@@ -91,7 +98,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_20_153825) do
     t.datetime "start_date"
     t.datetime "end_date"
     t.text "extra_info"
-    t.string "schedule", default: "Predicted"
+    t.boolean "unscheduled", default: false
     t.boolean "completed", default: false
     t.bigint "issuer_id"
     t.bigint "technician_id"
@@ -155,6 +162,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_20_153825) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "comments", "tasks"
   add_foreign_key "comments", "users"
+  add_foreign_key "equipment", "waterpoints"
   add_foreign_key "service_equipments", "equipment"
   add_foreign_key "service_equipments", "services"
   add_foreign_key "tasks", "equipment"
