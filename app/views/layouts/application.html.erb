@@ -31,12 +31,12 @@
   </head>
 
   <body>
-    <% unless hide_nav %>
+    <% unless params[:controller] == 'pages' && params[:action] == 'home' %>
       <%= render "shared/navbar" %>
     <% end %>
     <%= render "shared/flashes" %>
     <div class="min-height">
-      <div class="<%= 'mt-wrapper' unless hide_nav %>">
+      <div class="<%= hide_nav ? 'm-3' : 'mt-wrapper' %>">
         <%= render 'shared/sidebar' unless hide_nav %>
         <div class="<%= 'mt-content' unless hide_nav %>">
           <%= yield %>

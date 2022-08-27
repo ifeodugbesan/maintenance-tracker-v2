@@ -6,7 +6,7 @@
       placeholder: "Find an equipment"
     %>
   <% end %>
-  <%= link_to 'ADD EQUIPMENT', new_equipment_path, class: 'primary-btn' if policy(Equipment).new? %>
+  <%= link_to 'ADD EQUIPMENT', new_equipment_path, class: 'secondary-btn' if policy(Equipment).new? %>
 </section>
 <section class="mw-700 mb-3">
   <div class="e-grid border-bottom mb-4">

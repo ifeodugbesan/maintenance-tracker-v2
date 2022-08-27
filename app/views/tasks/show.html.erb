@@ -57,7 +57,7 @@
   <section class="mb-3">
     <div class="d-flex justify-content-between align-items-center">
       <h6 class="headers mb-0">COMMENTS</h6>
-      <%= link_to 'ADD COMMENT', new_task_comment_path(@task), class: 'primary-btn' if policy(Comment).new? %>
+      <%= link_to 'ADD COMMENT', new_task_comment_path(@task), class: 'secondary-btn' if policy(Comment).new? %>
     </div>
     <% @task.comments.each_with_index do |comment, index| %>
       <div class="border-top mt-3 pt-3 c-card">

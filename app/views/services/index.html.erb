@@ -6,7 +6,7 @@
       placeholder: "Find an service"
     %>
   <% end %>
-  <%= link_to 'ADD SERVICE', new_service_path, class: 'primary-btn' if policy(Service).new? %>
+  <%= link_to 'ADD SERVICE', new_service_path, class: 'secondary-btn' if policy(Service).new? %>
 </section>
 <section class="mw-700 mb-3">
   <div class="network-grid border-bottom mb-4">

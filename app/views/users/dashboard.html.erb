@@ -1,7 +1,10 @@
 <div class="g-two mb-3">
-  <section class="d-tt p-4">
-    <p class="">TODAYS TASKS</p>
-    <div class="network-grid border-bottom mb-4">
+  <section class="d-tt d-fixed-scroll p-3">
+    <div class="d-flex justify-content-between align-items-center border-bottom pb-3 mb-3">
+      <h6 class="headers mb-0 ps-3">TODAY'S TASKS</h6>
+      <%= link_to 'ALL TASKS', tasks_path, class: 'secondary-btn' %>
+    </div>
+    <div class="d-four border-bottom mb-4">
       <h6 class="headers">TASK</h6>
       <h6 class="headers">TECHNICIAN</h6>
       <h6 class="headers">DUE DATE</h6>
@@ -11,9 +14,9 @@
     <% @tasks.first(3).each do |task| %>
       <div class="network">
         <%= link_to task_path(task), class: 'text-decoration-none' do %>
-          <div class="network-grid">
+          <div class="d-four">
             <p><%= task.title.upcase %></p>
-            <p><%= cl_image_tag task.technician.avatar.key, class: 'avatar me-2' %> <%= task.technician.full_name.upcase %></p>
+            <p><%#= cl_image_tag task.technician.avatar.key, class: 'avatar me-2' %> <%= task.technician.full_name.upcase %></p>
             <p><%= task.end_date.strftime('%d/%m/%Y') %></p>
             <p><%= task.network.name.upcase %></p>
             <!-- <p class="<%#= task.completed ? 'task-green' : 'task-red' %>"></p> -->
@@ -33,11 +36,18 @@
     <% end %>
   </section>
   <section class="d-ot">
-    <p class="text-center">NETWORKS WITH MOST MAINTENANCE</p>
+    <div class="d-flex justify-content-between align-items-center border-bottom pb-3 mb-3">
+      <h6 class="headers mb-0 pe-2" style="width: 150px;">NETWORKS WITH MOST MAINTENANCE</h6>
+      <!-- <h6 class="headers mb-0 ps-3">TODAY'S TASKS</h6> -->
+      <%= link_to 'ALL NETWORKS', networks_path, class: 'secondary-btn' %>
+    </div>
     <%= pie_chart({"COMPLETE" => @complete, "INCOMPLETE" => @incomplete}, donut: true, height: "280px", width: "280px") %>
   </section>
 </div>
 <section class="mb-3">
-  <p class="">THIS MONTHS INCOMPLETED TASKS</p>
-  <%= column_chart Task.group(:completed).group_by_day(:created_at).count %>
+  <div class="d-flex justify-content-between align-items-center border-bottom pb-3 mb-3">
+    <h6 class="headers mb-0">THIS MONTHS INCOMPLETED TASKS</h6>
+    <%= link_to 'VIEW STATS', stats_path, class: 'secondary-btn' %>
+  </div>
+  <%= column_chart @tasks_per_month, colors: ["rgba(246, 158, 54, 1)"], legend: false, height: "220px", discrete: true, label: "TODAY'S TASKS"  %>
 </section>
