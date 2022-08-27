@@ -6,46 +6,63 @@
   </div>
   <div class="t-dates">
     <section class="me-3 p-3">
-      <p class="text-green mb-1">TOTAL NO. OF HOUSEHOLD CONNECTIONS</p>
+      <h6 class="headers mb-2">TOTAL NO. OF HOUSEHOLD CONNECTIONS</h6>
       <p class="text-green bold mb-0"><%= Network.sum(:number_of_households) %></p>
     </section>
     <section class="p-3">
-      <p class="text-green mb-1">TOTAL NO. OF COMPLETE TASKS</p>
+      <h6 class="headers mb-2">TOTAL NO. OF COMPLETE TASKS</h6>
       <p class="text-green bold mb-0"><%= Task.where(completed: true).count %></p>
     </section>
   </div>
 </div>
 <div class="g-two mb-3">
   <section class="s-ot p-4">
-    <p class="text-center">COMPLETE/INCOMPLETE TASKS</p>
-    <%= pie_chart({"COMPLETE" => @complete, "INCOMPLETE" => @incomplete}, donut: true, height: "280px", width: "280px") %>
+    <h6 class="headers mb-2">COMPLETE/INCOMPLETE TASKS</h6>
+    <%= pie_chart @task_status, donut: true, colors: ["#FD8B05", "#0073DE"] %>
   </section>
   <section class="s-tt">
-    <p class="text-center">TOTAL NO. OF TASKS BY TECHNICIAN</p>
-    <%= bar_chart Task.joins(:technician).group("users.first_name").count, colors: ["rgba(0,115,222,1)"] %>
+    <h6 class="headers mb-2 w-100">TOTAL NO. OF TASKS BY TECHNICIAN</h6>
+    <%= bar_chart @total_tasks_by_technician, colors: ["rgba(0,115,222,1)"] %>
   </section>
 </div>
 <div class="g-two mb-3">
   <section>
-    <p class="text-center">TOTAL NO. OF SERVICES BY NETWORK ( COMPLETE AND INCOMPLETE, top 10)</p>
-    <%= area_chart Task.joins(:technician).group("users.first_name").count %>
+    <h6 class="headers mb-2">TOTAL NO. OF SERVICES BY NETWORK ( COMPLETE AND INCOMPLETE, top 10)</h6>
+    <%= line_chart @total_services_by_network %>
   </section>
   <section>
-    <p class="text-center">NO. OF UNSCHEDULED SERVICES BY MANUFACTURER</p>
-    <%= bar_chart Task.group(:schedule).count, colors: ["rgba(0,115,222,1)"] %>
+    <h6 class="headers mb-2">NO. OF UNSCHEDULED SERVICES BY MANUFACTURER</h6>
+    <%= area_chart @unscheduled_services_by_manufacturer %>
   </section>
 </div>
 <div class="g-two mb-3">
-  <section class="s-ot p-4">
-    <p class="text-center">EQUIPMENT WITH THE  MOST SERVICE (top 10)</p>
-    <%= pie_chart({"COMPLETE" => @complete, "INCOMPLETE" => @incomplete}, donut: true, height: "280px", width: "280px") %>
+  <section class="s-ot">
+    <h6 class="headers mb-2">EQUIPMENT WITH THE MOST SERVICE (top 5)</h6>
+    <%= pie_chart @most_serviced_equipment %>
   </section>
-  <section class="s-tt">
-    <p class="text-center">EQUIPMENT WARRANTY EXPIRATION (top 10)</p>
-    <%= bar_chart Task.joins(:technician).group("users.first_name").count, colors: ["rgba(0,115,222,1)"] %>
+  <section class="s-eq">
+    <h6 class="headers mb-2 w-100">EQUIPMENT WARRANTY EXPIRATION (top 10)</h6>
+    <div class="eq-cont">
+      <div class="eq-three border-bottom">
+        <h6 class="headers my-1">EQUIPMENT</h6>
+        <h6 class="headers my-1">EXPIRATION DATE</h6>
+        <h6 class="headers my-1">NO. OF DAYS</h6>
+      </div>
+      <% @nearest_warranty.each do |equipment| %>
+        <div class="network">
+          <%= link_to equipment_path(equipment), class: 'text-decoration-none' do %>
+            <div class="eq-three eq-hov">
+              <p><%= equipment.name.upcase %></p>
+              <p><%= equipment.warranty.strftime('%d/%m/%Y') %></p>
+              <p class="<%= 'text-red bold' if Date.today > equipment.warranty %>"><%= Date.today > equipment.warranty ? "EXPIRED" : (equipment.warranty - Date.today).to_i %></p>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
   </section>
 </div>
 <section class="mb-3">
-  <p class="text-center">COMPLETE AND INCOMPLETE TASK OVER TIME</p>
-  <%= column_chart @split_tasks_per_month, stacked: true, legend: false, discrete: true, label: ["INCOMPLETE TASKS", "COMPLETE TASKS"] %>
+  <h6 class="headers mb-2">COMPLETED AND INCOMPLETE TASK OVER TIME</h6>
+  <%= column_chart @split_tasks_per_month, stacked: true, legend: false, discrete: true, colors: ["rgba(253,139,5,1)", "rgba(0,115,222,1)"] %>
 </section>

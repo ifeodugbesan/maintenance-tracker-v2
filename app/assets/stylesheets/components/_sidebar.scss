@@ -8,6 +8,7 @@
   position: fixed;
   left: 0;
   top: 100px;
+  z-index: 5;
   .active {
     background: #F5F5F5;
   }
@@ -32,8 +33,9 @@
   p {
     margin: 0;
     font-size: 14px;
-    color: #20603D;
+    color: #0476DF;
     letter-spacing: 1px;
+    font-weight: 600;
   }
   &:hover {
     background: #F5F5F5;
