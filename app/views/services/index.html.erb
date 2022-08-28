@@ -1,13 +1,15 @@
-<section class="mw-800 d-flex justify-content-end mb-3">
-  <%#= form_with url: services_path, method: :get, class: "d-flex" do %>
-    <%#= text_field_tag :query,
-      params[:query],
-      class: "form-control search-bar",
-      placeholder: "Find an service"
-    %>
-  <%# end %>
-  <%= link_to 'ADD SERVICE', new_service_path, class: 'secondary-btn' if policy(Service).new? %>
-</section>
+<% if policy(Service).new? %>
+  <section class="mw-800 d-flex justify-content-end mb-3">
+    <%#= form_with url: services_path, method: :get, class: "d-flex" do %>
+      <%#= text_field_tag :query,
+        params[:query],
+        class: "form-control search-bar",
+        placeholder: "Find an service"
+      %>
+    <%# end %>
+    <%= link_to 'ADD SERVICE', new_service_path, class: 'secondary-btn' %>
+  </section>
+<% end %>
 <section class="mw-800 mb-3">
   <div class="network-grid border-bottom mb-4">
     <h6 class="headers">SERVICE</h6>
