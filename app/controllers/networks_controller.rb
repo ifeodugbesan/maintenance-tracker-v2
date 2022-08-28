@@ -1,7 +1,7 @@
 class NetworksController < ApplicationController
   before_action :find_and_authorize_network, only: [:show, :edit, :update, :destroy]
   def index
-    @networks = policy_scope(Network)
+    @networks = policy_scope(Network).page params[:page]
   end
 
   def show

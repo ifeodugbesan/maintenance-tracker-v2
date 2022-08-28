@@ -7,7 +7,7 @@ class TasksController < ApplicationController
     # else
     #   @tasks = Task.where(technician: current_user)
     # end
-    @tasks = policy_scope(Task)
+    @tasks = policy_scope(Task).page params[:page]
   end
 
   def show

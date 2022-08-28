@@ -2,7 +2,7 @@ class EquipmentsController < ApplicationController
   before_action :find_and_authorize_equipment, only: [:show, :edit, :update, :destroy]
 
   def index
-    @equipments = policy_scope(Equipment)
+    @equipments = policy_scope(Equipment).page params[:page]
   end
 
   def show
