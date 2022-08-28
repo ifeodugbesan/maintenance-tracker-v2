@@ -10,4 +10,14 @@ class Task < ApplicationRecord
   validates :start_date, presence: true
   validates :end_date, presence: true
   paginates_per 12
+  include PgSearch::Model
+  pg_search_scope :search_by_fields,
+                  against: [:title],
+                  associated_against: {
+                    technician: [:first_name, :last_name],
+                    network: [:name]
+                  },
+                  using: {
+                    tsearch: { prefix: true }
+                  }
 end

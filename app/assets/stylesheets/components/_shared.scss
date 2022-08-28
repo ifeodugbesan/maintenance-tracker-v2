@@ -84,7 +84,7 @@ section {
 }
 
 .mw-700 {
-  min-width: 700px;
+  min-width: 800px;
 }
 
 .f-wrapper {
@@ -140,6 +140,18 @@ section {
   color: #5C5C5C;
   background: #D4D4D4;
   margin: 4px;
+}
+
+.search-form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  label {
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    color: #9A9A9A;
+  }
 }
 
 

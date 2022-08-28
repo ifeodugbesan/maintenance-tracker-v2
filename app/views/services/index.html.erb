@@ -1,11 +1,11 @@
-<section class="mw-700 d-flex justify-content-between mb-3">
-  <%= form_with url: services_path, method: :get, class: "d-flex" do %>
-    <%= text_field_tag :query,
+<section class="mw-700 d-flex justify-content-end mb-3">
+  <%#= form_with url: services_path, method: :get, class: "d-flex" do %>
+    <%#= text_field_tag :query,
       params[:query],
       class: "form-control search-bar",
       placeholder: "Find an service"
     %>
-  <% end %>
+  <%# end %>
   <%= link_to 'ADD SERVICE', new_service_path, class: 'secondary-btn' if policy(Service).new? %>
 </section>
 <section class="mw-700 mb-3">

@@ -63,7 +63,7 @@
           <p><%= task.end_date.strftime('%d/%m/%Y') %></p>
           <p><%= task.service.name.upcase %></p>
           <p><%= task.technician.full_name.upcase %></p>
-          <p class="<%= task.completed ? 'task-green' : 'task-red' %>"></p>
+          <p class="ms-3 <%= task.completed ? 'task-green' : 'task-red' %>"></p>
           <p class="mb-0"><%= task.unscheduled ? " UNSCHEDULED" : "SCHEDULED" %></p>
         </div>
       <% end %>

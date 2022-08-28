@@ -2,12 +2,11 @@ class TasksController < ApplicationController
   before_action :find_and_authorize_equipment, only: [:show, :edit, :update, :destroy]
 
   def index
-    # if current_user.technician == false
-    #   @tasks = Task.all
-    # else
-    #   @tasks = Task.where(technician: current_user)
-    # end
-    @tasks = policy_scope(Task).page params[:page]
+    @tasks = policy_scope(Task)
+    @tasks = policy_scope(Task).search_by_fields(params[:query]).page params[:page] if params[:query].present?
+    @tasks = @tasks.where(completed: false) if params[:hide_complete].present?
+    @tasks = @tasks.where(unscheduled: true) if params[:hide_predicted].present?
+    @tasks = @tasks.page params[:page]
   end
 
   def show
