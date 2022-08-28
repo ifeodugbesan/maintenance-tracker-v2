@@ -9,4 +9,9 @@ class Network < ApplicationRecord
                   using: {
                     tsearch: { prefix: true }
                   }
+
+  def completed_percentage
+    result = (tasks.where(completed: true).count.to_f / tasks.count) * 100
+    "#{result.round}%"
+  end
 end
