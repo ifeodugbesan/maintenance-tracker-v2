@@ -9,4 +9,5 @@ class Task < ApplicationRecord
   has_many :users, through: :comments
   validates :start_date, presence: true
   validates :end_date, presence: true
+  paginates_per 12
 end

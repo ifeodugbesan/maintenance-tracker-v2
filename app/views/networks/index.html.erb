@@ -42,6 +42,12 @@
       <% end %>
     </div>
   <% end %>
+  <div class="pag-cont border-top">
+    <div class="page-entry">
+      <%= page_entries_info @networks %>
+    </div>
+    <%= paginate @networks %>
+  </div>
 </section>
 
 

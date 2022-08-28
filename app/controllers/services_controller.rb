@@ -2,7 +2,7 @@ class ServicesController < ApplicationController
   before_action :find_and_authorize_service, only: [:show, :edit, :update, :destroy]
 
   def index
-    @services = policy_scope(Service)
+    @services = policy_scope(Service).page params[:page]
   end
 
   def new

@@ -40,4 +40,10 @@
       <% end %>
     </div>
   <% end %>
+  <div class="pag-cont border-top">
+    <div class="page-entry">
+      <%= page_entries_info @equipments %>
+    </div>
+    <%= paginate @equipments %>
+  </div>
 </section>
