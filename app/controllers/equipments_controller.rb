@@ -2,7 +2,11 @@ class EquipmentsController < ApplicationController
   before_action :find_and_authorize_equipment, only: [:show, :edit, :update, :destroy]
 
   def index
-    @equipments = policy_scope(Equipment).page params[:page]
+        if params[:query].present?
+      @equipments = policy_scope(Equipment).search_by_fields(params[:query]).page params[:page]
+    else
+      @equipments = policy_scope(Equipment).page params[:page]
+    end
   end
 
   def show

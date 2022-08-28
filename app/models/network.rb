@@ -3,8 +3,10 @@ class Network < ApplicationRecord
   has_many :tasks
   has_many :services, through: :tasks
   paginates_per 12
-
-  # def complete_tasks
-  #   tasks.where(complete_task: true).count
-  # end
+  include PgSearch::Model
+  pg_search_scope :search_by_name,
+                  against: [:name],
+                  using: {
+                    tsearch: { prefix: true }
+                  }
 end

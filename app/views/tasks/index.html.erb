@@ -1,12 +1,14 @@
 <section class="mw-700 d-flex justify-content-between mb-3">
-  <%= form_with url: tasks_path, method: :get, class: "d-flex" do %>
-    <%= text_field_tag :query,
-      params[:query],
-      class: "form-control search-bar",
-      placeholder: "Find a task"
-    %>
+  <%= form_with url: tasks_path, method: :get, class: "search-form" do %>
+    <%= text_field_tag :query, params[:query], class: "form-control search-bar", placeholder: "Find a task" %>
+    <div class="d-flex justify-content-center align-items-center">
+      <%= check_box_tag :hide_complete, params[:hide_complete], params[:hide_complete], { label: "sdfsdfsf", onchange: "this.form.submit()" } %>
+      <%= label_tag :hide_complete, 'HIDE COMPLETE TASKS', class: 'ms-1' %>
+      <%= check_box_tag :hide_predicted, params[:hide_predicted], params[:hide_predicted], { label: "sdfsdfsf", onchange: "this.form.submit()", class: 'ms-3' } %>
+      <%= label_tag :hide_predicted, 'HIDE SCHEDULED TASKS', class: 'ms-1' %>
+    </div>
   <% end %>
-  <%= link_to 'ADD TASK', new_task_path, class: 'secondary-btn' if policy(Task).new? %>
+  <%#= link_to 'ADD TASK', new_task_path, class: 'secondary-btn' if policy(Task).new? %>
 </section>
 <section class="mw-700 mb-3">
   <div class="t-six border-bottom mb-4">
@@ -15,7 +17,7 @@
     <h6 class="headers">DUE DATE</h6>
     <h6 class="headers">NETWORK</h6>
     <h6 class="headers">STATUS</h6>
-    <h6 class="headers">SCHEDULE</h6>
+    <h6 class="headers">SCHEDULED</h6>
   </div>
   <% @tasks.each do |task| %>
     <div class="network">
