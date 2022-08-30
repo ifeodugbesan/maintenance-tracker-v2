@@ -25,18 +25,18 @@
 </div>
 <div class="g-two mb-3">
   <section>
-    <h6 class="headers mb-2">TOTAL NO. OF SERVICES BY NETWORK ( COMPLETE AND INCOMPLETE, top 10)</h6>
-    <%= line_chart @total_services_by_network %>
+    <h6 class="headers mb-2">TOTAL NO. OF SERVICES BY NETWORK (COMPLETE AND INCOMPLETE, top 10)</h6>
+    <%= column_chart @total_services_by_network, colors: ["rgba(0,115,222,1)"] %>
   </section>
   <section>
     <h6 class="headers mb-2">NO. OF UNSCHEDULED SERVICES BY MANUFACTURER</h6>
-    <%= area_chart @unscheduled_services_by_manufacturer %>
+    <%= column_chart @unscheduled_services_by_manufacturer, colors: ["rgba(253,139,5,1)"] %>
   </section>
 </div>
 <div class="g-two mb-3">
   <section class="s-ot">
     <h6 class="headers mb-2">EQUIPMENT WITH THE MOST SERVICE (top 5)</h6>
-    <%= pie_chart @most_serviced_equipment %>
+    <%= pie_chart @most_serviced_equipment, colors: ["rgba(251,137,8,1)", "rgba(200,133,82,1)", "rgba(141,128,138,1)", "rgba(86,122,182,1)", "rgba(4,116,221,1)"] %>
   </section>
   <section class="s-eq">
     <h6 class="headers mb-2 w-100">EQUIPMENT WARRANTY EXPIRATION (top 10)</h6>

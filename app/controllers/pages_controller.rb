@@ -11,7 +11,7 @@ class PagesController < ApplicationController
 
     @total_tasks_by_technician = Task.joins(:technician).group("users.first_name").count.transform_keys { |key| key.upcase }
 
-    @total_services_by_network = Task.joins(:network).group("networks.name").count.sort_by { |_k, v| v }.reverse.first(5).to_h
+    @total_services_by_network = Task.joins(:network).group("networks.name").count.sort_by { |_k, v| v }.reverse.first(10).to_h
 
     @unscheduled_services_by_manufacturer = Task.joins(:equipment).where(unscheduled: true).group("equipment.manufacturer").count
 

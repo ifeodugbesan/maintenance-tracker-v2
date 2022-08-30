@@ -38,28 +38,28 @@
       </div>
     <% end %>
   </div>
-  <div class="">
-    <% if user_signed_in? %>
+  <!-- <div class="">
+    <%# if user_signed_in? %>
       <li class="nav-item dropdown border-top">
-        <% if current_user.avatar.attached? %>
-          <%= cl_image_tag current_user.avatar.key, class: "avatar-nav dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-        <% else %>
+        <%# if current_user.avatar.attached? %>
+          <%#= cl_image_tag current_user.avatar.key, class: "avatar-nav dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+        <%# else %>
           <div class="avatar-initials dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <%= current_user.initials %>
+            <%#= current_user.initials %>
           </div>
-        <% end %>
+        <%# end %>
         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-          <%= link_to "CREATE TASK", "#", class: "dropdown-item" %>
-          <%= link_to "LOG OUT", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
+          <%#= link_to "CREATE TASK", "#", class: "dropdown-item" %>
+          <%#= link_to "LOG OUT", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
         </div>
       </li>
       <li class="nav-info">
-        <h6><%= current_user.full_name.upcase %></h6>
-        <p><%= current_user.manager ? "MANAGER" : "TECHNICIAN" %></p>
+        <h6><%#= current_user.full_name.upcase %></h6>
+        <p><%#= current_user.manager ? "MANAGER" : "TECHNICIAN" %></p>
       </li>
       <div class="d-flex justify-content-center mb-5 mt-4">
-        <%= link_to "LOG OUT", destroy_user_session_path, data: {turbo_method: :delete}, class: "third-btn" %>
+        <%#= link_to "LOG OUT", destroy_user_session_path, data: {turbo_method: :delete}, class: "third-btn" %>
       </div>
-    <% end %>
-  </div>
+    <%# end %>
+  </div> -->
 </div>

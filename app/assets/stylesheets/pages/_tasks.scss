@@ -29,7 +29,7 @@
 
 .t-six {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr auto;
   grid-gap: 16px;
   padding: 16px;
   p {
