@@ -37,11 +37,11 @@
   </section>
   <section class="d-ot">
     <div class="d-flex justify-content-between align-items-center border-bottom pb-3 mb-3">
-      <h6 class="headers mb-0 pe-2" style="width: 150px;">NETWORKS WITH MOST MAINTENANCE</h6>
+      <h6 class="headers mb-0 pe-2" style="width: 150px;">TASKS DUE BY TODAY</h6>
       <!-- <h6 class="headers mb-0 ps-3">TODAY'S TASKS</h6> -->
       <%= link_to 'ALL NETWORKS', networks_path, class: 'secondary-btn' %>
     </div>
-    <%= pie_chart({"COMPLETE" => @complete, "INCOMPLETE" => @incomplete}, donut: true, height: "280px", width: "280px") %>
+    <%= pie_chart @due_tasks, donut: true, height: "280px", width: "280px", colors: ["#FD8B05", "#0073DE"] %>
   </section>
 </div>
 <section class="mb-3">

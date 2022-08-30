@@ -1,6 +1,6 @@
 .e-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: auto 1fr 1fr 1fr 1fr 1fr auto;
   grid-gap: 16px;
   padding: 16px;
 }
@@ -20,4 +20,12 @@
   p {
     margin: 12px 0;
   }
+}
+
+.e-id {
+  width: 38px;
+}
+
+.e-active {
+  width: 56px;
 }
