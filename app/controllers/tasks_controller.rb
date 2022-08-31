@@ -6,6 +6,7 @@ class TasksController < ApplicationController
     @tasks = policy_scope(Task).search_by_fields(params[:query]).page params[:page] if params[:query].present?
     @tasks = @tasks.where(completed: false) if params[:hide_complete].present?
     @tasks = @tasks.where(unscheduled: true) if params[:hide_predicted].present?
+    @tasks = @tasks.where(technician: current_user) unless current_user.manager
     @tasks = @tasks.page params[:page]
   end
 
