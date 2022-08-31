@@ -13,7 +13,7 @@ class NetworksController < ApplicationController
       {
         lat: waterpoint.latitude,
         lng: waterpoint.longitude,
-        info_window: render_to_string(partial: "shared/info_window", locals: { waterpoint: waterpoint })
+        info_window: render_to_string(partial: "shared/info_window", locals: { waterpoint: waterpoint }),
       }
     end
     @waterpoint_equipments = @network.waterpoints.map(&:waterpoint_equipments).reject(&:blank?).flatten
