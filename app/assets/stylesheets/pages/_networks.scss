@@ -49,6 +49,11 @@
   grid-template-rows: 1fr 1fr;
 }
 
+.g-four__100 {
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+
 .info-square {
   display: flex;
   flex-direction: column;

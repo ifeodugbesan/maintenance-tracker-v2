@@ -33,6 +33,33 @@
       <p>NEXT MAINTENANCE</p>
       <span><%= @network.tasks.first.start_date.strftime("%a, %e %b %Y") %></span>
     </section>
+    <section class="g-four__100">
+      <div class="d-flex justify-content-between align-items-center border-bottom pb-3 mb-3">
+        <h6 class="headers mb-0 ps-3">WATERPOINTS</h6>
+        <%= link_to 'ADD WATERPOINT', new_network_waterpoint_path(@network), class: 'secondary-btn' if policy(Waterpoint).new? %>
+      </div>
+      <div class="g-two p-3 border-bottom mb-4">
+        <h6 class="headers">NAME</h6>
+        <h6 class="headers">WATERPOINT TYPE</h6>
+      </div>
+      <% @network.waterpoints.each do |waterpoint| %>
+        <div class="network">
+          <div class="g-two p-3">
+            <p><%= waterpoint.name.upcase %></p>
+            <p><%= waterpoint.waterpoint_type.upcase %></p>
+          </div>
+          <% if policy(Waterpoint).new? %>
+            <div class="menu-options dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              •••
+            </div>
+            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+              <%= link_to "EDIT #{waterpoint.name.upcase}", edit_network_waterpoint_path(@network, waterpoint), class: "dropdown-item" %>
+              <%= link_to "DELETE #{waterpoint.name.upcase}", waterpoint_path(waterpoint), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete the waterpoint #{waterpoint.name}?"}, class: "dropdown-item" %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </section>
   </div>
   <div style="width: 100%; height: 100%;"
        data-controller="map"
@@ -41,33 +68,7 @@
   </div>
 </div>
 
-<section class="mw-800 mb-3">
-  <div class="d-flex justify-content-between align-items-center border-bottom pb-3 mb-3">
-    <h6 class="headers mb-0 ps-3">WATERPOINTS</h6>
-    <%= link_to 'ADD WATERPOINT', new_network_waterpoint_path(@network), class: 'secondary-btn' if policy(Waterpoint).new? %>
-  </div>
-  <div class="network-grid border-bottom mb-4">
-    <h6 class="headers">NAME</h6>
-    <h6 class="headers">WATERPOINT TYPE</h6>
-  </div>
-  <% @network.waterpoints.each do |waterpoint| %>
-    <div class="network">
-      <div class="network-grid">
-        <p><%= waterpoint.name.upcase %></p>
-        <p><%= waterpoint.waterpoint_type.upcase %></p>
-      </div>
-      <% if policy(Waterpoint).new? %>
-        <div class="menu-options dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          •••
-        </div>
-        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-          <%= link_to "EDIT #{waterpoint.name.upcase}", edit_network_waterpoint_path(@network, waterpoint), class: "dropdown-item" %>
-          <%= link_to "DELETE #{waterpoint.name.upcase}", waterpoint_path(waterpoint), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete the waterpoint #{waterpoint.name}?"}, class: "dropdown-item" %>
-        </div>
-      <% end %>
-    </div>
-  <% end %>
-</section>
+
 <section class="mw-800 mb-3">
   <div class="e-grid border-bottom mb-4">
     <h6 class="headers e-id">ID</h6>
