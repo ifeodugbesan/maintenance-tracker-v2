@@ -8,6 +8,24 @@
   <% end %>
   <%= link_to 'ADD NETWORK', new_network_path, class: 'secondary-btn' if policy(Network).new? %>
 </section>
+<div class="new-network-card-cont mb-3">
+  <% @networks.each do |network| %>
+    <%= link_to network_path(network), class: 'text-decoration-none' do %>
+      <section class="new-network-card p-4">
+        <h6 class="new-network-card__name"><%= network.name.upcase %></h6>
+        <div>
+          <p class="mb-0">HOUSEHOLD</p>
+          <p class="mb-0">CONNECTIONS</p>
+          <% if network.number_of_households == network.max_households %>
+            <p class="text-red bold mb-0">FULL</p>
+          <% else %>
+            <p class="text-green bold mb-0"><%= network.number_of_households %>/<%= network.max_households %></p>
+          <% end %>
+        </div>
+      </section>
+    <% end %>
+  <% end %>
+</div>
 <section class="mw-800 mb-3">
   <div class="network-grid border-bottom mb-4">
     <h6 class="headers">NETWORK</h6>
@@ -42,7 +60,7 @@
       <% end %>
     </div>
   <% end %>
-  <div class="pag-cont border-top">
+  <div class="pag-cont border-top mt-4">
     <div class="page-entry">
       <%= page_entries_info @networks %>
     </div>

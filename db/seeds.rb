@@ -36,20 +36,20 @@ mugesera_network = Network.create!(name: "Mugesera", address: 'KG 572 St, Kigali
 
 puts "Created Networks"
 
-rwintare_nexus = Waterpoint.create(name: "Rwintare", waterpoint_type: "Nexus", latitude: -1.9146933, longitude: 29.99154499, kiosk: true, network: rwintare_network, manufacturer: "Handschumacher Ltd", design_period: 12, warranty: 16, efficiency: "A+")
-rwintare_node = Waterpoint.create(name: "Rwintare", waterpoint_type: "Node", latitude: -1.912005, longitude: 29.98809833, kiosk: true, network: rwintare_network, manufacturer: "Handschumacher Ltd", design_period: 12, warranty: 16, efficiency: "A+")
-kavumu_nexus = Waterpoint.create(name: "Kavumu", waterpoint_type: "Nexus", latitude: -1.948073, longitude: 30.019301, kiosk: true, network: kavumu_network, manufacturer: "Handschumacher Ltd", design_period: 12, warranty: 16, efficiency: "A+")
-kavumu_node = Waterpoint.create(name: "Kavumu", waterpoint_type: "Node", latitude: -1.999342, longitude: 30.044857, kiosk: true, network: kavumu_network, manufacturer: "Handschumacher Ltd", design_period: 12, warranty: 16, efficiency: "A+")
-karukoro_nexus = Waterpoint.create(name: "Karukoro", waterpoint_type: "Nexus", latitude: -2.006805, longitude: 30.046500, kiosk: true, network: karukoro_network, manufacturer: "Handschumacher Ltd", design_period: 12, warranty: 16, efficiency: "A+")
-kanyinya_nexus = Waterpoint.create(name: "Kanyinya", waterpoint_type: "Nexus", latitude: -2.010965, longitude: 30.041401, kiosk: true, network: kanyinya_network, manufacturer: "Handschumacher Ltd", design_period: 12, warranty: 16, efficiency: "A+")
-kanyinya_standpipe = Waterpoint.create(name: "Kanyinya", waterpoint_type: "Standpipe", latitude: -2.007033, longitude: 30.021015, kiosk: false, network: kanyinya_network, manufacturer: "Handschumacher Ltd", design_period: 12, warranty: 16, efficiency: "A+")
-nyarufunzo_nexus = Waterpoint.create(name: "Nyarufunzo", waterpoint_type: "Nexus", latitude: -2.036628, longitude: 30.004724, kiosk: true, network: nyarufunzo_network, manufacturer: "Handschumacher Ltd", design_period: 12, warranty: 16, efficiency: "A+")
-nyarufunzo_node = Waterpoint.create(name: "Nyarufunzo", waterpoint_type: "Node", latitude: -2.033838, longitude: 30.009747, kiosk: true, network: nyarufunzo_network, manufacturer: "Handschumacher Ltd", design_period: 12, warranty: 16, efficiency: "A+")
-rusizi_nexus = Waterpoint.create(name: "Rusizi", waterpoint_type: "Nexus", latitude: -2.056658, longitude: 29.992112, kiosk: true, network: rusizi_network, manufacturer: "Handschumacher Ltd", design_period: 12, warranty: 16, efficiency: "A+")
-rusizi_node = Waterpoint.create(name: "Rusizi", waterpoint_type: "Node", latitude: -2.045452, longitude: 29.989472, kiosk: true, network: rusizi_network, manufacturer: "Handschumacher Ltd", design_period: 12, warranty: 16, efficiency: "A+")
-rusizi_nano = Waterpoint.create(name: "Rusizi", waterpoint_type: "Nano", latitude: -2.064227, longitude: 30.007409, kiosk: false, network: rusizi_network, manufacturer: "Handschumacher Ltd", design_period: 12, warranty: 16, efficiency: "A+")
-rukoronko_nexus = Waterpoint.create(name: "Rukoronko", waterpoint_type: "Nexus", latitude: -2.071071, longitude: 30.170318, kiosk: true, network: rukoronko_network, manufacturer: "Handschumacher Ltd", design_period: 12, warranty: 16, efficiency: "A+")
-mugesera_nexus = Waterpoint.create(name: "Mugesera", waterpoint_type: "Nexus", latitude: -2.075151, longitude: 30.166183, kiosk: true, network: mugesera_network, manufacturer: "Handschumacher Ltd", design_period: 12, warranty: 16, efficiency: "A+")
+rwintare_nexus = Waterpoint.create(name: "Rwintare", waterpoint_type: "Nexus", latitude: -1.9146933, longitude: 29.99154499, address: Geocoder.search([-1.9146933,29.99154499]).first.address, kiosk: true, network: rwintare_network, manufacturer: "Handschumacher Ltd", design_period: 12, warranty: 16, efficiency: "A+")
+rwintare_node = Waterpoint.create(name: "Rwintare", waterpoint_type: "Node", latitude: -1.912005, longitude: 29.98809833, address: Geocoder.search([-1.912005,29.98809833]).first.address, kiosk: true, network: rwintare_network, manufacturer: "Handschumacher Ltd", design_period: 12, warranty: 16, efficiency: "A+")
+kavumu_nexus = Waterpoint.create(name: "Kavumu", waterpoint_type: "Nexus", latitude: -1.948073, longitude: 30.019301, address: Geocoder.search([-1.948073,30.019301]).first.address, kiosk: true, network: kavumu_network, manufacturer: "Handschumacher Ltd", design_period: 12, warranty: 16, efficiency: "A+")
+kavumu_node = Waterpoint.create(name: "Kavumu", waterpoint_type: "Node", latitude: -1.999342, longitude: 30.044857, address: Geocoder.search([-1.999342,30.044857]).first.address, kiosk: true, network: kavumu_network, manufacturer: "Handschumacher Ltd", design_period: 12, warranty: 16, efficiency: "A+")
+karukoro_nexus = Waterpoint.create(name: "Karukoro", waterpoint_type: "Nexus", latitude: -2.006805, longitude: 30.046500, address: Geocoder.search([-2.006805,30.046500]).first.address, kiosk: true, network: karukoro_network, manufacturer: "Handschumacher Ltd", design_period: 12, warranty: 16, efficiency: "A+")
+kanyinya_nexus = Waterpoint.create(name: "Kanyinya", waterpoint_type: "Nexus", latitude: -2.010965, longitude: 30.041401, address: Geocoder.search([-2.010965,30.041401]).first.address, kiosk: true, network: kanyinya_network, manufacturer: "Handschumacher Ltd", design_period: 12, warranty: 16, efficiency: "A+")
+kanyinya_standpipe = Waterpoint.create(name: "Kanyinya", waterpoint_type: "Standpipe", latitude: -2.007033, longitude: 30.021015, address: Geocoder.search([-2.007033,30.021015]).first.address, kiosk: false, network: kanyinya_network, manufacturer: "Handschumacher Ltd", design_period: 12, warranty: 16, efficiency: "A+")
+nyarufunzo_nexus = Waterpoint.create(name: "Nyarufunzo", waterpoint_type: "Nexus", latitude: -2.036628, longitude: 30.004724, address: Geocoder.search([-2.036628,30.004724]).first.address, kiosk: true, network: nyarufunzo_network, manufacturer: "Handschumacher Ltd", design_period: 12, warranty: 16, efficiency: "A+")
+nyarufunzo_node = Waterpoint.create(name: "Nyarufunzo", waterpoint_type: "Node", latitude: -2.033838, longitude: 30.009747, address: Geocoder.search([-2.033838,30.009747]).first.address, kiosk: true, network: nyarufunzo_network, manufacturer: "Handschumacher Ltd", design_period: 12, warranty: 16, efficiency: "A+")
+rusizi_nexus = Waterpoint.create(name: "Rusizi", waterpoint_type: "Nexus", latitude: -2.056658, longitude: 29.992112, address: Geocoder.search([-2.056658,29.992112]).first.address, kiosk: true, network: rusizi_network, manufacturer: "Handschumacher Ltd", design_period: 12, warranty: 16, efficiency: "A+")
+rusizi_node = Waterpoint.create(name: "Rusizi", waterpoint_type: "Node", latitude: -2.045452, longitude: 29.989472, address: Geocoder.search([-2.045452,29.989472]).first.address, kiosk: true, network: rusizi_network, manufacturer: "Handschumacher Ltd", design_period: 12, warranty: 16, efficiency: "A+")
+rusizi_nano = Waterpoint.create(name: "Rusizi", waterpoint_type: "Nano", latitude: -2.064227, longitude: 30.007409, address: Geocoder.search([-2.064227,30.007409]).first.address, kiosk: false, network: rusizi_network, manufacturer: "Handschumacher Ltd", design_period: 12, warranty: 16, efficiency: "A+")
+rukoronko_nexus = Waterpoint.create(name: "Rukoronko", waterpoint_type: "Nexus", latitude: -2.071071, longitude: 30.170318, address: Geocoder.search([-2.071071,30.170318]).first.address, kiosk: true, network: rukoronko_network, manufacturer: "Handschumacher Ltd", design_period: 12, warranty: 16, efficiency: "A+")
+mugesera_nexus = Waterpoint.create(name: "Mugesera", waterpoint_type: "Nexus", latitude: -2.075151, longitude: 30.166183, address: Geocoder.search([-2.075151,30.166183]).first.address, kiosk: true, network: mugesera_network, manufacturer: "Handschumacher Ltd", design_period: 12, warranty: 16, efficiency: "A+")
 
 puts "Created Waterpoints"
 
@@ -86,6 +86,56 @@ pressure_tank = Equipment.create!(name: "Pressure Tank Manifold", equipment_type
 uv_55W = Equipment.create!(name: "UV System 55W-45LPM", equipment_type: "Electrics", date_of_installation: Date.today, date_of_expiration: ((Date.today - 50)..(Date.today + 50)).to_a.sample, manufacturer: manufacturers.sample, efficiency: rating.sample, design_period: 30, waterpoint: Waterpoint.all.sample, inactive: [true, false, false, false].sample)
 
 puts "Created Equipment"
+
+WaterpointEquipment.create!(equipment: pressure_tank, waterpoint: rwintare_nexus)
+WaterpointEquipment.create!(equipment: klorman, waterpoint: rwintare_node)
+WaterpointEquipment.create!(equipment: tank_5m3, waterpoint: rwintare_node)
+WaterpointEquipment.create!(equipment: tank_10m3, waterpoint: rwintare_nexus)
+WaterpointEquipment.create!(equipment: solar_pannels, waterpoint: rwintare_nexus)
+
+WaterpointEquipment.create!(equipment: flow_meter, waterpoint: kavumu_node)
+WaterpointEquipment.create!(equipment: uv_165W, waterpoint: kavumu_nexus)
+WaterpointEquipment.create!(equipment: sun_pump, waterpoint: kavumu_nexus)
+WaterpointEquipment.create!(equipment: grundfos_pump, waterpoint: kavumu_node)
+WaterpointEquipment.create!(equipment: aquasept, waterpoint: kavumu_node)
+
+WaterpointEquipment.create!(equipment: flow_meter, waterpoint: karukoro_nexus)
+WaterpointEquipment.create!(equipment: generator, waterpoint: karukoro_nexus)
+WaterpointEquipment.create!(equipment: softener, waterpoint: karukoro_nexus)
+WaterpointEquipment.create!(equipment: booster_pump, waterpoint: karukoro_nexus)
+WaterpointEquipment.create!(equipment: gauges, waterpoint: karukoro_nexus)
+
+WaterpointEquipment.create!(equipment: sun_pump, waterpoint: kanyinya_nexus)
+WaterpointEquipment.create!(equipment: batteries, waterpoint: kanyinya_standpipe)
+WaterpointEquipment.create!(equipment: grundfos_pump, waterpoint: kanyinya_nexus)
+WaterpointEquipment.create!(equipment: solar_pannels, waterpoint: kanyinya_standpipe)
+WaterpointEquipment.create!(equipment: kiosk, waterpoint: kanyinya_standpipe)
+
+WaterpointEquipment.create!(equipment: kiosk, waterpoint: nyarufunzo_nexus)
+WaterpointEquipment.create!(equipment: klorman, waterpoint: nyarufunzo_node)
+WaterpointEquipment.create!(equipment: valves, waterpoint: nyarufunzo_node)
+WaterpointEquipment.create!(equipment: dosatron, waterpoint: nyarufunzo_node)
+WaterpointEquipment.create!(equipment: aquasept, waterpoint: nyarufunzo_nexus)
+
+WaterpointEquipment.create!(equipment: sun_pump, waterpoint: rusizi_nano)
+WaterpointEquipment.create!(equipment: pressure_tank, waterpoint: rusizi_node)
+WaterpointEquipment.create!(equipment: aquasept, waterpoint: rusizi_nano)
+WaterpointEquipment.create!(equipment: electric_kit, waterpoint: rusizi_node)
+WaterpointEquipment.create!(equipment: filter_system, waterpoint: rusizi_nano)
+
+WaterpointEquipment.create!(equipment: flow_meter, waterpoint: rukoronko_nexus)
+WaterpointEquipment.create!(equipment: generator, waterpoint: rukoronko_nexus)
+WaterpointEquipment.create!(equipment: softener, waterpoint: rukoronko_nexus)
+WaterpointEquipment.create!(equipment: booster_pump, waterpoint: rukoronko_nexus)
+WaterpointEquipment.create!(equipment: gauges, waterpoint: rukoronko_nexus)
+
+WaterpointEquipment.create!(equipment: pressure_tank, waterpoint: mugesera_nexus)
+WaterpointEquipment.create!(equipment: klorman, waterpoint: mugesera_nexus)
+WaterpointEquipment.create!(equipment: tank_5m3, waterpoint: mugesera_nexus)
+WaterpointEquipment.create!(equipment: tank_10m3, waterpoint: mugesera_nexus)
+WaterpointEquipment.create!(equipment: solar_pannels, waterpoint: mugesera_nexus)
+
+puts "Created Waterpoint Equipments"
 
 painting = Service.create(name: "Painting", frequency: 12)
 maintenance = Service.create(name: "Maintenance Check", frequency: 6)

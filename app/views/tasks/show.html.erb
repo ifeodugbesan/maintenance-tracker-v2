@@ -14,7 +14,7 @@
           </span>
         <% end %>
         <% if !@task.completed && policy(@task).completed? %>
-          <%= link_to "COMPLETE TASK", completed_task_path(@task), class: "primary-btn" %>
+          <%= link_to "COMPLETE TASK", completed_task_path(@task), class: "primary-btn ms-3" %>
         <% end %>
       </h4>
       <p class="text-green mb-1"><span class="bold">TECHNICIAN:</span> <%= @task.technician.full_name.upcase %></p>

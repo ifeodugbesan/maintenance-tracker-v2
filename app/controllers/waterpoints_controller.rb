@@ -14,6 +14,8 @@ class WaterpointsController < ApplicationController
     @waterpoint = Waterpoint.new(waterpoint_params)
     authorize @waterpoint
     @waterpoint.network = @network
+    results = Geocoder.search([@waterpoint.latitude, @waterpoint.longitude])
+    @wateproint.address = results.first.address
     if @waterpoint.save
       redirect_to network_path(@network)
     else
