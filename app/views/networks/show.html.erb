@@ -72,8 +72,8 @@
 <section class="mw-800 mb-3">
   <div class="e-grid border-bottom mb-4">
     <h6 class="headers e-id">ID</h6>
-    <h6 class="headers">NAME</h6>
-    <h6 class="headers">NETWORK</h6>
+    <h6 class="headers">EQUIPMENT</h6>
+    <h6 class="headers">WATERPOINT</h6>
     <h6 class="headers">MANUFACTURER</h6>
     <h6 class="headers">DATE OF INSTALLATION</h6>
     <h6 class="headers">WARRANTY</h6>
@@ -85,10 +85,10 @@
         <div class="e-grid">
           <p class="e-id"><%= waterpoint_equipment.equipment.id %></p>
           <p><%= waterpoint_equipment.equipment.name.upcase %></p>
-          <p><%= waterpoint_equipment.equipment.waterpoint.network.name.upcase %></p>
+          <p><%= waterpoint_equipment.waterpoint.name.upcase %> <%= waterpoint_equipment.waterpoint.waterpoint_type.upcase %></p>
           <p><%= waterpoint_equipment.equipment.manufacturer.upcase %></p>
           <p><%= waterpoint_equipment.equipment.date_of_installation.strftime('%d/%m/%Y') %></p>
-          <p class="<%= 'text-red bold' if Date.today > waterpoint_equipment.equipment.warranty %>"><%= Date.today > waterpoint_equipment.equipment.warranty ? "EXPIRED" : waterpoint_equipment.equipment.warranty.strftime('%d/%m/%Y') %></p>
+          <p class="bold <%= Date.today > waterpoint_equipment.equipment.date_of_expiration ? 'text-red' : 'text-green' %>"><%= Date.today > waterpoint_equipment.equipment.date_of_expiration ? "EXPIRED" : "VALID" %></p>
           <span class="e-active">
             <p class="ms-3 <%= waterpoint_equipment.equipment.inactive ? 'task-red' : 'task-green' %>"></p>
           </span>

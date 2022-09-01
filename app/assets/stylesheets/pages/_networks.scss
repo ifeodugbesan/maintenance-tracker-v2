@@ -66,3 +66,31 @@
     font-size: 20px;
   }
 }
+
+.new-network-card-cont {
+  display: flex;
+  flex-wrap: wrap
+}
+
+.new-network-card {
+  border: 1px solid #0073DE;
+  border-left: 16px solid #0073DE;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  text-align: center;
+  height: 200px;
+  width: 220px;
+  transition: all 0.1s ease;
+  margin: 8px;
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  }
+}
+
+.new-network-card__name {
+  color: #0073DE;
+  font-weight: 600;
+}
