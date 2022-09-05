@@ -3,37 +3,37 @@
     <%= link_to 'CREATE TASK', new_task_path, class: 'primary-btn mb-2' %>
     <%= link_to root_path, class: "sidebar-link #{ 'active' if params[:action] == 'dashboard'  }" do %>
       <div>
-        <%= image_tag 'house.svg' %>
+        <%= image_tag 'home.png' %>
         <p>HOME</p>
       </div>
     <% end %>
     <%= link_to stats_path, class: "sidebar-link #{ 'active' if params[:action] == 'stats'  }" do %>
       <div>
-        <%= image_tag 'stats.svg' %>
+        <%= image_tag 'chart.png' %>
         <p>STATS</p>
       </div>
     <% end %>
     <%= link_to tasks_path, class: "sidebar-link #{ 'active' if params[:controller] == 'tasks'  }" do %>
       <div>
-        <%= image_tag 'tasks.svg' %>
+        <%= image_tag 'task.png' %>
         <p>TASKS</p>
       </div>
     <% end %>
     <%= link_to networks_path, class: "sidebar-link #{ 'active' if params[:controller] == 'networks'  }" do %>
       <div>
-        <%= image_tag 'networks.svg' %>
+        <%= image_tag 'network.png' %>
         <p>NETWORKS</p>
       </div>
     <% end %>
     <%= link_to equipments_path, class: "sidebar-link #{ 'active' if params[:controller] == 'equipments'  }" do %>
       <div>
-        <%= image_tag 'equipment.svg' %>
+        <%= image_tag 'equipment.png' %>
         <p>EQUIPMENT</p>
       </div>
     <% end %>
     <%= link_to services_path, class: "sidebar-link #{ 'active' if params[:controller] == 'services'  }" do %>
       <div>
-        <%= image_tag 'service.svg' %>
+        <%= image_tag 'service.png' %>
         <p>SERVICES</p>
       </div>
     <% end %>
