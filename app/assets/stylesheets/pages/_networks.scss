@@ -9,11 +9,11 @@
 }
 
 .text-red {
-  color: #EB0000;
+  color: #EB0000 !important;
 }
 
 .text-green {
-  color: #20603D;
+  color: #20603D !important;
 }
 
 .bold {
@@ -62,8 +62,9 @@
   text-align: center;
   padding: 24px 16px;
   span {
-    font-weight: 400;
+    font-weight: 600;
     font-size: 20px;
+    color: #0073DE;
   }
 }
 
