@@ -64,7 +64,7 @@
           <p><%= task.service.name.upcase %></p>
           <p><%= task.technician.full_name.upcase %></p>
           <p class="ms-3 <%= task.completed ? 'task-green' : 'task-red' %>"></p>
-          <p class="mb-0"><%= task.unscheduled ? " UNSCHEDULED" : "SCHEDULED" %></p>
+          <p class="bold <%= task.unscheduled ? 'text-red' : 'text-green' %>"><%= task.unscheduled ? "UNSCHEDULED" : "SCHEDULED" %></p>
         </div>
       <% end %>
       <% if policy(task).new? %>
