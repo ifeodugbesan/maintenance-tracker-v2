@@ -7,7 +7,7 @@ class TasksController < ApplicationController
     @tasks = @tasks.where(completed: false) if params[:hide_complete].present?
     @tasks = @tasks.where(unscheduled: true) if params[:hide_predicted].present?
     @tasks = @tasks.where(technician: current_user) unless current_user.manager
-    @tasks = @tasks.page params[:page]
+    @tasks = @tasks.order(end_date: :asc).page params[:page]
   end
 
   def show
