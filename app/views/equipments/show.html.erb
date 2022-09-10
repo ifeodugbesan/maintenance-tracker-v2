@@ -26,17 +26,17 @@
       <p>MANUFACTURER</p>
       <p>DESIGN PERIOD</p>
       <p>EFFICIENCY</p>
-      <p>LAST MAINTENANCE</p>
+      <p>NEXT MAINTENANCE</p>
     </div>
     <section class="e-val">
       <p><%= @equipment.waterpoint.network.name.upcase %></p>
       <p><%= @equipment.waterpoint.waterpoint_type.upcase %></p>
       <p><%= @equipment.date_of_installation.strftime('%d/%m/%Y') %></p>
       <p class="<%= 'text-red bold' if Date.today > @equipment.date_of_expiration %>"><%= Date.today > @equipment.date_of_expiration ? "EXPIRED" : @equipment.date_of_expiration.strftime('%d/%m/%Y') %></p>
-      <p><%= @equipment.manufacturer %></p>
+      <p><%= @equipment.manufacturer.upcase %></p>
       <p><%= @equipment.design_period %> YEARS</p>
       <p><%= @equipment.efficiency %></p>
-      <p>28/12/2042</p>
+      <p class="text-green bold"><%= @equipment.tasks.any? ? @equipment.next_maintenance : "N/A" %></p>
     </section>
   </section>
   <div style="width: 100%; height: 100%;"

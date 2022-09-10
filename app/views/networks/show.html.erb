@@ -23,15 +23,15 @@
     </section>
     <section class="info-square">
       <p>NUMBER OF TASKS</p>
-      <span><%= @network.tasks.count %></span>
+      <span><%= @network.tasks.any? ? @network.tasks.count : "N/A" %></span>
     </section>
     <section class="info-square">
       <p>STATUS COMPLETED TASKS</p>
-      <span><%= @network.completed_percentage %></span>
+      <span><%= @network.tasks.any? ? @network.completed_percentage : "N/A" %></span>
     </section>
     <section class="info-square">
       <p>NEXT MAINTENANCE</p>
-      <span><%= @network.tasks.first.start_date.strftime("%a, %e %b %Y") %></span>
+      <span><%= @network.tasks.any? ? @network.tasks.first.start_date.strftime("%a, %e %b %Y") : "N/A" %></span>
     </section>
     <section class="g-four__100">
       <div class="d-flex justify-content-between align-items-center border-bottom pb-3 mb-3">

@@ -39,14 +39,14 @@
     <%= pie_chart @most_serviced_equipment, colors: ["rgba(251,137,8,1)", "rgba(200,133,82,1)", "rgba(141,128,138,1)", "rgba(86,122,182,1)", "rgba(4,116,221,1)"] %>
   </section>
   <section class="s-eq">
-    <h6 class="headers mb-2 w-100">EQUIPMENT WARRANTY EXPIRATION (top 10)</h6>
+    <h6 class="headers mb-2 w-100">EQUIPMENT WARRANTY EXPIRATION THIS MONTH</h6>
     <div class="eq-cont">
       <div class="eq-three border-bottom">
         <h6 class="headers my-1">EQUIPMENT</h6>
         <h6 class="headers my-1">EXPIRATION DATE</h6>
         <h6 class="headers my-1">NO. OF DAYS</h6>
       </div>
-      <% @nearest_warranty.each do |equipment| %>
+      <% @this_months_warranty.each do |equipment| %>
         <div class="network">
           <%= link_to equipment_path(equipment), class: 'text-decoration-none' do %>
             <div class="eq-three eq-hov">

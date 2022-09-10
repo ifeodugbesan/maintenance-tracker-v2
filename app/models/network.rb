@@ -11,7 +11,7 @@ class Network < ApplicationRecord
                   }
 
   def completed_percentage
-    result = (tasks.where(completed: true).count.to_f / tasks.count) * 100
-    "#{result.round}%"
+      result = (tasks.where(completed: true).count.to_f / tasks.count) * 100
+      "#{result.round}%"
   end
 end

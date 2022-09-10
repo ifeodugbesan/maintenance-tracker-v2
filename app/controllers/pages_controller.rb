@@ -17,7 +17,8 @@ class PagesController < ApplicationController
 
     @most_serviced_equipment = Task.joins(:equipment).group("equipment.name").count.sort_by { |_k, v| v }.reverse.first(5).to_h
 
-    @nearest_warranty = Equipment.all.sort_by { |e| e.date_of_expiration }.first(10)
+    # @nearest_warranty = Equipment.all.sort_by { |e| e.date_of_expiration }.first(10)
+    @this_months_warranty = Equipment.select { |e| e.date_of_expiration.month == Date.today.month && e.date_of_expiration.year == Date.today.year }.sort_by { |e| e.date_of_expiration }.first(10)
 
     @split_tasks_per_month = Task.group(:completed).group_by_month(:end_date).count
     @split_tasks_per_month = @split_tasks_per_month.transform_keys { |key| [key[0] == true ? "COMPLETED" : "INCOMPLETE", key[1].strftime("%b %Y")] }
