@@ -1,58 +1,63 @@
-<div data-controller="tasks">
+<div class="tasks-wrapper" data-controller="tasks">
   <div class="d-flex mw-800 mb-3">
-    <div class="t-info">
-      <h4 class="mb-3 d-title d-flex align-items-center">
-        <%= @task.title.upcase %>
-        <% if policy(Task).new? %>
-          <span class="d-flex ms-3">
-            <%= link_to edit_task_path(@task), class: 'option-link' do %>
-              <i class="bi bi-pen-fill"></i>
+    <div class="t-info me-3">
+      <div class="d-flex justify-content-between mb-3">
+        <div class="me-3">
+          <h4 class="mb-3 d-title">
+            <%= @task.title.upcase %>
+            <% if policy(Task).new? %>
+              <span class="d-flex mt-3">
+                <%= link_to edit_task_path(@task), class: 'option-link' do %>
+                  <i class="bi bi-pen-fill"></i>
+                <% end %>
+                <%= link_to task_path(@task), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete the network #{@task.title}?"}, class: 'option-link' do %>
+                  <i class="bi bi-trash3-fill"></i>
+                <% end %>
+              </span>
             <% end %>
-            <%= link_to task_path(@task), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete the network #{@task.title}?"}, class: 'option-link' do %>
-              <i class="bi bi-trash3-fill"></i>
+            <% if !@task.completed && policy(@task).completed? %>
+              <%= link_to "COMPLETE TASK", completed_task_path(@task), class: "primary-btn mt-3" %>
+            <% end %>
+          </h4>
+          <p class="text-green mb-1"><span class="bold">TECHNICIAN:</span> <%= @task.technician.full_name.upcase %></p>
+          <p class="text-green"><span class="bold">ASSIGNED BY:</span> <%= @task.issuer.full_name.upcase %></p>
+          <span class="task-tag me-2">
+            <p class="<%= @task.completed ? 'task-green' : 'task-red' %> mb-0 me-2"></p>
+            <% if !@task.completed && Date.today > @task.end_date %>
+              <p class="mb-0">OVERDUE</p>
+            <% else %>
+              <p class="mb-0"><%= @task.completed ? 'COMPLETED' : 'INCOMPLETE' %></p>
             <% end %>
           </span>
-        <% end %>
-        <% if !@task.completed && policy(@task).completed? %>
-          <%= link_to "COMPLETE TASK", completed_task_path(@task), class: "primary-btn ms-3" %>
-        <% end %>
-      </h4>
-      <p class="text-green mb-1"><span class="bold">TECHNICIAN:</span> <%= @task.technician.full_name.upcase %></p>
-      <p class="text-green"><span class="bold">ASSIGNED BY:</span> <%= @task.issuer.full_name.upcase %></p>
-      <span class="task-tag me-2">
-        <p class="<%= @task.completed ? 'task-green' : 'task-red' %> mb-0 me-2"></p>
-        <% if !@task.completed && Date.today > @task.end_date %>
-          <p class="mb-0">OVERDUE</p>
-        <% else %>
-          <p class="mb-0"><%= @task.completed ? 'COMPLETED' : 'INCOMPLETE' %></p>
-        <% end %>
-      </span>
-      <span class="task-tag">
-        <p class="<%= @task.unscheduled ? 'task-red' : 'task-green' %> mb-0 me-2"></p>
-        <p class="mb-0"><%= @task.unscheduled ? " UNSCHEDULED" : "SCHEDULED" %></p>
-      </span>
+          <span class="task-tag">
+            <p class="<%= @task.unscheduled ? 'task-red' : 'task-green' %> mb-0 me-2"></p>
+            <p class="mb-0"><%= @task.unscheduled ? " UNSCHEDULED" : "SCHEDULED" %></p>
+          </span>
+        </div>
+        <div class="t-dates">
+          <section class="me-3">
+            <p class="text-green mb-1">START DATE</p>
+            <p class="text-green bold mb-0"><%= @task.start_date.strftime('%d/%m/%Y') %></p>
+          </section>
+          <section>
+            <p class="text-green mb-1">DUE DATE</p>
+            <p class="text-green bold mb-0"><%= @task.end_date.strftime('%d/%m/%Y') %></p>
+          </section>
+        </div>
+      </div>
+      <section class="details">
+        <h6 class="headers pb-3 mb-3 border-bottom">DETAILS</h6>
+        <p><%= @task.extra_info %></p>
+      </section>
     </div>
-    <div class="t-dates">
-      <section class="me-3">
-        <p class="text-green mb-1">START DATE</p>
-        <p class="text-green bold mb-0"><%= @task.start_date.strftime('%d/%m/%Y') %></p>
-      </section>
-      <section>
-        <p class="text-green mb-1">DUE DATE</p>
-        <p class="text-green bold mb-0"><%= @task.end_date.strftime('%d/%m/%Y') %></p>
-      </section>
+    <div style="width: 400px; height: height: 100%;"
+      data-controller="map"
+      data-map-markers-value="<%= @markers.to_json %>"
+      data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
     </div>
   </div>
 
-  <section class="mb-3">
-    <h6 class="headers pb-3 mb-3 border-bottom">DETAILS</h6>
-    <p><%= @task.extra_info %></p>
-  </section>
-  <div style="width: 100%; height: 300px;"
-       data-controller="map"
-       data-map-markers-value="<%= @markers.to_json %>"
-       data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
-  </div>
+
   <hr>
   <section class="mb-3">
     <div class="d-flex justify-content-between align-items-center">

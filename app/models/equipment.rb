@@ -8,4 +8,8 @@ class Equipment < ApplicationRecord
                   using: {
                     tsearch: { prefix: true }
                   }
+
+  def next_maintenance
+    "#{tasks.first.service.name.upcase} - #{(Date.today + tasks.first.service.frequency.months).strftime('%d/%m/%Y').upcase}"
+  end
 end

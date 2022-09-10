@@ -6,7 +6,6 @@
   letter-spacing: 1px;
   background: linear-gradient(90deg, #0073DE, #3795EC);
   font-size: 14px;
-  font-weight: 300;
   display: inline-flex;
   border: none;
   transition: all 0.1s ease;
@@ -26,7 +25,6 @@
   letter-spacing: 1px;
   background: linear-gradient(90deg, #F6F6F6, #E7E7E7);
   font-size: 14px;
-  font-weight: 300;
   display: inline-flex;
   border: 1px solid #0073DE;
   transition: all 0.1s ease;
@@ -48,7 +46,6 @@
   font-size: 14px;
   display: inline-flex;
   transition: all 0.1s ease;
-  font-weight: 400;
   &:hover {
     background: linear-gradient(90deg, #FFC484, #FFB96E);
     color: #FD8B05 !important;

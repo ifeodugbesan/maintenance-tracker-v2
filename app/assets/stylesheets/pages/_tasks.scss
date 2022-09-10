@@ -1,3 +1,14 @@
+.tasks-wrapper {
+  .t-info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .details {
+    flex-grow: 1;
+  }
+}
+
 .task-green {
   height: 20px;
   width: 20px;
