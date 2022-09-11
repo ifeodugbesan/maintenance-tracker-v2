@@ -33,4 +33,8 @@ class TaskPolicy < ApplicationPolicy
   def completed?
     record.technician == user
   end
+
+  def export?
+    new?
+  end
 end

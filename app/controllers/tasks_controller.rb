@@ -1,3 +1,4 @@
+
 class TasksController < ApplicationController
   before_action :find_and_authorize_equipment, only: [:show, :edit, :update, :destroy]
 
@@ -63,6 +64,18 @@ class TasksController < ApplicationController
     @task.update(completed: true)
     authorize @task
     redirect_to task_path(@task)
+  end
+
+  def export
+    @tasks = policy_scope(Task)
+    authorize @tasks
+
+    respond_to do |format|
+      format.csv do
+        response.headers['Content-Type'] = 'text/csv'
+        response.headers['Content-Disposition'] = "attachment; filename=tasks.csv"
+      end
+    end
   end
 
   private

@@ -1,0 +1,26 @@
+<% headers = ['ID',
+              'EQUIPMENT',
+              'NETWORK',
+              'MANUFACTURER',
+              'DATE OF INSTALLATION',
+              'DATE OF EXPIRATION',
+              'WARRANTY',
+              'EFFICIENCY',
+              'DESIGN PERIOD',
+              'ACTIVE'
+             ] %>
+<%= CSV.generate_line headers %>
+<% @equipments.each do |equipment| %>
+  <% equipment_line = ["#{equipment.id}",
+                       "#{equipment.name.upcase}",
+                       "#{equipment.waterpoint.network.name.upcase} #{equipment.waterpoint.waterpoint_type.upcase}",
+                       "#{equipment.manufacturer.upcase}",
+                       "#{equipment.date_of_installation.strftime('%d/%m/%Y')}",
+                       "#{equipment.date_of_expiration.strftime('%d/%m/%Y')}",
+                       "#{Date.today > equipment.date_of_expiration ? 'EXPIRED' : 'VALID'}",
+                       "#{equipment.efficiency.upcase}",
+                       "#{equipment.design_period}",
+                       "#{equipment.inactive ? 'INACTIVE' : 'ACTIVE'}"
+                      ] %>
+  <%= CSV.generate_line(equipment_line) %>
+<% end %>

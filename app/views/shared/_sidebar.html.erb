@@ -1,6 +1,8 @@
 <div class="sidebar">
   <div class="">
-    <%#= link_to 'CREATE TASK', new_task_path, class: 'primary-btn mb-2' %>
+    <% if policy(Task).create? %>
+      <%= link_to 'CREATE TASK', new_task_path, class: 'primary-btn mb-2' %>
+    <% end %>
     <%= link_to root_path, class: "sidebar-link #{ 'active' if params[:action] == 'dashboard'  }" do %>
       <div>
         <%= image_tag 'home.png' %>

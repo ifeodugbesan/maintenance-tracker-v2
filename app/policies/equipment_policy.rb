@@ -29,4 +29,8 @@ class EquipmentPolicy < ApplicationPolicy
   def destroy?
     new?
   end
+
+  def export?
+    new?
+  end
 end
