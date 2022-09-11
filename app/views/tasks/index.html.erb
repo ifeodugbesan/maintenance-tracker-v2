@@ -49,6 +49,9 @@
       <%= page_entries_info @tasks %>
     </div>
     <%= paginate @tasks %>
+    <%= link_to export_tasks_path, class: "csv-btn" do %>
+      DOWNLOAD TO CSV <i class="bi bi-arrow-down-short"></i>
+    <% end %>
   </div>
 </section>
 

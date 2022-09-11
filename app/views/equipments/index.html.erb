@@ -49,5 +49,8 @@
       <%= page_entries_info @equipments %>
     </div>
     <%= paginate @equipments %>
+    <%= link_to export_equipments_path, class: "csv-btn" do %>
+      DOWNLOAD TO CSV <i class="bi bi-arrow-down-short"></i>
+    <% end %>
   </div>
 </section>

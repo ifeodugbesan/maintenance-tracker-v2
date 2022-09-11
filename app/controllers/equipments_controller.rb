@@ -2,7 +2,7 @@ class EquipmentsController < ApplicationController
   before_action :find_and_authorize_equipment, only: [:show, :edit, :update, :destroy]
 
   def index
-        if params[:query].present?
+    if params[:query].present?
       @equipments = policy_scope(Equipment).search_by_fields(params[:query]).page params[:page]
     else
       @equipments = policy_scope(Equipment).page params[:page]
@@ -39,12 +39,24 @@ class EquipmentsController < ApplicationController
 
   def update
     @equipment.update(equipment_params)
-    redirect_to equipment_path (@equipment)
+    redirect_to equipment_path(@equipment)
   end
 
   def destroy
     @equipment.destroy
     redirect_to equipments_path, status: :see_other
+  end
+
+  def export
+    @equipments = policy_scope(Equipment)
+    authorize @equipments
+
+    respond_to do |format|
+      format.csv do
+        response.headers['Content-Type'] = 'text/csv'
+        response.headers['Content-Disposition'] = "attachment; filename=equipment.csv"
+      end
+    end
   end
 
   private

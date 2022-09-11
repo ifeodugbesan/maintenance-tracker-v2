@@ -59,3 +59,27 @@
   padding: 18px 52px;
   border-radius: 50px !important;
 }
+
+.csv-btn {
+  text-decoration: none;
+  color: #0073DE;
+  border-radius: 30px !important;
+  padding: 4px 12px;
+  letter-spacing: 1px;
+  font-size: 12px;
+  display: inline-flex;
+  align-items: center;
+  border: none;
+  // transition: all 0.1s ease;
+  position: absolute;
+  right: 0;
+  i {
+    font-size: 18px;
+  }
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    border: 1px solid #0073DE;
+  }
+}
+

@@ -6,14 +6,25 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
   resources :networks do
+    member do
+      post :increase
+      post :decrease
+    end
     resources :waterpoints, only: [:index, :new, :create, :edit, :update]
   end
   resources :tasks do
     get :completed, on: :member
+    collection do
+      get :export, defaults: { format: :csv }
+    end
     resources :comments, only: [:new, :create, :edit]
   end
   resources :waterpoints, only: [:destroy]
-  resources :equipments
+  resources :equipments do
+    collection do
+      get :export, defaults: { format: :csv }
+    end
+  end
   resources :services
   resources :comments, only: [:update, :destroy]
   get 'dashboard', to: 'users#dashboard', as: :dashboard
