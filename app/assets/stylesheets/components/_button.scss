@@ -6,6 +6,7 @@
   letter-spacing: 1px;
   background: linear-gradient(90deg, #0073DE, #3795EC);
   font-size: 14px;
+  font-weight: 500;
   display: inline-flex;
   border: none;
   transition: all 0.1s ease;
@@ -25,6 +26,7 @@
   letter-spacing: 1px;
   background: linear-gradient(90deg, #F6F6F6, #E7E7E7);
   font-size: 14px;
+  font-weight: 500;
   display: inline-flex;
   border: 1px solid #0073DE;
   transition: all 0.1s ease;
@@ -44,6 +46,7 @@
   letter-spacing: 1px;
   background: linear-gradient(90deg, #FFD3A3, #FFCB94);
   font-size: 14px;
+  font-weight: 500;
   display: inline-flex;
   transition: all 0.1s ease;
   &:hover {
@@ -56,6 +59,7 @@
 
 .landing-btn {
   font-size: 24px;
+  font-weight: 500;
   padding: 18px 52px;
   border-radius: 50px !important;
 }
@@ -67,6 +71,7 @@
   padding: 4px 12px;
   letter-spacing: 1px;
   font-size: 12px;
+  font-weight: 500;
   display: inline-flex;
   align-items: center;
   border: none;
