@@ -1,4 +1,9 @@
 class UsersController < ApplicationController
+
+  def index
+    @technicians = policy_scope(User).where(manager: false).page params[:page]
+  end
+
   def dashboard
     authorize current_user
 
