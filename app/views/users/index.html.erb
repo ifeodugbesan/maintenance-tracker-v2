@@ -5,7 +5,13 @@
         <h6 class="new-network-card__name mb-0" style="font-size: 14px;"><%= technician.first_name.upcase %></h6>
         <h6 class="new-network-card__name" style="font-size: 18px;"><%= technician.last_name.upcase %></h6>
       </div>
-      <%= cl_image_tag technician.avatar.key, class: 'avatar-large me-2' %>
+      <% if current_user.avatar.attached? %>
+        <%= cl_image_tag technician.avatar.key, class: "avatar-large" %>
+      <% else %>
+        <div class="avatar-large">
+          <%= technician.initials %>
+        </div>
+      <% end %>
       <div>
         <p class="mb-0">ONGOING</p>
         <p class="mb-0">TASKS</p>
