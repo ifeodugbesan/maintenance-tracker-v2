@@ -4,8 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_one_attached :avatar
-  has_many :tasks
+  has_many :tasks, class_name: "Task", foreign_key: "technician_id"
   has_many :comments
+  paginates_per 12
 
   def full_name
     "#{first_name.capitalize} #{last_name.capitalize}"

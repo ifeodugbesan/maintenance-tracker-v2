@@ -1,0 +1,24 @@
+.u-grid {
+  display: grid;
+  grid-template-columns: auto 1fr 1fr 1fr 1fr;
+  grid-gap: 16px;
+  padding: 16px;
+  position: relative;
+  p {
+    margin: 0;
+  }
+}
+
+.u-card {
+  height: 300px;
+  width: 300px;
+  .avatar-large {
+    height: 100px;
+    width: 100px;
+  }
+  &:hover {
+    .menu-options {
+      display: flex;
+    }
+  }
+}

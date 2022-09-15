@@ -28,5 +28,6 @@ Rails.application.routes.draw do
   resources :services
   resources :comments, only: [:update, :destroy]
   get 'dashboard', to: 'users#dashboard', as: :dashboard
+  get 'technicians', to: 'users#index', as: :technicians
   get 'statistics', to: 'pages#stats', as: :stats
 end
