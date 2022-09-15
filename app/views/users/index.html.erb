@@ -8,7 +8,7 @@
       <% if current_user.avatar.attached? %>
         <%= cl_image_tag technician.avatar.key, class: "avatar-large" %>
       <% else %>
-        <div class="avatar-large">
+        <div class="avatar-initials">
           <%= technician.initials %>
         </div>
       <% end %>
