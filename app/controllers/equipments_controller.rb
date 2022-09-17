@@ -30,7 +30,7 @@ class EquipmentsController < ApplicationController
     if @equipment.save
       redirect_to equipments_path
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 

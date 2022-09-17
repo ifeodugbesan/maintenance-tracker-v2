@@ -1,12 +1,16 @@
 <section class="mw-800 mb-3">
-  <div class="f-wrapper">
-    <h1 class="text-center d-title mb-5">ADD SERVICE</h1>
-    <div class="d-container">
-      <%= simple_form_for @service do |f| %>
-        <%= f.input :name %>
-        <%= f.input :frequency %>
-        <%= f.submit 'ADD SERVICE', class: 'primary-btn' %>
-      <% end %>
+  <%= simple_form_for @service do |f| %>
+    <div class="f-wrapper">
+      <div class="d-flex justify-content-between w-100 ">
+        <h1 class="d-title mb-5">ADD SERVICE</h1>
+      </div>
+      <div class="d-container">
+       <div class="row mt-4">
+            <%= f.input :name %>
+            <%= f.input :frequency %>
+        </div>
+        <%= f.submit 'ADD NETWORK', class: 'primary-btn mt-4' %>
+      </div>
     </div>
-  </div>
+  <% end %>
 </section>

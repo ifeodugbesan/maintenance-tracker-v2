@@ -16,7 +16,7 @@ class ServicesController < ApplicationController
     if @service.save
       redirect_to services_path
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 

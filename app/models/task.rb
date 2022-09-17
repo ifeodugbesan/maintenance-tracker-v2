@@ -9,6 +9,13 @@ class Task < ApplicationRecord
   has_many :users, through: :comments
   validates :start_date, presence: true
   validates :end_date, presence: true
+  validates :title, presence: true
+  validates :extra_info, presence: true
+  validates :technician, presence: true
+  validates :service, presence: true
+  validates :equipment, presence: true
+  validates :waterpoint, presence: true
+
   paginates_per 12
   include PgSearch::Model
   pg_search_scope :search_by_fields,

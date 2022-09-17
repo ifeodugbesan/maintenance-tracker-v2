@@ -30,7 +30,7 @@ class NetworksController < ApplicationController
     if @network.save
       redirect_to network_path(@network)
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 

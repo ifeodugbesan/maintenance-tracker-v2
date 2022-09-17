@@ -31,12 +31,12 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
     authorize @task
-    @task.network = Waterpoint.find(task_params[:waterpoint_id]).network
+    @task.network = Waterpoint.find(task_params[:waterpoint_id]).network if task_params[:waterpoint_id].present?
     @task.issuer = current_user
-    if @task.save!
+    if @task.save
       redirect_to task_path(@task)
     else
-      render :new, :unprocessable_entity
+      render :new, status: :unprocessable_entity
     end
   end
 

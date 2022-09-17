@@ -15,11 +15,11 @@ class WaterpointsController < ApplicationController
     authorize @waterpoint
     @waterpoint.network = @network
     results = Geocoder.search([@waterpoint.latitude, @waterpoint.longitude])
-    @wateproint.address = results.first.address
+    @wateproint.address = results.first.address if results.first.present?
     if @waterpoint.save
       redirect_to network_path(@network)
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
