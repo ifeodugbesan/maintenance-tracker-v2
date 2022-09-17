@@ -18,4 +18,14 @@ class UsersController < ApplicationController
     @tasks_per_month = @tasks.where(completed: true).and(@tasks.where('end_date > ? AND end_date < ?', Date.new(Date.today.year, Date.today.month, 1), Date.new(Date.today.year, Date.today.month, 30))).group_by_day_of_month(:end_date).count
     @tasks = @tasks.order(end_date: :asc)
   end
+
+  def user_status
+    @user = User.find(params[:id])
+    authorize @user
+    if @user.update(active: @user.active ? false : true)
+      redirect_to technicians_path
+    else
+      render "users/index", status: :unprocessable_entity
+    end
+  end
 end

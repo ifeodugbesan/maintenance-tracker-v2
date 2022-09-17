@@ -1,6 +1,6 @@
 <div class="new-network-card-cont mb-3">
   <% @technicians.each do |technician| %>
-    <section class="new-network-card u-card p-4">
+    <section class="new-network-card u-card p-4 <%= 'inactive' if !technician.active %>">
       <div class="">
         <h6 class="new-network-card__name mb-0" style="font-size: 14px;"><%= technician.first_name.upcase %></h6>
         <h6 class="new-network-card__name mb-1" style="font-size: 18px;"><%= technician.last_name.upcase %></h6>
@@ -20,15 +20,14 @@
           <p class="text-green bold mb-0"><%= technician.tasks.where(completed: false).count %>/<%= technician.tasks.count %></p>
         <% end %>
       </div>
-     <!--  <%# if current_user.manager %>
+      <% if current_user.manager %>
         <div class="menu-options dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           •••
         </div>
         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-          <%#= link_to "EDIT", edit_user_registration_path, class: "dropdown-item" %>
-          <%#= link_to "DELETE", user_registration_path, data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete the technician #{technician.first_name.capitalize} #{technician.last_name.capitalize}?"}, class: "dropdown-item" %>
+          <%= link_to "#{technician.active ? 'SET AS INACTIVE' : 'SET AS ACTIVE'}", user_status_path(technician), data: { turbo_method: :patch }, class: "dropdown-item" %>
         </div>
-      <%# end %> -->
+      <% end %>
     </section>
   <% end %>
 </div>

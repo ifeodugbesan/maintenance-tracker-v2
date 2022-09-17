@@ -27,6 +27,10 @@ class User < ApplicationRecord
     end
   end
 
+  def active_for_authentication?
+    super && self.active
+  end
+
   def full_name
     "#{first_name.capitalize} #{last_name.capitalize}"
   end
