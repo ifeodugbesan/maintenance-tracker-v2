@@ -27,7 +27,7 @@
         <p>NETWORKS</p>
       </div>
     <% end %>
-    <%= link_to technicians_path, class: "sidebar-link #{ 'active' if params[:controller] == 'users'  }" do %>
+    <%= link_to technicians_path, class: "sidebar-link #{ 'active' if params[:controller] == 'users' && params[:action] == 'index'  }" do %>
       <div>
         <%= image_tag 'technician.png' %>
         <p>TECHNICIANS</p>

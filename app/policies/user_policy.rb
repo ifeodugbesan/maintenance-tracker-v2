@@ -9,4 +9,8 @@ class UserPolicy < ApplicationPolicy
   def dashboard?
     true
   end
+
+  def user_status?
+    user.manager
+  end
 end
