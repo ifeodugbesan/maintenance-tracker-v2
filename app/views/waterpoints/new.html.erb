@@ -1,22 +1,53 @@
-<section class=" mw-800 mb-3">
-  <div class="f-wrapper">
-    <h1 class="text-center d-title mb-5">ADD WATERPOINT</h1>
-    <div class="d-container">
-      <%= simple_form_for [ @network, @waterpoint ] do |f| %>
-        <%= f.input :name %>
-        <%= f.association :network %>
-        <%= f.input :mwater_id %>
-        <%= f.input :waterpoint_type %>
-        <%= f.input :latitude %>
-        <%= f.input :longitude %>
+<section class="mw-800 mb-3 pb-5">
+  <%= simple_form_for [ @network, @waterpoint ] do |f| %>
+    <div class="f-wrapper">
+      <div class="d-flex justify-content-between w-100 ">
+        <h1 class="d-title mb-5">ASSIGN WATERPOINT</h1>
+      </div>
+      <div class="f-container">
+        <div class="row mt-4">
+          <div class="col-6">
+            <%= f.input :name %>
+          </div>
+          <div class="col-6">
+            <%= f.input :mwater_id %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <%= f.input :waterpoint_type %>
+          </div>
+          <div class="col-6">
+            <%= f.input :manufacturer %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <%= f.input :latitude %>
+          </div>
+          <div class="col-6">
+            <%= f.input :longitude %>
+          </div>
+        </div>
         <%= f.input :address %>
-        <%= f.input :kiosk %>
-        <%= f.input :manufacturer %>
-        <%= f.input :design_period %>
-        <%= f.input :warranty %>
-        <%= f.input :efficiency %>
+        <div class="row">
+          <div class="col-6">
+            <%= f.input :design_period %>
+          </div>
+          <div class="col-6">
+            <%= f.input :efficiency %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <%= f.input :warranty %>
+          </div>
+          <div class="col-6">
+            <%= f.input :kiosk, label: "KIOSK" %>
+          </div>
+        </div>
         <%= f.submit 'ADD WATERPOINT', class: 'primary-btn' %>
-      <% end %>
+      </div>
     </div>
-  </div>
+  <% end %>
 </section>

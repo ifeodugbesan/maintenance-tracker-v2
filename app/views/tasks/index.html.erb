@@ -27,7 +27,7 @@
           <p><%= task.technician.full_name.upcase %></p>
           <p><%= task.end_date.strftime('%d/%m/%Y') %></p>
           <p><%= task.network.name.upcase %></p>
-          <p class="bold <%= task.unscheduled ? 'text-red' : 'text-green' %>"><%= task.unscheduled ? "UNSCHEDULED" : "SCHEDULED" %></p>
+          <p class="bold <%= task.unscheduled ? 'text-red' : 'text-green' %>"><%= task.unscheduled ? "REACTIVE" : "SCHEDULED" %></p>
           <span class="e-active">
             <p class="ms-3 <%= task.completed ? 'task-green' : 'task-red' %>"></p>
           </span>
