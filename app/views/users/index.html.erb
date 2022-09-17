@@ -3,10 +3,11 @@
     <section class="new-network-card u-card p-4">
       <div class="">
         <h6 class="new-network-card__name mb-0" style="font-size: 14px;"><%= technician.first_name.upcase %></h6>
-        <h6 class="new-network-card__name" style="font-size: 18px;"><%= technician.last_name.upcase %></h6>
+        <h6 class="new-network-card__name mb-1" style="font-size: 18px;"><%= technician.last_name.upcase %></h6>
+        <p class="mb-1"><%= technician.phone %></p>
       </div>
       <% if technician.avatar.attached? %>
-        <%= cl_image_tag technician.avatar.key, class: "avatar-large" %>
+        <%= cl_image_tag technician.avatar.key, class: "avatar-large mb-1" %>
       <% else %>
         <div class="avatar-initials">
           <%= technician.initials %>

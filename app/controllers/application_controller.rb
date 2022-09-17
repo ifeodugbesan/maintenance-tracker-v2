@@ -14,11 +14,10 @@ class ApplicationController < ActionController::Base
   end
 
   def configure_permitted_parameters
-    # For additional fields in app/views/devise/registrations/new.html.erb
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :avatar])
-
-    # For additional in app/views/devise/registrations/edit.html.erb
-    devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :last_name, :avatar])
+    added_attrs = [:phone, :email, :password, :password_confirmation, :remember_me, :avatar]
+    devise_parameter_sanitizer.permit :sign_up, keys: added_attrs
+    devise_parameter_sanitizer.permit :sign_in, keys: [:login, :password]
+    devise_parameter_sanitizer.permit :account_update, keys: added_attrs
   end
 
   def user_not_authorized
