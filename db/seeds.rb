@@ -11,14 +11,14 @@ User.destroy_all
 
 puts "Destroyed data"
 
-christelle = User.create!(email: "christelle@test.com", password: "123456", first_name: "christelle", last_name: 'kwizera', manager: true, phone: "+250#{(1..9).to_a.sample(9).join("")}")
+christelle = User.create!(email: "christelle@test.com", password: "123456", first_name: "christelle", last_name: 'kwizera', manager: true, phone: "+250111222333")
 christelle.avatar.attach(io: File.open('app/assets/images/christelle.png'), filename: 'christelle.png', content_type: 'image/png')
+bosco = User.create!(email: "bosco@test.com", password: "123456", first_name: "bosco", last_name: "urazibara", manager: false, phone: "+250444555666")
+bosco.avatar.attach(io: File.open('app/assets/images/bosco.png'), filename: 'bosco.png', content_type: 'image/png')
 djibril = User.create!(email: "djibril@test.com", password: "123456", first_name: "djibril", last_name: "hategekimana", manager: false, phone: "+250#{(1..9).to_a.sample(9).join("")}")
 djibril.avatar.attach(io: File.open('app/assets/images/djibril.png'), filename: 'djibril.png', content_type: 'image/png')
 romain = User.create!(email: "romain@test.com", password: "123456", first_name: "romain", last_name: "zirimwabagabo", manager: false, phone: "+250#{(1..9).to_a.sample(9).join("")}")
 romain.avatar.attach(io: File.open('app/assets/images/romain.png'), filename: 'romain.png', content_type: 'image/png')
-bosco = User.create!(email: "bosco@test.com", password: "123456", first_name: "bosco", last_name: "urazibara", manager: false, phone: "+250#{(1..9).to_a.sample(9).join("")}")
-bosco.avatar.attach(io: File.open('app/assets/images/bosco.png'), filename: 'bosco.png', content_type: 'image/png')
 christine = User.create!(email: "christine@test.com", password: "123456", first_name: "christine", last_name: "iradukunda", manager: false, phone: "+250#{(1..9).to_a.sample(9).join("")}")
 christine.avatar.attach(io: File.open('app/assets/images/christine.png'), filename: 'christine.png', content_type: 'image/png')
 emile = User.create!(email: "emile@test.com", password: "123456", first_name: "emile", last_name: "rugero", manager: false, phone: "+250#{(1..9).to_a.sample(9).join("")}")
