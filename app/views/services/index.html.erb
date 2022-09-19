@@ -1,41 +1,79 @@
-<% if policy(Service).new? %>
-  <section class="mw-800 d-flex justify-content-end mb-3">
-    <%#= form_with url: services_path, method: :get, class: "d-flex" do %>
-      <%#= text_field_tag :query,
-        params[:query],
-        class: "form-control search-bar",
-        placeholder: "Find an service"
-      %>
-    <%# end %>
-    <%= link_to 'ADD SERVICE', new_service_path, class: 'secondary-btn' %>
-  </section>
-<% end %>
-<section class="mw-800 mb-3">
-  <div class="network-grid border-bottom mb-4">
-    <h6 class="headers">SERVICE</h6>
-    <h6 class="headers">FREQUENCY</h6>
-  </div>
-  <% @services.each do |service| %>
-    <div class="network">
-      <div class="network-grid">
-        <p><%= service.name.upcase %></p>
-        <p><%= service.frequency %></p>
-      </div>
-      <% if policy(Service).new? %>
-        <div class="menu-options dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          •••
-        </div>
-        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-          <%= link_to "EDIT #{service.name.upcase}", edit_service_path(service), class: "dropdown-item" %>
-          <%= link_to "DELETE #{service.name.upcase}", service_path(service), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete the service #{service.name}?"}, class: "dropdown-item" %>
-        </div>
-      <% end %>
-    </div>
+<div class="w-view">
+  <% if policy(Service).new? %>
+    <section class="mw-800 d-flex justify-content-end mb-3">
+      <%#= form_with url: services_path, method: :get, class: "d-flex" do %>
+        <%#= text_field_tag :query,
+          params[:query],
+          class: "form-control search-bar",
+          placeholder: "Find an service"
+        %>
+      <%# end %>
+      <%= link_to 'ADD SERVICE', new_service_path, class: 'secondary-btn' %>
+    </section>
   <% end %>
-  <div class="pag-cont border-top mt-4">
-    <div class="page-entry">
-      <%= page_entries_info @services %>
+  <section class="mw-800 mb-3">
+    <div class="network-grid border-bottom mb-4">
+      <h6 class="headers">SERVICE</h6>
+      <h6 class="headers">FREQUENCY</h6>
     </div>
+    <% @services.each do |service| %>
+      <div class="network">
+        <div class="network-grid">
+          <p><%= service.name.upcase %></p>
+          <p><%= service.frequency %></p>
+        </div>
+        <% if policy(Service).new? %>
+          <div class="menu-options dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            •••
+          </div>
+          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <%= link_to "EDIT #{service.name.upcase}", edit_service_path(service), class: "dropdown-item" %>
+            <%= link_to "DELETE #{service.name.upcase}", service_path(service), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete the service #{service.name}?"}, class: "dropdown-item" %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+    <div class="pag-cont border-top mt-4">
+      <div class="page-entry">
+        <%= page_entries_info @services %>
+      </div>
+      <%= paginate @services %>
+    </div>
+  </section>
+</div>
+
+<!------------- MOBILE ------------->
+<!------------- VIEW ------------->
+<!------------- BELOW ------------->
+
+<div class="m-view">
+  <h4 class="d-title mb-3">SERVICES</h4>
+  <% if policy(Service).new? %>
+    <section class="mw-800 d-flex justify-content-start mb-3">
+      <%#= form_with url: services_path, method: :get, class: "d-flex" do %>
+        <%#= text_field_tag :query,
+          params[:query],
+          class: "form-control search-bar",
+          placeholder: "Find an service"
+        %>
+      <%# end %>
+      <%= link_to 'ADD SERVICE', new_service_path, class: 'secondary-btn' %>
+    </section>
+  <% end %>
+
+  <div class="page-entry text-center mb-3">
+    <%= page_entries_info @services %>
+  </div>
+
+  <% @services.each do |service| %>
+    <section class="mb-3">
+      <p class="bold"><%= service.name.upcase %></p>
+      <hr>
+      <p>FREQUENCY: <%= service.frequency %></p>
+    </section>
+  <% end %>
+
+  <div class="pag-cont border-top mt-4">
     <%= paginate @services %>
   </div>
-</section>
+</div>

@@ -1,39 +1,86 @@
-<div class="new-network-card-cont mb-3">
-  <% @technicians.each do |technician| %>
-    <section class="new-network-card u-card p-4 <%= 'inactive' if !technician.active %>">
-      <div class="">
-        <h6 class="new-network-card__name mb-0" style="font-size: 14px;"><%= technician.first_name.upcase %></h6>
-        <h6 class="new-network-card__name mb-1" style="font-size: 18px;"><%= technician.last_name.upcase %></h6>
-        <p class="mb-1"><%= technician.phone %></p>
-      </div>
-      <% if technician.avatar.attached? %>
-        <%= cl_image_tag technician.avatar.key, class: "avatar-large mb-1" %>
-      <% else %>
-        <div class="avatar-initials">
-          <%= technician.initials %>
+<div class="w-view">
+  <div class="new-network-card-cont mb-3">
+    <% @technicians.each do |technician| %>
+      <section class="new-network-card u-card p-4 <%= 'inactive' if !technician.active %>">
+        <div class="">
+          <h6 class="new-network-card__name mb-0" style="font-size: 14px;"><%= technician.first_name.upcase %></h6>
+          <h6 class="new-network-card__name mb-1" style="font-size: 18px;"><%= technician.last_name.upcase %></h6>
+          <p class="mb-1"><%= technician.phone %></p>
         </div>
-      <% end %>
-      <div>
-        <p class="mb-0">ONGOING</p>
-        <p class="mb-0">TASKS</p>
-        <% if technician.tasks.any? %>
-          <p class="text-green bold mb-0"><%= technician.tasks.where(completed: false).count %>/<%= technician.tasks.count %></p>
+        <% if technician.avatar.attached? %>
+          <%= cl_image_tag technician.avatar.key, class: "avatar-large mb-1" %>
+        <% else %>
+          <div class="avatar-initials">
+            <%= technician.initials %>
+          </div>
         <% end %>
-      </div>
-      <% if current_user.manager %>
-        <div class="menu-options dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          •••
+        <div>
+          <p class="mb-0">ONGOING</p>
+          <p class="mb-0">TASKS</p>
+          <% if technician.tasks.any? %>
+            <p class="text-green bold mb-0"><%= technician.tasks.where(completed: false).count %>/<%= technician.tasks.count %></p>
+          <% end %>
         </div>
-        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-          <%= link_to "#{technician.active ? 'SET AS INACTIVE' : 'SET AS ACTIVE'}", user_status_path(technician), data: { turbo_method: :patch }, class: "dropdown-item" %>
-        </div>
-      <% end %>
-    </section>
-  <% end %>
+        <% if current_user.manager %>
+          <div class="menu-options dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            •••
+          </div>
+          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <%= link_to "#{technician.active ? 'SET AS INACTIVE' : 'SET AS ACTIVE'}", user_status_path(technician), data: { turbo_method: :patch }, class: "dropdown-item" %>
+          </div>
+        <% end %>
+      </section>
+    <% end %>
+  </div>
+  <div class="pag-cont border-top mt-4">
+    <div class="page-entry">
+      <%= page_entries_info @technicians %>
+    </div>
+    <%= paginate @technicians %>
+  </div>
 </div>
-<div class="pag-cont border-top mt-4">
-  <div class="page-entry">
+
+<!------------- MOBILE ------------->
+<!------------- VIEW ------------->
+<!------------- BELOW ------------->
+
+<div class="m-view">
+  <h4 class="d-title mb-3">TECHNICIANS</h4>
+
+  <div class="page-entry text-center mb-3">
     <%= page_entries_info @technicians %>
   </div>
-  <%= paginate @technicians %>
+
+  <% @technicians.each do |technician| %>
+      <section class="new-network-card u-card p-4 <%= 'inactive' if !technician.active %>">
+        <div class="">
+          <h6 class="new-network-card__name mb-0" style="font-size: 14px;"><%= technician.first_name.upcase %></h6>
+          <h6 class="new-network-card__name mb-1" style="font-size: 18px;"><%= technician.last_name.upcase %></h6>
+          <p class="mb-1"><%= technician.phone %></p>
+        </div>
+        <% if technician.avatar.attached? %>
+          <%= cl_image_tag technician.avatar.key, class: "avatar-large mb-1" %>
+        <% else %>
+          <div class="avatar-initials">
+            <%= technician.initials %>
+          </div>
+        <% end %>
+        <div>
+          <p class="mb-0">ONGOING</p>
+          <p class="mb-0">TASKS</p>
+          <% if technician.tasks.any? %>
+            <p class="text-green bold mb-0"><%= technician.tasks.where(completed: false).count %>/<%= technician.tasks.count %></p>
+          <% end %>
+        </div>
+        <% if current_user.manager %>
+          <div class="menu-options dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            •••
+          </div>
+          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <%= link_to "#{technician.active ? 'SET AS INACTIVE' : 'SET AS ACTIVE'}", user_status_path(technician), data: { turbo_method: :patch }, class: "dropdown-item" %>
+          </div>
+        <% end %>
+      </section>
+    <% end %>
+
 </div>
