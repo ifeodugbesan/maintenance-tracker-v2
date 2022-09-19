@@ -68,6 +68,11 @@ p, a {
   padding: 16px 16px 0;
   max-width: calc(100vw - 212px);
   min-width: 800px;
+  @include media-breakpoint-down(md) {
+    margin-left: 0;
+    max-width: unset;
+    min-width: unset;
+  }
 }
 
 .headers {
@@ -92,6 +97,9 @@ section {
 
 .mw-800 {
   min-width: 800px;
+  @include media-breakpoint-down(md) {
+    min-width: unset;
+  }
 }
 
 .f-wrapper {
@@ -161,12 +169,27 @@ section {
     letter-spacing: 0.5px;
     color: #9A9A9A;
   }
+  @include media-breakpoint-down(md) {
+    display: block;
+  }
 }
 
+.w-view {
+  @include media-breakpoint-down(md) {
+    display: none;
+  }
+}
 
+.m-view {
+    @include media-breakpoint-up(md) {
+    display: none;
+  }
+}
 
-
-
+.m-card {
+  position: relative;
+  margin-bottom: 16px;
+}
 
 
 

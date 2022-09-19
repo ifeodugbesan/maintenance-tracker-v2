@@ -1,56 +1,109 @@
-<section class="mw-800 d-flex justify-content-between mb-3">
-  <%= form_with url: equipments_path, method: :get, class: "d-flex" do %>
-    <%= text_field_tag :query,
-      params[:query],
-      class: "form-control search-bar",
-      placeholder: "Find an equipment"
-    %>
-  <% end %>
-  <%= link_to 'ADD EQUIPMENT', new_equipment_path, class: 'secondary-btn' if policy(Equipment).new? %>
-</section>
-<section class="mw-800 mb-3">
-  <div class="e-grid border-bottom mb-4">
-    <h6 class="headers e-id">ID</h6>
-    <h6 class="headers">NAME</h6>
-    <h6 class="headers">NETWORK</h6>
-    <h6 class="headers">MANUFACTURER</h6>
-    <h6 class="headers">DATE OF INSTALLATION</h6>
-    <h6 class="headers">WARRANTY</h6>
-    <h6 class="headers e-active">ACTIVE</h6>
-  </div>
-  <% @equipments.each do |equipment| %>
-    <div class="network">
-      <%= link_to equipment_path(equipment), class: 'text-decoration-none' do %>
-        <div class="e-grid">
-          <p class="e-id"><%= equipment.id %></p>
-          <p><%= equipment.name.upcase %></p>
-          <p><%= equipment.waterpoint.network.name.upcase %></p>
-          <p><%= equipment.manufacturer.upcase %></p>
-          <p><%= equipment.date_of_installation.strftime('%d/%m/%Y') %></p>
-          <p class="bold <%= Date.today > equipment.date_of_expiration ? 'text-red' : 'text-green' %>"><%= Date.today > equipment.date_of_expiration ? "EXPIRED" : "VALID" %></p>
-          <span class="e-active">
-            <p class="ms-3 <%= equipment.inactive ? 'task-red' : 'task-green' %>"></p>
-          </span>
-        </div>
-      <% end %>
-      <% if policy(Equipment).new? %>
-        <div class="menu-options dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          •••
-        </div>
-        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-          <%= link_to "EDIT #{equipment.name.upcase}", edit_equipment_path(equipment), class: "dropdown-item" %>
-          <%= link_to "DELETE #{equipment.name.upcase}", equipment_path(equipment), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete the equipment #{equipment.name}?"}, class: "dropdown-item" %>
-        </div>
-      <% end %>
-    </div>
-  <% end %>
-  <div class="pag-cont border-top mt-4">
-    <div class="page-entry">
-      <%= page_entries_info @equipments %>
-    </div>
-    <%= paginate @equipments %>
-    <%= link_to export_equipments_path, class: "csv-btn" do %>
-      DOWNLOAD TO CSV <i class="bi bi-arrow-down-short"></i>
+<div class="w-view">
+  <section class="mw-800 d-flex justify-content-between mb-3">
+    <%= form_with url: equipments_path, method: :get, class: "d-flex" do %>
+      <%= text_field_tag :query,
+        params[:query],
+        class: "form-control search-bar",
+        placeholder: "Find an equipment"
+      %>
     <% end %>
+    <%= link_to 'ADD EQUIPMENT', new_equipment_path, class: 'secondary-btn' if policy(Equipment).new? %>
+  </section>
+  <section class="mw-800 mb-3">
+    <div class="e-grid border-bottom mb-4">
+      <h6 class="headers e-id">ID</h6>
+      <h6 class="headers">NAME</h6>
+      <h6 class="headers">NETWORK</h6>
+      <h6 class="headers">MANUFACTURER</h6>
+      <h6 class="headers">DATE OF INSTALLATION</h6>
+      <h6 class="headers">WARRANTY</h6>
+      <h6 class="headers e-active">ACTIVE</h6>
+    </div>
+    <% @equipments.each do |equipment| %>
+      <div class="network">
+        <%= link_to equipment_path(equipment), class: 'text-decoration-none' do %>
+          <div class="e-grid">
+            <p class="e-id"><%= equipment.id %></p>
+            <p><%= equipment.name.upcase %></p>
+            <p><%= equipment.waterpoint.network.name.upcase %></p>
+            <p><%= equipment.manufacturer.upcase %></p>
+            <p><%= equipment.date_of_installation.strftime('%d/%m/%Y') %></p>
+            <p class="bold <%= Date.today > equipment.date_of_expiration ? 'text-red' : 'text-green' %>"><%= Date.today > equipment.date_of_expiration ? "EXPIRED" : "VALID" %></p>
+            <span class="e-active">
+              <p class="ms-3 <%= equipment.inactive ? 'task-red' : 'task-green' %>"></p>
+            </span>
+          </div>
+        <% end %>
+        <% if policy(Equipment).new? %>
+          <div class="menu-options dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            •••
+          </div>
+          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <%= link_to "EDIT #{equipment.name.upcase}", edit_equipment_path(equipment), class: "dropdown-item" %>
+            <%= link_to "DELETE #{equipment.name.upcase}", equipment_path(equipment), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete the equipment #{equipment.name}?"}, class: "dropdown-item" %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+    <div class="pag-cont border-top mt-4">
+      <div class="page-entry">
+        <%= page_entries_info @equipments %>
+      </div>
+      <%= paginate @equipments %>
+      <%= link_to export_equipments_path, class: "csv-btn" do %>
+        DOWNLOAD TO CSV <i class="bi bi-arrow-down-short"></i>
+      <% end %>
+    </div>
+  </section>
+</div>
+
+<!------------- MOBILE ------------->
+<!------------- VIEW ------------->
+<!------------- BELOW ------------->
+
+<div class="m-view">
+  <h4 class="d-title mb-3">EQUIPMENT</h4>
+  <section class="mb-3">
+    <%= form_with url: equipments_path, method: :get, class: "d-flex mb-2" do %>
+      <%= text_field_tag :query,
+        params[:query],
+        class: "form-control search-bar",
+        placeholder: "Find an equipment"
+      %>
+    <% end %>
+    <%= link_to 'ADD EQUIPMENT', new_equipment_path, class: 'secondary-btn' if policy(Equipment).new? %>
+  </section>
+
+  <div class="page-entry text-center mb-3">
+    <%= page_entries_info @equipments %>
   </div>
-</section>
+
+  <% @equipments.each do |equipment| %>
+
+    <%= link_to equipment_path(equipment), class: 'text-decoration-none' do %>
+      <section class="m-card">
+        <p class="bold"><%= equipment.name.upcase %></p>
+        <p><%= equipment.waterpoint.network.name.upcase %></p>
+        <p><%= equipment.manufacturer.upcase %></p>
+        <p><%= equipment.date_of_installation.strftime('%d/%m/%Y') %></p>
+        <p class="bold <%= Date.today > equipment.date_of_expiration ? 'text-red' : 'text-green' %>"><%= Date.today > equipment.date_of_expiration ? "EXPIRED" : "VALID" %></p>
+        <span class="e-active">
+          <p class="ms-3 <%= equipment.inactive ? 'task-red' : 'task-green' %>"></p>
+        </span>
+      </section>
+    <% end %>
+  <% end %>
+
+   <div class="pag-cont border-top mt-4">
+    <%= paginate @equipments %>
+    <%#= link_to export_equipments_path, class: "csv-btn mt-3" do %>
+      <!-- DOWNLOAD TO CSV <i class="bi bi-arrow-down-short"></i> -->
+    <%# end %>
+  </div>
+</div>
+
+
+
+
+
+

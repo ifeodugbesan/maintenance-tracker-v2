@@ -9,6 +9,10 @@
 
 .d-container {
   width: 500px;
+  @include media-breakpoint-down(md) {
+    width: 100%;
+    padding: 0 24px;
+  }
 }
 
 .d-title {
@@ -16,4 +20,7 @@
   font-weight: 600;
   font-size: 22px;
   letter-spacing: 0.5px;
+  @include media-breakpoint-down(md) {
+    font-size: 16px;
+  }
 }

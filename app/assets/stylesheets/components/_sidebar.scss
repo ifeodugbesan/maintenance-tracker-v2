@@ -23,6 +23,9 @@
     justify-content: center;
     padding: 24px 0;
   }
+  @include media-breakpoint-down(md) {
+    display: none;
+  }
 }
 
 .sidebar-link {
@@ -50,6 +53,9 @@
   }
   &:hover {
     background: #F5F5F5;
+  }
+  @include media-breakpoint-down(md) {
+    margin: 4px 0;
   }
 }
 

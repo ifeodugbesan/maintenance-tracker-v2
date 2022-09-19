@@ -1,57 +1,120 @@
-<section class="mw-800 d-flex justify-content-between mb-3">
-  <%= form_with url: tasks_path, method: :get, class: "search-form" do %>
-    <%= text_field_tag :query, params[:query], class: "form-control search-bar", placeholder: "Find a task" %>
-    <div class="d-flex justify-content-center align-items-center">
-      <%= check_box_tag :hide_complete, params[:hide_complete], params[:hide_complete], { label: "sdfsdfsf", onchange: "this.form.submit()" } %>
-      <%= label_tag :hide_complete, 'HIDE COMPLETE TASKS', class: 'ms-1' %>
-      <%= check_box_tag :hide_predicted, params[:hide_predicted], params[:hide_predicted], { label: "sdfsdfsf", onchange: "this.form.submit()", class: 'ms-3' } %>
-      <%= label_tag :hide_predicted, 'HIDE SCHEDULED TASKS', class: 'ms-1' %>
-    </div>
-  <% end %>
-  <%#= link_to 'ADD TASK', new_task_path, class: 'secondary-btn' if policy(Task).new? %>
-</section>
-<section class="mw-800 mb-3">
-  <div class="t-six border-bottom mb-4">
-    <h6 class="headers">TASK</h6>
-    <h6 class="headers">TECHNICIAN</h6>
-    <h6 class="headers">DUE DATE</h6>
-    <h6 class="headers">NETWORK</h6>
-    <h6 class="headers">SCHEDULED</h6>
-    <h6 class="headers e-active">STATUS</h6>
-  </div>
-  <% @tasks.each do |task| %>
-    <div class="network">
-      <%= link_to task_path(task), class: 'text-decoration-none' do %>
-        <div class="t-six">
-          <p><%= task.title.upcase %></p>
-          <p><%= task.technician.full_name.upcase %></p>
-          <p><%= task.end_date.strftime('%d/%m/%Y') %></p>
-          <p><%= task.network.name.upcase %></p>
-          <p class="bold <%= task.unscheduled ? 'text-red' : 'text-green' %>"><%= task.unscheduled ? "REACTIVE" : "SCHEDULED" %></p>
-          <span class="e-active">
-            <p class="ms-3 <%= task.completed ? 'task-green' : 'task-red' %>"></p>
-          </span>
-        </div>
-      <% end %>
-      <% if policy(task).new? %>
-        <div class="menu-options dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          •••
-        </div>
-        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-          <%= link_to "EDIT", edit_task_path(task), class: "dropdown-item" %>
-          <%= link_to "DELETE", task_path(task), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete the task #{task.title}?"}, class: "dropdown-item" %>
-        </div>
-      <% end %>
-    </div>
-  <% end %>
-  <div class="pag-cont border-top mt-4">
-    <div class="page-entry">
-      <%= page_entries_info @tasks %>
-    </div>
-    <%= paginate @tasks %>
-    <%= link_to export_tasks_path, class: "csv-btn" do %>
-      DOWNLOAD TO CSV <i class="bi bi-arrow-down-short"></i>
+<div class="w-view">
+  <section class="mw-800 d-flex justify-content-between mb-3">
+    <%= form_with url: tasks_path, method: :get, class: "search-form" do %>
+      <%= text_field_tag :query, params[:query], class: "form-control search-bar", placeholder: "Find a task" %>
+      <div class="d-flex justify-content-center align-items-center">
+        <%= check_box_tag :hide_complete, params[:hide_complete], params[:hide_complete], { label: "sdfsdfsf", onchange: "this.form.submit()" } %>
+        <%= label_tag :hide_complete, 'HIDE COMPLETE TASKS', class: 'ms-1' %>
+        <%= check_box_tag :hide_predicted, params[:hide_predicted], params[:hide_predicted], { label: "sdfsdfsf", onchange: "this.form.submit()", class: 'ms-3' } %>
+        <%= label_tag :hide_predicted, 'HIDE SCHEDULED TASKS', class: 'ms-1' %>
+      </div>
     <% end %>
-  </div>
-</section>
+    <%#= link_to 'ADD TASK', new_task_path, class: 'secondary-btn' if policy(Task).new? %>
+  </section>
+  <section class="mw-800 mb-3">
+    <div class="t-six border-bottom mb-4">
+      <h6 class="headers">TASK</h6>
+      <h6 class="headers">TECHNICIAN</h6>
+      <h6 class="headers">DUE DATE</h6>
+      <h6 class="headers">NETWORK</h6>
+      <h6 class="headers">SCHEDULED</h6>
+      <h6 class="headers e-active">STATUS</h6>
+    </div>
+    <% @tasks.each do |task| %>
+      <div class="network">
+        <%= link_to task_path(task), class: 'text-decoration-none' do %>
+          <div class="t-six">
+            <p><%= task.title.upcase %></p>
+            <p><%= task.technician.full_name.upcase %></p>
+            <p><%= task.end_date.strftime('%d/%m/%Y') %></p>
+            <p><%= task.network.name.upcase %></p>
+            <p class="bold <%= task.unscheduled ? 'text-red' : 'text-green' %>"><%= task.unscheduled ? "REACTIVE" : "SCHEDULED" %></p>
+            <span class="e-active">
+              <p class="ms-3 <%= task.completed ? 'task-green' : 'task-red' %>"></p>
+            </span>
+          </div>
+        <% end %>
+        <% if policy(task).new? %>
+          <div class="menu-options dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            •••
+          </div>
+          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <%= link_to "EDIT", edit_task_path(task), class: "dropdown-item" %>
+            <%= link_to "DELETE", task_path(task), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete the task #{task.title}?"}, class: "dropdown-item" %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+    <div class="pag-cont border-top mt-4">
+      <div class="page-entry">
+        <%= page_entries_info @tasks %>
+      </div>
+      <%= paginate @tasks %>
+      <%= link_to export_tasks_path, class: "csv-btn" do %>
+        DOWNLOAD TO CSV <i class="bi bi-arrow-down-short"></i>
+      <% end %>
+    </div>
+  </section>
+</div>
 
+<!------------- MOBILE ------------->
+<!------------- VIEW ------------->
+<!------------- BELOW ------------->
+
+<div class="m-view">
+  <h4 class="d-title mb-3">TASKS</h4>
+  <section class="mb-3">
+    <%= form_with url: tasks_path, method: :get, class: "search-form" do %>
+      <%= text_field_tag :query, params[:query], class: "form-control search-bar", placeholder: "Find a task" %>
+      <div class="ms-2 d-flex">
+        <%= check_box_tag :hide_complete, params[:hide_complete], params[:hide_complete], { label: "sdfsdfsf", onchange: "this.form.submit()", class: 'me-1' } %>
+        <%= label_tag :hide_complete, 'HIDE COMPLETE TASKS' %>
+      </div>
+      <div class="ms-2 d-flex">
+        <%= check_box_tag :hide_predicted, params[:hide_predicted], params[:hide_predicted], { label: "sdfsdfsf", onchange: "this.form.submit()", class: 'me-1' } %>
+        <%= label_tag :hide_predicted, 'HIDE SCHEDULED TASKS' %>
+      </div>
+      </div>
+    <% end %>
+    <%#= link_to 'ADD TASK', new_task_path, class: 'secondary-btn' if policy(Task).new? %>
+  </section>
+
+  <div class="page-entry text-center mb-3">
+    <%= page_entries_info @tasks %>
+  </div>
+
+  <% @tasks.each do |task| %>
+    <%= link_to task_path(task), class: 'text-decoration-none' do %>
+      <section class="m-card">
+        <div class="">
+          <p class="bold"><%= task.title.upcase %></p>
+          <hr>
+          <p>TECHNICIAN: <%= task.technician.full_name.upcase %></p>
+          <p>DUE DATE: <%= task.end_date.strftime('%d/%m/%Y') %></p>
+          <p>NETWORK: <%= task.network.name.upcase %></p>
+           <p class="bold <%= task.unscheduled ? 'text-red' : 'text-green' %>"><%= task.unscheduled ? "REACTIVE" : "SCHEDULED" %></p>
+            <span class="e-active">
+              <p class="ms-3 <%= task.completed ? 'task-green' : 'task-red' %>"></p>
+            </span>
+        </div>
+        <% if policy(task).new? %>
+          <div class="menu-options dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            •••
+          </div>
+          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <%= link_to "EDIT", edit_task_path(task), class: "dropdown-item" %>
+            <%= link_to "DELETE", task_path(task), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete the task #{task.title}?"}, class: "dropdown-item" %>
+          </div>
+        <% end %>
+      </section>
+    <% end %>
+  <% end %>
+
+  <div class="pag-cont border-top">
+    <%= paginate @tasks %>
+    <%#= link_to export_tasks_path, class: "csv-btn mt-3" do %>
+      <!-- DOWNLOAD TO CSV <i class="bi bi-arrow-down-short"></i> -->
+    <%# end %>
+  </div>
+
+</div>

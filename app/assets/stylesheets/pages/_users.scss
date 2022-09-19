@@ -26,6 +26,9 @@
       display: flex;
     }
   }
+  @include media-breakpoint-down(md) {
+    width: 100%;
+  }
 }
 
 .inactive {

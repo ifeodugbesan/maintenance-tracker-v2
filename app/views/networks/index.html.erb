@@ -1,14 +1,61 @@
-<section class="mw-800 d-flex justify-content-between mb-3">
-  <%= form_with url: networks_path, method: :get, class: "d-flex" do %>
-    <%= text_field_tag :query,
-      params[:query],
-      class: "form-control search-bar",
-      placeholder: "Find a network"
-    %>
-  <% end %>
-  <%= link_to 'ADD NETWORK', new_network_path, class: 'secondary-btn' if policy(Network).new? %>
-</section>
-<div class="new-network-card-cont mb-3">
+<div class="w-view">
+  <section class="mw-800 d-flex justify-content-between mb-3">
+    <%= form_with url: networks_path, method: :get, class: "d-flex" do %>
+      <%= text_field_tag :query,
+        params[:query],
+        class: "form-control search-bar",
+        placeholder: "Find a network"
+      %>
+    <% end %>
+    <%= link_to 'ADD NETWORK', new_network_path, class: 'secondary-btn' if policy(Network).new? %>
+  </section>
+  <div class="new-network-card-cont mb-3">
+    <% @networks.each do |network| %>
+      <%= link_to network_path(network), class: 'text-decoration-none' do %>
+        <section class="new-network-card p-4">
+          <h6 class="new-network-card__name"><%= network.name.upcase %></h6>
+          <div>
+            <p class="mb-0">HOUSEHOLD</p>
+            <p class="mb-0">CONNECTIONS</p>
+            <% if network.number_of_households == network.max_households %>
+              <p class="text-red bold mb-0">FULL</p>
+            <% else %>
+              <p class="text-green bold mb-0"><%= network.number_of_households %>/<%= network.max_households %></p>
+            <% end %>
+          </div>
+        </section>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="pag-cont border-top mt-4">
+    <div class="page-entry">
+      <%= page_entries_info @networks %>
+    </div>
+    <%= paginate @networks %>
+  </div>
+</div>
+
+<!------------- MOBILE ------------->
+<!------------- VIEW ------------->
+<!------------- BELOW ------------->
+
+<div class="m-view">
+  <h4 class="d-title mb-3">NETWORKS</h4>
+  <section class="mb-3">
+    <%= form_with url: networks_path, method: :get, class: "d-flex mb-2" do %>
+      <%= text_field_tag :query,
+        params[:query],
+        class: "form-control search-bar",
+        placeholder: "Find a network"
+      %>
+    <% end %>
+    <%= link_to 'ADD NETWORK', new_network_path, class: 'secondary-btn' if policy(Network).new? %>
+  </section>
+
+  <div class="page-entry text-center mb-3">
+    <%= page_entries_info @networks %>
+  </div>
+
   <% @networks.each do |network| %>
     <%= link_to network_path(network), class: 'text-decoration-none' do %>
       <section class="new-network-card p-4">
@@ -25,53 +72,10 @@
       </section>
     <% end %>
   <% end %>
-</div>
-<div class="pag-cont border-top mt-4">
-  <div class="page-entry">
-    <%= page_entries_info @networks %>
-  </div>
-  <%= paginate @networks %>
-</div>
-<!-- <section class="mw-800 mb-3">
-  <div class="network-grid border-bottom mb-4">
-    <h6 class="headers">NETWORK</h6>
-    <h6 class="headers">ADDRESS</h6>
-    <h6 class="headers">WATERPOINTS</h6>
-    <h6 class="headers">TASKS</h6>
-    <h6 class="headers">HOUSEHOLDS</h6>
-  </div>
-  <%# @networks.each do |network| %>
-    <div class="network">
-      <%#= link_to network_path(network), class: 'text-decoration-none' do %>
-        <div class="network-grid">
-          <p><%#= network.name.upcase %></p>
-          <p><%#= network.address.upcase %></p>
-          <p>WATERPOINTS</p>
-          <p>TASKS</p>
-          <%# if network.number_of_households == network.max_households %>
-            <p class="text-red bold">FULL</p>
-          <%# else %>
-            <p class="text-green bold"><%#= network.number_of_households %>/<%#= network.max_households %></p>
-          <%# end %>
-        </div>
-      <%# end %>
-      <%# if policy(Network).new? %>
-        <div class="menu-options dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          •••
-        </div>
-        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-          <%#= link_to "EDIT #{network.name.upcase}", edit_network_path(network), class: "dropdown-item" %>
-          <%#= link_to "DELETE #{network.name.upcase}", network_path(network), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete the network #{network.name}?"}, class: "dropdown-item" %>
-        </div>
-      <%# end %>
-    </div>
-  <%# end %>
-  <div class="pag-cont border-top mt-4">
-    <div class="page-entry">
-      <%#= page_entries_info @networks %>
-    </div>
-    <%#= paginate @networks %>
-  </div>
-</section> -->
 
+  <div class="pag-cont border-top mt-4">
+    <%= paginate @networks %>
+  </div>
+
+</div>
 
