@@ -2,40 +2,40 @@
   <%= simple_form_for @equipment do |f| %>
     <div class="f-wrapper">
       <div class="d-flex justify-content-between w-100 ">
-        <h1 class="d-title mb-5">AMEND EQUIPMENT</h1>
+        <h1 class="d-title mb-5 mt-1">AMEND EQUIPMENT</h1>
         <%= f.input :inactive, label: "INACTIVE" %>
       </div>
       <div class="f-container">
         <%= f.input :name %>
         <div class="row mt-4">
-          <div class="col-6">
+          <div class="col-12 col-md-6">
             <%= f.association :waterpoint, :label_method => lambda { |waterpoint| "#{waterpoint.network.name} #{waterpoint.waterpoint_type}" } %>
           </div>
-          <div class="col-6">
+          <div class="col-12 col-md-6">
             <%= f.input :manufacturer %>
           </div>
         </div>
         <div class="row">
-          <div class="col-6">
+          <div class="col-12 col-md-6">
             <%= f.input :date_of_installation, as: :date, html5: true %>
           </div>
-          <div class="col-6">
+          <div class="col-12 col-md-6">
             <%= f.input :date_of_expiration, as: :date, html5: true %>
           </div>
         </div>
         <div class="row">
-          <div class="col-6">
+          <div class="col-12 col-md-6">
             <%= f.input :equipment_type %>
           </div>
-          <div class="col-3">
+          <div class="col-12 col-md-3">
             <%= f.input :design_period %>
           </div>
-          <div class="col-3">
+          <div class="col-12 col-md-3">
             <%= f.input :efficiency %>
           </div>
         </div>
         <%= f.input :warranty, as: :date, html5: true %>
-        <%= f.submit 'AMEND NETWORK', class: 'primary-btn mt-4' %>
+        <%= f.submit 'AMEND NETWORK', class: 'primary-btn mt-0 mt-md-4' %>
       </div>
     </div>
   <% end %>

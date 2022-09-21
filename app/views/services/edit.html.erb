@@ -4,7 +4,7 @@
     <div class="d-container">
       <%= simple_form_for @service do |f| %>
         <%= f.input :name %>
-        <%= f.input :frequency %>
+        <%= f.input :frequency, label: 'SERVICE FREQUENCY (MONTHS)', placeholder: "MONTHS UNTIL THE NEXT SERVICE?" %>
         <%= f.submit 'AMEND SERVICE', class: 'primary-btn' %>
       <% end %>
     </div>

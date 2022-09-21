@@ -23,6 +23,11 @@ p, a {
   letter-spacing: 0.5px;
 }
 
+hr {
+  border-top: 1px solid #dee2e6 !important;
+  opacity: 1;
+}
+
 .form-label {
   margin-left: 2px !important;
   margin-bottom: 2px !important;
@@ -109,6 +114,9 @@ section {
   justify-content: flex-start;
   align-items: center;
   padding: 16px;
+  @include media-breakpoint-down(md) {
+    padding: 0;
+  }
 }
 
 .menu-options {
@@ -181,7 +189,10 @@ section {
 }
 
 .m-view {
-    @include media-breakpoint-up(md) {
+  .menu-options {
+    display: flex;
+  }
+  @include media-breakpoint-up(md) {
     display: none;
   }
 }

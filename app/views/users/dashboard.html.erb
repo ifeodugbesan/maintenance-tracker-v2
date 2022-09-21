@@ -73,8 +73,8 @@
     <%= link_to 'ALL TASKS', tasks_path, class: 'secondary-btn' %>
   </div>
   <% tasks.first(5).each do |task| %>
-    <%= link_to task_path(task), class: 'text-decoration-none' do %>
-      <section class="m-card">
+    <section class="m-card">
+      <%= link_to task_path(task), class: 'text-decoration-none' do %>
         <div class="">
           <p class="bold"><%= task.title.upcase %></p>
           <hr>
@@ -82,17 +82,17 @@
           <p>DUE DATE: <%= task.end_date.strftime('%d/%m/%Y') %></p>
           <p>NETWORK: <%= task.network.name.upcase %></p>
         </div>
-        <% if policy(task).new? %>
-          <div class="menu-options dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            •••
-          </div>
-          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-            <%= link_to "EDIT", edit_task_path(task), class: "dropdown-item" %>
-            <%= link_to "DELETE", task_path(task), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete the task #{task.title}?"}, class: "dropdown-item" %>
-          </div>
-        <% end %>
-      </section>
-    <% end %>
+      <% end %>
+      <% if policy(task).new? %>
+        <div class="menu-options dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          •••
+        </div>
+        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+          <%= link_to "EDIT", edit_task_path(task), class: "dropdown-item" %>
+          <%= link_to "DELETE", task_path(task), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete the task #{task.title}?"}, class: "dropdown-item" %>
+        </div>
+      <% end %>
+    </section>
   <% end %>
 
   <div class="d-flex justify-content-between align-items-center pb-3">

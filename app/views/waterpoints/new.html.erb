@@ -6,44 +6,17 @@
       </div>
       <div class="f-container">
         <div class="row mt-4">
-          <div class="col-6">
+          <div class="col-12 col-md-6">
             <%= f.input :name %>
           </div>
-          <div class="col-6">
-            <%= f.input :mwater_id %>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-6">
+          <div class="col-12 col-md-6">
             <%= f.input :waterpoint_type %>
           </div>
-          <div class="col-6">
-            <%= f.input :manufacturer %>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-6">
+          <div class="col-12 col-md-6">
             <%= f.input :latitude %>
           </div>
-          <div class="col-6">
+          <div class="col-12 col-md-6">
             <%= f.input :longitude %>
-          </div>
-        </div>
-        <%= f.input :address %>
-        <div class="row">
-          <div class="col-6">
-            <%= f.input :design_period %>
-          </div>
-          <div class="col-6">
-            <%= f.input :efficiency %>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-6">
-            <%= f.input :warranty %>
-          </div>
-          <div class="col-6">
-            <%= f.input :kiosk, label: "KIOSK" %>
           </div>
         </div>
         <%= f.submit 'ADD WATERPOINT', class: 'primary-btn' %>
