@@ -1,17 +1,120 @@
-<h4 class="mb-3 headers d-flex align-items-center">
-  <%= @network.name.upcase %> NETWORK
-  <% if policy(Network).new? %>
-    <span class="d-flex ms-3">
-      <%= link_to edit_network_path(@network), class: 'option-link' do %>
-        <i class="bi bi-pen-fill"></i>
-      <% end %>
-      <%= link_to network_path(@network), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete the network #{@network.name}?"}, class: 'option-link' do %>
-        <i class="bi bi-trash3-fill"></i>
-      <% end %>
-    </span>
-  <% end %>
-</h4>
-<div class="g-two mb-3">
+<div class="w-view">
+  <h4 class="mb-3 headers d-flex align-items-center">
+    <%= @network.name.upcase %> NETWORK
+    <% if policy(Network).new? %>
+      <span class="d-flex ms-3">
+        <%= link_to edit_network_path(@network), class: 'option-link' do %>
+          <i class="bi bi-pen-fill"></i>
+        <% end %>
+        <%= link_to network_path(@network), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete the network #{@network.name}?"}, class: 'option-link' do %>
+          <i class="bi bi-trash3-fill"></i>
+        <% end %>
+      </span>
+    <% end %>
+  </h4>
+  <div class="g-two mb-3">
+    <div class="g-four">
+      <section class="info-square">
+        <p>NUMBER OF HOUSEHOLD CONNECTIONS</p>
+        <% if @network.number_of_households == @network.max_households %>
+          <span class="text-red">FULL</span>
+        <% else %>
+          <span class="text-green"><%= @network.number_of_households %>/<%= @network.max_households %></span>
+        <% end %>
+      </section>
+      <section class="info-square">
+        <p>NUMBER OF TASKS</p>
+        <span><%= @network.tasks.any? ? @network.tasks.count : "N/A" %></span>
+      </section>
+      <section class="info-square">
+        <p>STATUS COMPLETED TASKS</p>
+        <span><%= @network.tasks.any? ? @network.completed_percentage : "N/A" %></span>
+      </section>
+      <section class="info-square">
+        <p>NEXT MAINTENANCE</p>
+        <span><%= @network.tasks.any? ? @network.tasks.first.start_date.strftime("%a, %e %b %Y") : "N/A" %></span>
+      </section>
+      <section class="g-four__100">
+        <div class="d-flex justify-content-between align-items-center border-bottom pb-3 mb-3">
+          <h6 class="headers mb-0 ps-3">WATERPOINTS</h6>
+          <%= link_to 'ADD WATERPOINT', new_network_waterpoint_path(@network), class: 'secondary-btn' if policy(Waterpoint).new? %>
+        </div>
+        <div class="g-two p-3 border-bottom mb-4">
+          <h6 class="headers">NAME</h6>
+          <h6 class="headers">WATERPOINT TYPE</h6>
+        </div>
+        <% @network.waterpoints.each do |waterpoint| %>
+          <div class="network">
+            <div class="g-two p-3">
+              <p><%= waterpoint.name.upcase %></p>
+              <p><%= waterpoint.waterpoint_type.upcase %></p>
+            </div>
+            <% if policy(Waterpoint).new? %>
+              <div class="menu-options dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                •••
+              </div>
+              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                <%= link_to "EDIT #{waterpoint.name.upcase}", edit_network_waterpoint_path(@network, waterpoint), class: "dropdown-item" %>
+                <%= link_to "DELETE #{waterpoint.name.upcase}", waterpoint_path(waterpoint), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete the waterpoint #{waterpoint.name}?"}, class: "dropdown-item" %>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </section>
+    </div>
+    <div style="width: 100%; height: 100%;"
+         data-controller="map"
+         data-map-markers-value="<%= @markers.to_json %>"
+         data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+    </div>
+  </div>
+
+
+  <section class="mw-800 mb-3">
+    <div class="e-grid border-bottom mb-4">
+      <h6 class="headers e-id">ID</h6>
+      <h6 class="headers">EQUIPMENT</h6>
+      <h6 class="headers">WATERPOINT</h6>
+      <h6 class="headers">MANUFACTURER</h6>
+      <h6 class="headers">DATE OF INSTALLATION</h6>
+      <h6 class="headers">WARRANTY</h6>
+      <h6 class="headers e-active">ACTIVE</h6>
+    </div>
+    <% @waterpoint_equipments.each do |waterpoint_equipment| %>
+      <div class="network">
+        <%= link_to equipment_path(waterpoint_equipment.equipment), class: 'text-decoration-none' do %>
+          <div class="e-grid">
+            <p class="e-id"><%= waterpoint_equipment.equipment.id %></p>
+            <p><%= waterpoint_equipment.equipment.name.upcase %></p>
+            <p><%= waterpoint_equipment.waterpoint.name.upcase %> <%= waterpoint_equipment.waterpoint.waterpoint_type.upcase %></p>
+            <p><%= waterpoint_equipment.equipment.manufacturer.upcase %></p>
+            <p><%= waterpoint_equipment.equipment.date_of_installation.strftime('%d/%m/%Y') %></p>
+            <p class="bold <%= Date.today > waterpoint_equipment.equipment.date_of_expiration ? 'text-red' : 'text-green' %>"><%= Date.today > waterpoint_equipment.equipment.date_of_expiration ? "EXPIRED" : "VALID" %></p>
+            <span class="e-active">
+              <p class="ms-3 <%= waterpoint_equipment.equipment.inactive ? 'task-red' : 'task-green' %>"></p>
+            </span>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </section>
+</div>
+
+<div class="m-view">
+  <div class="mb-3">
+    <h4 class="mb-0 d-title d-flex align-items-center"> <%= @network.name.upcase %> NETWORK</h4>
+    <% if policy(Network).new? %>
+      <span class="d-flex mt-2">
+        <%= link_to edit_network_path(@network), class: 'option-link' do %>
+          <i class="bi bi-pen-fill"></i>
+        <% end %>
+        <%= link_to network_path(@network), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete the network #{@network.name}?"}, class: 'option-link' do %>
+          <i class="bi bi-trash3-fill"></i>
+        <% end %>
+      </span>
+    <% end %>
+  </div>
+
   <div class="g-four">
     <section class="info-square">
       <p>NUMBER OF HOUSEHOLD CONNECTIONS</p>
@@ -33,67 +136,51 @@
       <p>NEXT MAINTENANCE</p>
       <span><%= @network.tasks.any? ? @network.tasks.first.start_date.strftime("%a, %e %b %Y") : "N/A" %></span>
     </section>
-    <section class="g-four__100">
-      <div class="d-flex justify-content-between align-items-center border-bottom pb-3 mb-3">
-        <h6 class="headers mb-0 ps-3">WATERPOINTS</h6>
-        <%= link_to 'ADD WATERPOINT', new_network_waterpoint_path(@network), class: 'secondary-btn' if policy(Waterpoint).new? %>
-      </div>
-      <div class="g-two p-3 border-bottom mb-4">
-        <h6 class="headers">NAME</h6>
-        <h6 class="headers">WATERPOINT TYPE</h6>
-      </div>
-      <% @network.waterpoints.each do |waterpoint| %>
-        <div class="network">
-          <div class="g-two p-3">
-            <p><%= waterpoint.name.upcase %></p>
-            <p><%= waterpoint.waterpoint_type.upcase %></p>
-          </div>
-          <% if policy(Waterpoint).new? %>
-            <div class="menu-options dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              •••
-            </div>
-            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to "EDIT #{waterpoint.name.upcase}", edit_network_waterpoint_path(@network, waterpoint), class: "dropdown-item" %>
-              <%= link_to "DELETE #{waterpoint.name.upcase}", waterpoint_path(waterpoint), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete the waterpoint #{waterpoint.name}?"}, class: "dropdown-item" %>
-            </div>
-          <% end %>
+  </div>
+  <div style="width: 100%; height: 300px; margin: 16px 0;"
+    data-controller="map"
+    data-map-markers-value="<%= @markers.to_json %>"
+    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+  </div>
+  <div class="d-flex justify-content-between align-items-center border-top pt-3 mb-3">
+    <h4 class="d-title mb-0">WATERPOINTS</h4>
+    <%= link_to 'ADD WATERPOINT', new_network_waterpoint_path(@network), class: 'secondary-btn' if policy(Waterpoint).new? %>
+  </div>
+  <% @network.waterpoints.each do |waterpoint| %>
+    <section class="m-card">
+      <p class="bold"><%= waterpoint.name.upcase %></p>
+      <hr>
+      <p><%= waterpoint.waterpoint_type.upcase %></p>
+      <% if policy(Waterpoint).new? %>
+        <div class="menu-options dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          •••
+        </div>
+        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+          <%= link_to "EDIT #{waterpoint.name.upcase}", edit_network_waterpoint_path(@network, waterpoint), class: "dropdown-item" %>
+          <%= link_to "DELETE #{waterpoint.name.upcase}", waterpoint_path(waterpoint), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete the waterpoint #{waterpoint.name}?"}, class: "dropdown-item" %>
         </div>
       <% end %>
     </section>
-  </div>
-  <div style="width: 100%; height: 100%;"
-       data-controller="map"
-       data-map-markers-value="<%= @markers.to_json %>"
-       data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
-  </div>
-</div>
-
-
-<section class="mw-800 mb-3">
-  <div class="e-grid border-bottom mb-4">
-    <h6 class="headers e-id">ID</h6>
-    <h6 class="headers">EQUIPMENT</h6>
-    <h6 class="headers">WATERPOINT</h6>
-    <h6 class="headers">MANUFACTURER</h6>
-    <h6 class="headers">DATE OF INSTALLATION</h6>
-    <h6 class="headers">WARRANTY</h6>
-    <h6 class="headers e-active">ACTIVE</h6>
-  </div>
-  <% @waterpoint_equipments.each do |waterpoint_equipment| %>
-    <div class="network">
-      <%= link_to equipment_path(waterpoint_equipment.equipment), class: 'text-decoration-none' do %>
-        <div class="e-grid">
-          <p class="e-id"><%= waterpoint_equipment.equipment.id %></p>
-          <p><%= waterpoint_equipment.equipment.name.upcase %></p>
-          <p><%= waterpoint_equipment.waterpoint.name.upcase %> <%= waterpoint_equipment.waterpoint.waterpoint_type.upcase %></p>
-          <p><%= waterpoint_equipment.equipment.manufacturer.upcase %></p>
-          <p><%= waterpoint_equipment.equipment.date_of_installation.strftime('%d/%m/%Y') %></p>
-          <p class="bold <%= Date.today > waterpoint_equipment.equipment.date_of_expiration ? 'text-red' : 'text-green' %>"><%= Date.today > waterpoint_equipment.equipment.date_of_expiration ? "EXPIRED" : "VALID" %></p>
-          <span class="e-active">
-            <p class="ms-3 <%= waterpoint_equipment.equipment.inactive ? 'task-red' : 'task-green' %>"></p>
-          </span>
-        </div>
-      <% end %>
-    </div>
   <% end %>
-</section>
+  <hr>
+  <h4 class="d-title mb-3">EQUIPMENT</h4>
+
+  <% @waterpoint_equipments.each do |waterpoint_equipment| %>
+    <%= link_to equipment_path(waterpoint_equipment.equipment), class: 'text-decoration-none' do %>
+      <section class="m-card">
+        <p class="bold"><%= waterpoint_equipment.equipment.name.upcase %></p>
+        <hr>
+        <p><%= waterpoint_equipment.equipment.waterpoint.network.name.upcase %></p>
+        <p><%= waterpoint_equipment.equipment.manufacturer.upcase %></p>
+        <p><%= waterpoint_equipment.equipment.date_of_installation.strftime('%d/%m/%Y') %></p>
+        <p class="bold <%= Date.today > waterpoint_equipment.equipment.date_of_expiration ? 'text-red' : 'text-green' %>"><%= Date.today > waterpoint_equipment.equipment.date_of_expiration ? "EXPIRED" : "VALID" %></p>
+        <span class="e-active">
+          <p class="ms-3 <%= waterpoint_equipment.equipment.inactive ? 'task-red' : 'task-green' %>"></p>
+        </span>
+      </section>
+    <% end %>
+  <% end %>
+
+
+
+</div>

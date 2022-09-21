@@ -12,6 +12,9 @@
     font-weight: 400;
     margin: 12px 0;
   }
+  @include media-breakpoint-down(md) {
+    padding: 0;
+  }
 }
 
 .e-val {
@@ -19,6 +22,9 @@
   box-shadow: inset 0px 3px 4px rgba(0,0,0,0.2);
   p {
     margin: 12px 0;
+  }
+  @include media-breakpoint-down(md) {
+    padding: 0 0 0 16px;
   }
 }
 

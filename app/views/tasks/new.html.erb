@@ -2,15 +2,15 @@
   <%= simple_form_for @task do |f| %>
     <div class="f-wrapper">
       <div class="d-flex justify-content-between w-100 ">
-        <h1 class="d-title mb-5">ASSIGN TASK</h1>
+        <h1 class="d-title mb-5 mt-1">ASSIGN TASK</h1>
         <%= f.input :unscheduled, label: "REACTIVE" %>
       </div>
       <div class="f-container">
           <div class="row mt-4">
-            <div class="col-6">
+            <div class="col-12 col-md-6">
               <%= f.input :start_date, as: :date, required: true, html5: true %>
             </div>
-            <div class="col-6">
+            <div class="col-12 col-md-6">
               <%= f.input :end_date, as: :date, required: true, html5: true %>
             </div>
           </div>

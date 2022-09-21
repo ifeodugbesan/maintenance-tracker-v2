@@ -1,19 +1,26 @@
 <section class="mw-800 mb-3">
   <div class="f-wrapper">
-    <h1 class="text-center d-title mb-5">AMEND TASK</h1>
+    <h1 class="d-title mb-5 w-100">AMEND TASK</h1>
     <div class="d-container">
       <%= simple_form_for @task do |f| %>
         <div class="row mt-4">
-          <div class="col-6">
+          <div class="col-12 col-md-6">
             <%= f.input :start_date, as: :date, required: true, html5: true %>
           </div>
-          <div class="col-6">
+          <div class="col-12 col-md-6">
             <%= f.input :end_date, as: :date, required: true, html5: true %>
           </div>
         </div>
         <%= f.input :title %>
         <%= f.input :extra_info %>
-        <%= f.association :technician, as: :radio_buttons, :collection => User.where(:manager => false), :label_method  => lambda { |technician| "#{technician.first_name.capitalize} #{technician.last_name.capitalize}" } %>
+        <%= f.association :technician,
+          as: :radio_buttons,
+          collection: User.where(:manager => false),
+          label_method: lambda { |technician| "#{technician.first_name.upcase} #{technician.last_name.upcase}" },
+          collection_wrapper_tag: 'div',
+          collection_wrapper_class: 'category-wrapper',
+          item_wrapper_class: 'category-item',
+          input_html: {class: 'category-selector'} %>
         <div>
           <%= f.association :service %>
         </div>

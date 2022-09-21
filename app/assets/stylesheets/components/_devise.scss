@@ -5,13 +5,15 @@
   justify-content: space-between;
   align-items: center;
   padding: 56px 0;
+  @include media-breakpoint-down(md) {
+    padding: 24px;
+  }
 }
 
 .d-container {
   width: 500px;
   @include media-breakpoint-down(md) {
     width: 100%;
-    padding: 0 24px;
   }
 }
 
