@@ -3,17 +3,20 @@
     <h1 class="text-center d-title mb-5">AMEND WATERPOINT</h1>
     <div class="d-container">
       <%= simple_form_for [ @network, @waterpoint ] do |f| %>
-        <%= f.input :name %>
-        <%= f.input :mwater_id %>
-        <%= f.input :waterpoint_type %>
-        <%= f.input :latitude %>
-        <%= f.input :longitude %>
-        <%= f.input :address %>
-        <%= f.input :kiosk %>
-        <%= f.input :manufacturer %>
-        <%= f.input :design_period %>
-        <%= f.input :warranty %>
-        <%= f.input :efficiency %>
+        <div class="row mt-4">
+          <div class="col-12 col-md-6">
+            <%= f.input :name %>
+          </div>
+          <div class="col-12 col-md-6">
+            <%= f.input :waterpoint_type %>
+          </div>
+          <div class="col-12 col-md-6">
+            <%= f.input :latitude %>
+          </div>
+          <div class="col-12 col-md-6">
+            <%= f.input :longitude %>
+          </div>
+        </div>
         <%= f.submit 'AMEND WATERPOINT', class: 'primary-btn' %>
       <% end %>
     </div>
