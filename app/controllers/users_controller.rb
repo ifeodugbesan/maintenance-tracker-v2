@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
 
   def index
-    @technicians = policy_scope(User).where(manager: false).page params[:page]
+    @technicians = policy_scope(User).where(manager: false).order(last_name: :asc)
+    @technicians = @technicians.page params[:page]
   end
 
   def dashboard

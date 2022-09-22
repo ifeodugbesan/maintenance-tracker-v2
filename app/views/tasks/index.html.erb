@@ -74,7 +74,6 @@
         <%= check_box_tag :hide_predicted, params[:hide_predicted], params[:hide_predicted], { label: "sdfsdfsf", onchange: "this.form.submit()", class: 'me-1' } %>
         <%= label_tag :hide_predicted, 'HIDE SCHEDULED TASKS' %>
       </div>
-      </div>
     <% end %>
     <%#= link_to 'ADD TASK', new_task_path, class: 'secondary-btn' if policy(Task).new? %>
   </section>
@@ -92,10 +91,10 @@
           <p>TECHNICIAN: <%= task.technician.full_name.upcase %></p>
           <p>DUE DATE: <%= task.end_date.strftime('%d/%m/%Y') %></p>
           <p>NETWORK: <%= task.network.name.upcase %></p>
-           <p class="bold <%= task.unscheduled ? 'text-red' : 'text-green' %>"><%= task.unscheduled ? "REACTIVE" : "SCHEDULED" %></p>
-            <span class="e-active">
-              <p class="ms-3 <%= task.completed ? 'task-green' : 'task-red' %>"></p>
-            </span>
+          <p class="bold <%= task.unscheduled ? 'text-red' : 'text-green' %>"><%= task.unscheduled ? "REACTIVE" : "SCHEDULED" %></p>
+          <span class="e-active">
+            <p class="ms-3 <%= task.completed ? 'task-green' : 'task-red' %>"></p>
+          </span>
         </div>
         <% if policy(task).new? %>
           <div class="menu-options dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

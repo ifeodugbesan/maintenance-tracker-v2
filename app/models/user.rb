@@ -4,11 +4,18 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+  before_validation :default_email
   validates :phone, presence: true, uniqueness: true
   has_one_attached :avatar
   has_many :tasks, class_name: "Task", foreign_key: "technician_id"
   has_many :comments
-  paginates_per 12
+  paginates_per 20
+
+  def default_email
+    unless manager
+      self.email = "#{first_name.downcase}#{last_name.downcase}".gsub(/\s/, "") + "@warwanda.com"
+    end
+  end
 
   def login
     @login || self.phone || self.email
