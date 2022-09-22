@@ -15,10 +15,13 @@
           </div>
         <% end %>
         <div>
-          <p class="mb-0">ONGOING</p>
-          <p class="mb-0">TASKS</p>
           <% if technician.tasks.any? %>
+            <p class="mb-0">ONGOING</p>
+            <p class="mb-0">TASKS</p>
             <p class="text-green bold mb-0"><%= technician.tasks.where(completed: false).count %>/<%= technician.tasks.count %></p>
+          <% else %>
+            <p class="mb-0">NO ASSIGNED</p>
+            <p class="mb-0">TASKS</p>
           <% end %>
         </div>
         <% if current_user.manager %>
