@@ -14,10 +14,11 @@ puts "Destroyed data"
 
 manager = User.create!(email: "manager@test.com", password: "123456", first_name: "Manareen", last_name: 'Gerzimabu', manager: true, phone: "0987654321")
 marie = User.create!(email: "josee@warwanda.com", password: "123456", first_name: "Marie", last_name: 'Josee Uwayezu', manager: true, phone: "0785535764")
-vanessa = User.create!(email: "vanessa@warwanda.com", password: "123456", first_name: "Vanessa", last_name: 'Hategekimana', manager: true, phone: "0787057907")
+vanessa = User.create!(email: "vanessa@warwanda.com", password: "123456", first_name: "Vanessa", last_name: 'Hategekimana', manager: true, phone: "0788475935")
 hirwa = User.create!(email: "hirwa@warwanda.com", password: "123456", first_name: "Hirwa", last_name: 'Christian', manager: true, phone: "0785442893")
 nsabimana = User.create!(email: "damascene@warwanda.com", password: "123456", first_name: "Nsabimana", last_name: 'Jean Damascene', manager: true, phone: "0788569460")
 aurore = User.create!(email: "aurore@warwanda.com", password: "123456", first_name: "Aurore", last_name: 'Iragena', manager: true, phone: "0785846901")
+chimene = User.create!(email: "chimene@warwanda.com", password: "123456", first_name: "Chimene", last_name: 'Murorunkwere', manager: true, phone: "0789753829")
 
 puts "Created Managers"
 
