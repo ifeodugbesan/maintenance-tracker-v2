@@ -200,6 +200,34 @@ section {
 .m-card {
   position: relative;
   margin-bottom: 16px;
+  i {
+    font-size: 20px;
+    margin-right: 8px;
+
+  }
+  .card-i {
+    width: 20px;
+    margin-right: 8px;
+  }
+  .task-tag p {
+    font-size: 14px;
+  }
+}
+
+.m-tag {
+  border-radius: 10px;
+  padding: 4px 10px;
+  display: inline-flex;
+  color: #FFF !important;
+  margin-bottom: 0;
+}
+
+.green-bg {
+  background: #20603D;
+}
+
+.red-bg {
+  background: #EB0000;
 }
 
 

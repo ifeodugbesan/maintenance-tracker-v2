@@ -69,7 +69,9 @@
     <section class="mb-3">
       <p class="bold"><%= service.name.upcase %></p>
       <hr>
-      <p>FREQUENCY: EVERY <%= service.frequency %> MONTHS</p>
+      <div class="d-flex align-items-center mb-3">
+        <i class="bi bi-gear-fill me-2"></i><p class="mb-0">EVERY <%= service.frequency %> MONTHS</p>
+      </div>
     </section>
   <% end %>
 

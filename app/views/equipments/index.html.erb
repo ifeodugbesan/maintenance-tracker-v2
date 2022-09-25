@@ -83,13 +83,26 @@
     <%= link_to equipment_path(equipment), class: 'text-decoration-none' do %>
       <section class="m-card">
         <p class="bold"><%= equipment.name.upcase %></p>
-        <p><%= equipment.waterpoint.network.name.upcase %></p>
-        <p><%= equipment.manufacturer.upcase %></p>
-        <p><%= equipment.date_of_installation.strftime('%d/%m/%Y') %></p>
-        <p class="bold <%= Date.today > equipment.date_of_expiration ? 'text-red' : 'text-green' %>"><%= Date.today > equipment.date_of_expiration ? "EXPIRED" : "VALID" %></p>
-        <span class="e-active">
-          <p class="ms-3 <%= equipment.inactive ? 'task-red' : 'task-green' %>"></p>
-        </span>
+        <hr>
+        <div class="d-flex align-items-center mb-3">
+          <%= image_tag 'card-tap.png', class: 'card-i' %><p class="mb-0"><%= equipment.waterpoint.network.name.upcase %> <%= equipment.waterpoint.waterpoint_type.upcase %></p>
+        </div>
+        <div class="d-flex align-items-center mb-3">
+          <i class="bi bi-building"></i><p class="mb-0"><%= equipment.manufacturer.upcase %></p>
+        </div>
+        <div class="d-flex align-items-center mb-3">
+          <i class="bi bi-calendar-week"></i><p class="mb-0"><%= equipment.date_of_installation.strftime('%d/%m/%Y') %></p>
+        </div>
+        <div class="d-flex align-items-center mb-3">
+          <% if Date.today > equipment.date_of_expiration %>
+            <i class="bi bi-shield-fill-x"></i>
+            <p class="bold text-red mb-0">EXPIRED</p>
+          <% else %>
+            <i class="bi bi-shield-fill-check"></i>
+            <p class="bold text-green mb-0">VALID</p>
+          <% end %>
+        </div>
+        <p class="m-tag me-1 <%= equipment.inactive ? 'red-bg' : 'green-bg' %>"><%= equipment.inactive ? "INACTIVE" : "ACTIVE" %></p>
       </section>
     <% end %>
   <% end %>

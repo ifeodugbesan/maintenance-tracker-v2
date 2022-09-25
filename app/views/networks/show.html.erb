@@ -150,7 +150,9 @@
     <section class="m-card">
       <p class="bold"><%= waterpoint.name.upcase %></p>
       <hr>
-      <p><%= waterpoint.waterpoint_type.upcase %></p>
+      <div class="d-flex align-items-center">
+        <%= image_tag 'card-tap.png', class: 'card-i' %><p class="mb-0"><%= waterpoint.waterpoint_type.upcase %></p>
+      </div>
       <% if policy(Waterpoint).new? %>
         <div class="menu-options dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           •••
@@ -162,21 +164,34 @@
       <% end %>
     </section>
   <% end %>
-  <hr>
-  <h4 class="d-title mb-3">EQUIPMENT</h4>
-
+  <div class="d-flex justify-content-between align-items-center border-top pt-3 mb-3">
+    <h4 class="d-title mb-0">EQUIPMENT</h4>
+    <%= link_to 'ADD EQUIPMENT', new_equipment_path, class: 'secondary-btn' if policy(Equipment).new? %>
+  </div>
   <% @waterpoint_equipments.each do |waterpoint_equipment| %>
     <%= link_to equipment_path(waterpoint_equipment.equipment), class: 'text-decoration-none' do %>
       <section class="m-card">
         <p class="bold"><%= waterpoint_equipment.equipment.name.upcase %></p>
         <hr>
-        <p><%= waterpoint_equipment.equipment.waterpoint.network.name.upcase %></p>
-        <p><%= waterpoint_equipment.equipment.manufacturer.upcase %></p>
-        <p><%= waterpoint_equipment.equipment.date_of_installation.strftime('%d/%m/%Y') %></p>
-        <p class="bold <%= Date.today > waterpoint_equipment.equipment.date_of_expiration ? 'text-red' : 'text-green' %>"><%= Date.today > waterpoint_equipment.equipment.date_of_expiration ? "EXPIRED" : "VALID" %></p>
-        <span class="e-active">
-          <p class="ms-3 <%= waterpoint_equipment.equipment.inactive ? 'task-red' : 'task-green' %>"></p>
-        </span>
+        <div class="d-flex align-items-center mb-3">
+          <%= image_tag 'card-tap.png', class: 'card-i' %><p class="mb-0"><%= waterpoint_equipment.equipment.waterpoint.network.name.upcase %> <%= waterpoint_equipment.equipment.waterpoint.waterpoint_type.upcase %></p>
+        </div>
+        <div class="d-flex align-items-center mb-3">
+          <i class="bi bi-building"></i><p class="mb-0"><%= waterpoint_equipment.equipment.manufacturer.upcase %></p>
+        </div>
+        <div class="d-flex align-items-center mb-3">
+          <i class="bi bi-calendar-week"></i><p class="mb-0"><%= waterpoint_equipment.equipment.date_of_installation.strftime('%d/%m/%Y') %></p>
+        </div>
+        <div class="d-flex align-items-center mb-3">
+          <% if Date.today > waterpoint_equipment.equipment.date_of_expiration %>
+            <i class="bi bi-shield-fill-x"></i>
+            <p class="bold text-red mb-0">EXPIRED</p>
+          <% else %>
+            <i class="bi bi-shield-fill-check"></i>
+            <p class="bold text-green mb-0">VALID</p>
+          <% end %>
+        </div>
+        <p class="m-tag me-1 <%= waterpoint_equipment.equipment.inactive ? 'red-bg' : 'green-bg' %>"><%= waterpoint_equipment.equipment.inactive ? "INACTIVE" : "ACTIVE" %></p>
       </section>
     <% end %>
   <% end %>

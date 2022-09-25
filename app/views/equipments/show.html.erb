@@ -130,12 +130,32 @@
   <% @equipment.tasks.each do |task| %>
     <section class="m-card">
       <%= link_to task_path(task), class: 'text-decoration-none' do %>
-        <p><%= task.service.name.upcase %></p>
-        <hr>
-        <p><%= task.end_date.strftime('%d/%m/%Y') %></p>
-        <p><%= task.technician.full_name.upcase %></p>
-        <p class="ms-3 <%= task.completed ? 'task-green' : 'task-red' %>"></p>
-        <p class="bold <%= task.unscheduled ? 'text-red' : 'text-green' %>"><%= task.unscheduled ? "UNSCHEDULED" : "SCHEDULED" %></p>
+        <div class="">
+          <p class="bold"><%= task.title.upcase %></p>
+          <hr>
+          <div class="d-flex align-items-center mb-3">
+            <% if task.technician.avatar.attached? %>
+              <%= cl_image_tag task.technician.avatar.key, class: "avatar me-2" %>
+            <% else %>
+              <div class="m-ai me-2">
+                <%= task.technician.initials %>
+              </div>
+            <% end %>
+            <p class="mb-0"><%= task.technician.full_name.upcase %></p>
+          </div>
+          <div class="d-flex align-items-center mb-3">
+            <%= image_tag 'card-cal.png', class: 'card-i' %><p class="mb-0"><%= task.end_date.strftime('%d/%m/%Y') %></p>
+          </div>
+          <div class="d-flex align-items-center mb-3">
+            <%= image_tag 'card-tap.png', class: 'card-i' %><p class="mb-0"><%= task.network.name.upcase %> <%= task.waterpoint.waterpoint_type.upcase %></p>
+          </div>
+          <p class="m-tag me-1 <%= task.unscheduled ? 'red-bg' : 'green-bg' %>"><%= task.unscheduled ? "REACTIVE" : "SCHEDULED" %></p>
+          <% if !task.completed && Date.today > task.end_date %>
+            <p class="m-tag red-bg">OVERDUE</p>
+          <% else %>
+            <p class="m-tag <%= task.completed ? 'green-bg' : 'red-bg' %>"><%= task.completed ? 'COMPLETED' : 'INCOMPLETE' %></p>
+          <% end %>
+        </div>
       <% end %>
       <% if policy(task).new? %>
         <div class="menu-options dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
