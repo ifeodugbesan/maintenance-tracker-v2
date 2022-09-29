@@ -8,9 +8,5 @@ class Waterpoint < ApplicationRecord
   validates :waterpoint_type, presence: true
   validates :latitude, presence: true
   validates :longitude, presence: true
-  validates :address, presence: true
-  validates :manufacturer, presence: true
-  validates :efficiency, presence: true
-  validates :design_period, presence: true
-  validates :warranty, presence: true
+  # validates :address, presence: true
 end
