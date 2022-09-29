@@ -51,6 +51,6 @@ class WaterpointsController < ApplicationController
   end
 
   def waterpoint_params
-    params.require(:waterpoint).permit(:name, :mwater_id, :waterpoint_type, :latitude, :longitude, :address, :kiosk, :manufacturer, :design_period, :warranty, :efficiency)
+    params.require(:waterpoint).permit(:name, :waterpoint_type, :latitude, :longitude)
   end
 end
