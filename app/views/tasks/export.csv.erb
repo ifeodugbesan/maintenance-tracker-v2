@@ -8,7 +8,7 @@
               'SERVICE',
               'SCHEDULED',
               'STATUS'] %>
-<%= CSV.generate_line headers %>
+<%= CSV.generate_line(headers, row_sep: "") %>
 <% @tasks.each do |task| %>
   <% task_line = ["#{task.id}",
                   "#{task.title.upcase}",
@@ -21,5 +21,5 @@
                   "#{task.unscheduled ? "UNSCHEDULED" : "SCHEDULED"}",
                   "#{task.completed ? "COMPLETED" : "INCOMPLETE"}"
                  ] %>
-  <%= CSV.generate_line(task_line) %>
+  <%= CSV.generate_line(task_line, row_sep: "") %>
 <% end %>

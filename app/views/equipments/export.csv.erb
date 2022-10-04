@@ -9,7 +9,7 @@
               'DESIGN PERIOD',
               'ACTIVE'
              ] %>
-<%= CSV.generate_line headers %>
+<%= CSV.generate_line(headers, row_sep: "") %>
 <% @equipments.each do |equipment| %>
   <% equipment_line = ["#{equipment.id}",
                        "#{equipment.name.upcase}",
@@ -22,5 +22,5 @@
                        "#{equipment.design_period}",
                        "#{equipment.inactive ? 'INACTIVE' : 'ACTIVE'}"
                       ] %>
-  <%= CSV.generate_line(equipment_line) %>
+  <%= CSV.generate_line(equipment_line, row_sep: "") %>
 <% end %>
