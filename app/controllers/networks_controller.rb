@@ -16,7 +16,7 @@ class NetworksController < ApplicationController
         info_window: render_to_string(partial: "shared/info_window", locals: { waterpoint: waterpoint }),
       }
     end
-    @waterpoint_equipments = @network.waterpoints.map(&:waterpoint_equipments).reject(&:blank?).flatten
+    @equipments = @network.waterpoints.map(&:equipments).reject(&:blank?).flatten
   end
 
   def new
