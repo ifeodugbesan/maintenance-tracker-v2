@@ -1,7 +1,6 @@
 <div class="w-view">
   <h4 class="mb-3 headers d-flex align-items-center">
-    <%= @equipment.name.upcase %> -
-    <%= @equipment.id %>
+    <%= @equipment.name.upcase %>
     <span class="task-tag ms-3">
       <p class="<%= @equipment.inactive ? 'task-red' : 'task-green' %> mb-0 me-2"></p>
       <p class="mb-0"><%= @equipment.inactive ? " INACTIVE" : "ACTIVE" %></p>
