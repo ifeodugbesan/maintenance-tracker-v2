@@ -68,13 +68,13 @@
         </div>
         <% @task.comments.each_with_index do |comment, index| %>
           <div class="border-top mt-3 pt-3 pe-3 c-card">
-            <p class="ps-3"><%= comment.content %></p>
+            <p class="ps-3 mb-1"><%= comment.content %></p>
             <% if comment.photos.attached? %>
               <% comment.photos.each do |photo| %>
                 <%= cl_image_tag photo.key, class: 'c-imgs', data: { bs_toggle: "modal", bs_target: "#expandImg", action: "click->tasks#expand" } %>
               <% end %>
             <% end %>
-            <p class="ps-3 c-time">posted by <%= comment.user.full_name %> <%= time_ago_in_words(comment.created_at) %></p>
+            <p class="ps-3 c-time">posted by <strong><%= comment.user.full_name %></strong> <%= time_ago_in_words(comment.created_at) %> ago</p>
             <% if policy(comment).edit? %>
               <div class="menu-options dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 •••
@@ -154,13 +154,13 @@
       </div>
       <% @task.comments.each_with_index do |comment, index| %>
         <div class="border-top mt-3 pt-3 pe-3 c-card">
-          <p class="ps-3"><%= comment.content %></p>
+          <p class="ps-3 mb-1"><%= comment.content %></p>
           <% if comment.photos.attached? %>
             <% comment.photos.each do |photo| %>
               <%= cl_image_tag photo.key, class: 'c-imgs', data: { bs_toggle: "modal", bs_target: "#expandImg", action: "click->tasks#expand" } %>
             <% end %>
           <% end %>
-          <p class="ps-3 c-time">posted by <%= comment.user.full_name %> <%= time_ago_in_words(comment.created_at) %></p>
+          <p class="ps-3 c-time">posted by <strong><%= comment.user.full_name %></strong> <%= time_ago_in_words(comment.created_at) %> ago</p>
           <% if policy(comment).edit? %>
             <div class="menu-options dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               •••

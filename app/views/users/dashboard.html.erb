@@ -2,7 +2,7 @@
   <div class="g-two mb-3">
     <section class="d-tt d-fixed-scroll p-3">
       <div class="d-flex justify-content-between align-items-center border-bottom pb-3 mb-3">
-        <h6 class="headers mb-0 ps-3"><%= current_user.manager ? "TODAY'S TASKS" : "MY TASKS"  %></h6>
+        <h6 class="headers mb-0 ps-3"><%= current_user.manager ? "MOST RECENT TASKS" : "MY TASKS"  %></h6>
         <%= link_to 'ALL TASKS', tasks_path, class: 'secondary-btn' %>
       </div>
       <div class="d-four border-bottom mb-4">
@@ -47,10 +47,10 @@
   </div>
   <section class="mb-3">
     <div class="d-flex justify-content-between align-items-center border-bottom pb-3 mb-3">
-      <h6 class="headers mb-0">THIS MONTHS INCOMPLETED TASKS</h6>
+      <h6 class="headers mb-0">THIS MONTHS COMPLETED TASKS</h6>
       <%= link_to 'VIEW STATS', stats_path, class: 'secondary-btn' %>
     </div>
-    <%= column_chart @tasks_per_month, colors: ["rgba(246, 158, 54, 1)"], legend: false, height: "220px", discrete: true, label: "TODAY'S TASKS"  %>
+    <%= column_chart @tasks_per_month, colors: ["rgba(1, 115, 222, 1)"], legend: false, height: "220px", discrete: true, label: "TODAY'S TASKS"  %>
   </section>
 </div>
 
@@ -115,11 +115,11 @@
   <% end %>
 
   <div class="d-flex justify-content-between align-items-center pb-3">
-    <h4 class="mb-0 d-title">INCOMPLETED TASKS</h4>
+    <h4 class="mb-0 d-title">COMPLETED TASKS</h4>
     <%= link_to 'VIEW STATS', stats_path, class: 'secondary-btn' %>
   </div>
   <section class="m-card">
-    <%= column_chart @tasks_per_month, colors: ["rgba(246, 158, 54, 1)"], legend: false, height: "220px", discrete: true, label: "TODAY'S TASKS"  %>
+    <%= column_chart @tasks_per_month, colors: ["rgba(1, 115, 222, 1)"], legend: false, height: "220px", discrete: true, label: "TODAY'S TASKS"  %>
   </section>
 
 </div>
