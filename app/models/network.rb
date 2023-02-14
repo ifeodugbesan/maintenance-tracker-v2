@@ -6,7 +6,7 @@ class Network < ApplicationRecord
   validates :address, presence: :true
   validates :number_of_households, presence: :true
   validates :max_households, presence: :true
-  paginates_per 20
+  paginates_per 18
   include PgSearch::Model
   pg_search_scope :search_by_name,
                   against: [:name],
