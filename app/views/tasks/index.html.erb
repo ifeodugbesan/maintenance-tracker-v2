@@ -1,4 +1,4 @@
-<div class="w-view">
+<div class="w-view" data-controller="tooltips">
   <section class="mw-800 d-flex justify-content-between mb-3">
     <%= form_with url: tasks_path, method: :get, class: "search-form" do %>
       <%= text_field_tag :query, params[:query], class: "form-control search-bar", placeholder: "Find a task" %>
@@ -29,7 +29,11 @@
             <p><%= task.end_date.strftime('%d/%m/%Y') %></p>
             <p><%= task.network.name.upcase %></p>
             <p class="bold <%= task.unscheduled ? 'text-red' : 'text-green' %>"><%= task.unscheduled ? "REACTIVE" : "SCHEDULED" %></p>
-            <span class="e-active">
+            <% if task.completion_date %>
+              <span class="e-active" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Completed on <%= task.completion_date.strftime("%a, %e %b %Y") %>">
+            <% else %>
+              <span class="e-active">
+            <% end %>
               <p class="ms-3 <%= task.completed ? 'task-green' : 'task-red' %>"></p>
             </span>
           </div>
@@ -61,7 +65,7 @@
 <!------------- VIEW ------------->
 <!------------- BELOW ------------->
 
-<div class="m-view">
+<div class="m-view" data-controller="tooltips">
   <h4 class="d-title mb-3">TASKS</h4>
   <section class="mb-3">
     <%= form_with url: tasks_path, method: :get, class: "search-form" do %>

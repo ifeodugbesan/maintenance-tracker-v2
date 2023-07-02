@@ -14,6 +14,42 @@
       </section>
     </div>
   </div>
+  <section class="d-tt d-fixed-scroll p-3 mb-3">
+    <div class="d-flex justify-content-between align-items-center border-bottom pb-3 mb-3">
+      <h6 class="headers mb-0 ps-3"><%= current_user.manager ? "MOST RECENT TASKS" : "MY TASKS"  %></h6>
+      <%= link_to 'ALL TASKS', tasks_path, class: 'secondary-btn' %>
+    </div>
+    <div class="d-four border-bottom mb-4">
+      <h6 class="headers">TASK</h6>
+      <h6 class="headers">TECHNICIAN</h6>
+      <h6 class="headers">DUE DATE</h6>
+      <h6 class="headers">NETWORK</h6>
+      <!-- <h6 class="headers">STATUS</h6> -->
+    </div>
+    <% (current_user.manager ? @tasks : @my_tasks).first(5).each do |task| %>
+      <div class="network">
+        <%= link_to task_path(task), class: 'text-decoration-none' do %>
+          <div class="d-four">
+            <p><%= task.title.upcase %></p>
+            <p><%= task.technician.full_name.upcase %></p>
+            <p><%= task.end_date.strftime('%d/%m/%Y') %></p>
+            <p><%= task.network.name.upcase %></p>
+            <!-- <p class="<%#= task.completed ? 'task-green' : 'task-red' %>"></p> -->
+            <!-- <p><%#= task.schedule.upcase %></p> -->
+          </div>
+        <% end %>
+        <% if policy(task).new? %>
+          <div class="menu-options dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            •••
+          </div>
+          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <%= link_to "EDIT", edit_task_path(task), class: "dropdown-item" %>
+            <%= link_to "DELETE", task_path(task), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete the task #{task.title}?"}, class: "dropdown-item" %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </section>
   <div class="g-two mb-3">
     <section class="s-ot p-4">
       <h6 class="headers mb-2">COMPLETE/INCOMPLETE TASKS</h6>
@@ -34,6 +70,10 @@
       <%= column_chart @unscheduled_services_by_manufacturer, colors: ["rgba(253,139,5,1)"] %>
     </section>
   </div>
+  <section class="mb-3">
+      <h6 class="headers mb-2">NO. OF UNSCHEDULED SERVICES BY EQUIPMENT</h6>
+      <%= column_chart @unscheduled_services_by_equipment, colors: ["rgba(253,139,5,1)"] %>
+  </section>
   <div class="g-two mb-3">
     <section class="s-ot">
       <h6 class="headers mb-2">EQUIPMENT WITH THE MOST SERVICE (top 5)</h6>

@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     resources :waterpoints, only: [:index, :new, :create, :edit, :update]
   end
   resources :tasks do
-    get :completed, on: :member
+    patch :completed, on: :member
     collection do
       get :export, defaults: { format: :csv }
     end
@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   end
   resources :services
   resources :comments, only: [:update, :destroy]
-  get 'dashboard', to: 'users#dashboard', as: :dashboard
+  get 'dashboard', to: 'pages#dashboard', as: :dashboard
   get 'technicians', to: 'users#index', as: :technicians
   patch 'users/:id/user_status', to: 'users#user_status', as: :user_status
   get 'statistics', to: 'pages#stats', as: :stats

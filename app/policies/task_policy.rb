@@ -31,7 +31,7 @@ class TaskPolicy < ApplicationPolicy
   end
 
   def completed?
-    record.technician == user
+    record.technician == user || user.manager
   end
 
   def export?
