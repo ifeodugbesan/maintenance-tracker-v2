@@ -20,9 +20,9 @@
                 <% if !@task.completed && policy(@task).completed? %>
                   <section>
                     <p class="headers d-flex justify-content-center">TASK COMPLETED ON</p>
-                    <%= simple_form_for @task, url: completed_task_path(@task), method: :patch, data: { controller: 'flatpickr' } do |f| %>
+                    <%= simple_form_for @task, url: completed_task_path(@task), method: :patch, data: { controller: 'flatpickr',turbo_confirm: "Are you sure you want to mark this task as complete?" } do |f| %>
                       <div class="d-flex flex-column justify-content-center align-items-center">
-                        <%= f.input :completion_date, as: :string, label: false, wrapper_html: { class: 'mb-1 w-100' }, input_html: { data: { flatpickr_target: "completedDate" }, value: Date.today } %>
+                        <%= f.input :completion_date, as: :string, label: false, placeholder: "This task was completed on...", wrapper_html: { class: 'mb-1 w-100' }, input_html: { data: { flatpickr_target: "completedDate" } } %>
                         <%= f.input_field :completed, as: :hidden, value: true %>
                         <%= f.submit "COMPLETE TASK", class: "primary-btn task-completed-btn mx-1" %>
                       </div>
