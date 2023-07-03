@@ -60,8 +60,10 @@ class TasksController < ApplicationController
     new_task = @task.attributes.except("id", "completion_date", "completed", "created_at", "updated_at", "unscheduled")
     repeated_task = Task.new(new_task)
     repeated_task.start_date = @task.completion_date + @task.service.frequency.months
-    repeated_task.end_date = repeated_task.start_date + 14.days
+    days_between_start_and_end = (@task.end_date - @task.start_date).to_i / 86400
+    repeated_task.end_date = repeated_task.start_date + days_between_start_and_end.days
     repeated_task.unscheduled = false
+
     repeated_task.save
 
     redirect_to task_path(@task)
