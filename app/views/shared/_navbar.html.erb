@@ -81,12 +81,12 @@
             <p>HOME</p>
           </div>
         <% end %>
-        <%= link_to stats_path, class: "sidebar-link #{ 'active' if params[:action] == 'stats'  }" do %>
+<!--         <%#= link_to stats_path, class: "sidebar-link #{ 'active' if params[:action] == 'stats'  }" do %>
           <div>
-            <%= image_tag 'chart.png' %>
+            <%#= image_tag 'chart.png' %>
             <p>STATS</p>
           </div>
-        <% end %>
+        <%# end %> -->
         <%= link_to tasks_path, class: "sidebar-link #{ 'active' if params[:controller] == 'tasks'  }" do %>
           <div>
             <%= image_tag 'task.png' %>

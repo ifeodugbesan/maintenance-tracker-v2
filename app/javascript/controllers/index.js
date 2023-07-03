@@ -4,6 +4,9 @@
 
 import { application } from "./application"
 
+import FlatpickrController from "./flatpickr_controller"
+application.register("flatpickr", FlatpickrController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
@@ -12,3 +15,6 @@ application.register("map", MapController)
 
 import TasksController from "./tasks_controller"
 application.register("tasks", TasksController)
+
+import TooltipsController from "./tooltips_controller"
+application.register("tooltips", TooltipsController)

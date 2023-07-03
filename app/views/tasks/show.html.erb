@@ -2,13 +2,13 @@
   <div class="w-view">
     <div class="tasks-wrapper">
       <div class="d-flex mw-800 mb-3">
-        <div class="t-info me-3">
+        <div class="t-info">
           <div class="d-flex justify-content-between mb-3">
             <div class="me-3">
               <h4 class="mb-3 d-title">
                 <%= @task.title.upcase %>
                 <% if policy(Task).new? %>
-                  <span class="d-flex mt-3">
+                  <span class="d-flex my-3">
                     <%= link_to edit_task_path(@task), class: 'option-link' do %>
                       <i class="bi bi-pen-fill"></i>
                     <% end %>
@@ -18,7 +18,17 @@
                   </span>
                 <% end %>
                 <% if !@task.completed && policy(@task).completed? %>
-                  <%= link_to "COMPLETE TASK", completed_task_path(@task), class: "primary-btn mt-3" %>
+                  <section>
+                    <p class="headers d-flex justify-content-center">TASK COMPLETED ON</p>
+                    <%= simple_form_for @task, url: completed_task_path(@task), method: :patch, data: { controller: 'flatpickr' } do |f| %>
+                      <div class="d-flex flex-column justify-content-center align-items-center">
+                        <%= f.input :completion_date, as: :string, label: false, wrapper_html: { class: 'mb-1 w-100' }, input_html: { data: { flatpickr_target: "completedDate" }, value: Date.today } %>
+                        <%= f.input_field :completed, as: :hidden, value: true %>
+                        <%= f.submit "COMPLETE TASK", class: "primary-btn task-completed-btn mx-1" %>
+                      </div>
+                    <% end %>
+                    <%#= link_to "COMPLETE TASK", completed_task_path(@task), class: "primary-btn mt-3" %>
+                  </section>
                 <% end %>
               </h4>
               <p class="text-green mb-1"><span class="bold">TECHNICIAN:</span> <%= @task.technician.full_name.upcase %></p>
@@ -35,6 +45,9 @@
                 <p class="<%= @task.unscheduled ? 'task-red' : 'task-green' %> mb-0 me-2"></p>
                 <p class="mb-0"><%= @task.unscheduled ? " REACTIVE" : "SCHEDULED" %></p>
               </span>
+              <% if @task.completion_date %>
+                <p class="mb-0 mt-3"><strong class="headers">COMPLETED ON:</strong> <%= @task.completion_date.strftime("%a, %e %b %Y") %></p>
+              <% end %>
             </div>
             <div class="t-dates">
               <section class="me-3">
@@ -53,11 +66,6 @@
             <h6 class="headers pb-3 mb-3 border-bottom">DETAILS</h6>
             <p><%= @task.extra_info %></p>
           </section>
-        </div>
-        <div style="width: 400px;"
-          data-controller="map"
-          data-map-markers-value="<%= @markers.to_json %>"
-          data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
         </div>
       </div>
       <hr>
@@ -96,7 +104,7 @@
         <h4 class="mb-3 d-title">
           <%= @task.title.upcase %>
           <% if policy(Task).new? %>
-            <span class="d-flex mt-3">
+            <span class="d-flex my-3">
               <%= link_to edit_task_path(@task), class: 'option-link' do %>
                 <i class="bi bi-pen-fill"></i>
               <% end %>
@@ -106,7 +114,16 @@
             </span>
           <% end %>
           <% if !@task.completed && policy(@task).completed? %>
-            <%= link_to "COMPLETE TASK", completed_task_path(@task), class: "primary-btn mt-3" %>
+            <section class="completed-form-m">
+              <p class="headers d-flex justify-content-center">TASK COMPLETED ON</p>
+              <%= simple_form_for @task, url: completed_task_path(@task), method: :patch, data: { controller: 'flatpickr' } do |f| %>
+                <div class="d-flex flex-column justify-content-center align-items-center">
+                  <%= f.input :completion_date, as: :string, label: false, wrapper_html: { class: 'mb-1 w-100' }, input_html: { data: { flatpickr_target: "completedDateMobile" }, value: Date.today } %>
+                  <%= f.input_field :completed, as: :hidden, value: true %>
+                  <%= f.submit "COMPLETE TASK", class: "primary-btn task-completed-btn mx-1" %>
+                </div>
+              <% end %>
+            </section>
           <% end %>
         </h4>
         <p class="text-green mb-1"><span class="bold">TECHNICIAN:</span> <%= @task.technician.full_name.upcase %></p>
@@ -123,6 +140,9 @@
           <p class="<%= @task.unscheduled ? 'task-red' : 'task-green' %> mb-0 me-2"></p>
           <p class="mb-0"><%= @task.unscheduled ? " REACTIVE" : "SCHEDULED" %></p>
         </span>
+        <% if @task.completion_date %>
+          <p class="mb-0 mt-3"><strong class="headers">COMPLETED ON:</strong> <%= @task.completion_date.strftime("%a, %e %b %Y") %></p>
+        <% end %>
       </div>
 
       <div class="g-two">
@@ -141,12 +161,7 @@
       <h6 class="headers pb-3 mb-3 border-bottom">DETAILS</h6>
       <p><%= @task.extra_info %></p>
     </section>
-    <div style="width: 100%; height: 300px; margin: 16px 0;"
-      data-controller="map"
-      data-map-markers-value="<%= @markers.to_json %>"
-      data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
-    </div>
-
+    <hr>
     <section class="mb-3">
       <div class="d-flex justify-content-between align-items-center">
         <h6 class="headers mb-0">COMMENTS</h6>

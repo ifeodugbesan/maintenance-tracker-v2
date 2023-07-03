@@ -1,4 +1,3 @@
-
 class TasksController < ApplicationController
   before_action :find_and_authorize_equipment, only: [:show, :edit, :update, :destroy]
 
@@ -14,12 +13,6 @@ class TasksController < ApplicationController
   def show
     @task = Task.find(params[:id])
     @comment = Comment.new
-    @markers = [
-      { lat: @task.waterpoint.latitude,
-        lng: @task.waterpoint.longitude,
-        info_window: render_to_string(partial: "shared/info_window", locals: { waterpoint: @task.waterpoint })
-      }
-    ]
   end
 
   def new
@@ -61,8 +54,18 @@ class TasksController < ApplicationController
 
   def completed
     @task = Task.find(params[:id])
-    @task.update(completed: true)
+    @task.update(task_params)
     authorize @task
+
+    new_task = @task.attributes.except("id", "completion_date", "completed", "created_at", "updated_at", "unscheduled")
+    repeated_task = Task.new(new_task)
+    repeated_task.start_date = @task.completion_date + @task.service.frequency.months
+    days_between_start_and_end = (@task.end_date - @task.start_date).to_i / 86400
+    repeated_task.end_date = repeated_task.start_date + days_between_start_and_end.days
+    repeated_task.unscheduled = false
+
+    repeated_task.save
+
     redirect_to task_path(@task)
   end
 
@@ -86,6 +89,6 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:start_date, :end_date, :title, :extra_info, :unscheduled, :service_id, :technician_id, :waterpoint_id, :equipment_id)
+    params.require(:task).permit(:start_date, :end_date, :title, :extra_info, :unscheduled, :service_id, :technician_id, :waterpoint_id, :equipment_id, :completion_date, :completed)
   end
 end
